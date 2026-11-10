@@ -159,54 +159,84 @@
 
       <div class="container hero-showcase-wrap">
         <div class="hero-showcase" data-hero="showcase">
-          <div class="browser">
-            <div class="browser-tabs">
-              <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="browser-tab">
-                <img src="assets/img/favicon.svg" alt="" width="13" height="13">
-                <span>Ration</span>
-                <svg class="browser-tab-x" aria-hidden="true" viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
-              </span>
-              <span class="browser-newtab" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
-              <span class="browser-window" aria-hidden="true">
-                <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
-                <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
-                <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
-              </span>
-            </div>
-
-            <div class="browser-bar">
-              <span class="browser-navbtns" aria-hidden="true">
-                <svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg>
-                <svg viewBox="0 0 20 20" class="is-dim"><path d="m7.5 4.5 5.5 5.5-5.5 5.5"/></svg>
-                <svg viewBox="0 0 20 20"><path d="M16 10a6 6 0 1 1-1.8-4.3"/><path d="M16 3.5V6h-2.5"/></svg>
-              </span>
-              <span class="browser-url">
-                <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
-                <span data-browser-url>app.ration.works/mail</span>
-              </span>
-              <span class="browser-extra" aria-hidden="true">
-                <svg viewBox="0 0 20 20"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.4.9 4.8-4.3-2.4-4.3 2.4.9-4.8L3 7.9l4.9-.6L10 3Z"/></svg>
-                <svg viewBox="0 0 20 20"><circle cx="10" cy="4.5" r="1.2"/><circle cx="10" cy="10" r="1.2"/><circle cx="10" cy="15.5" r="1.2"/></svg>
-              </span>
-            </div>
-
-            <div class="browser-viewport" data-hero-slider aria-roledescription="carousel" aria-label="Ration app previews">
-              <figure class="hero-slide is-active" id="hero-slide-0" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 4" aria-hidden="false">
-                <img src="assets/img/app-mail.webp" alt="Ration Mail showing an inbox and a migration status email from Maxwell Craig" width="1600" height="1000" fetchpriority="high">
-              </figure>
-              <figure class="hero-slide" id="hero-slide-1" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
-                <img src="assets/img/app-chat.webp" alt="Ration Chat showing a direct conversation about an overnight mailbox migration" width="1200" height="750" loading="lazy">
-              </figure>
-              <figure class="hero-slide" id="hero-slide-2" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
-                <img src="assets/img/app-calendar.webp" alt="Ration Calendar showing a week of shared team events" width="1200" height="750" loading="lazy">
-              </figure>
-              <figure class="hero-slide" id="hero-slide-3" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
-                <img src="assets/img/app-forms.webp" alt="Ration Forms showing a structured request form and responses" width="1200" height="750" loading="lazy">
-              </figure>
-            </div>
+          <div class="hero-stage" data-hero-stage data-hero-slider role="group" aria-roledescription="carousel" aria-label="Ration app previews">
+            <figure class="hero-slide is-active" id="hero-slide-0" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 4" aria-hidden="false">
+              <div class="browser">
+                <div class="browser-chrome">
+                  <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="browser-url">
+                    <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                    <span>app.ration.works/mail</span>
+                  </span>
+                  <span class="browser-window" aria-hidden="true">
+                    <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                    <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                    <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+                  </span>
+                </div>
+                <div class="browser-viewport">
+                  <img src="assets/img/app-mail.webp" alt="Ration Mail showing an inbox and a migration status email from Maxwell Craig" width="1600" height="1000" fetchpriority="high">
+                </div>
+              </div>
+            </figure>
+            <figure class="hero-slide" id="hero-slide-1" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-chrome">
+                  <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="browser-url">
+                    <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                    <span>app.ration.works/chat</span>
+                  </span>
+                  <span class="browser-window" aria-hidden="true">
+                    <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                    <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                    <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+                  </span>
+                </div>
+                <div class="browser-viewport">
+                  <img src="assets/img/app-chat.webp" alt="Ration Chat showing a direct conversation about an overnight mailbox migration" width="1200" height="750" loading="lazy">
+                </div>
+              </div>
+            </figure>
+            <figure class="hero-slide" id="hero-slide-2" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-chrome">
+                  <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="browser-url">
+                    <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                    <span>app.ration.works/calendar</span>
+                  </span>
+                  <span class="browser-window" aria-hidden="true">
+                    <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                    <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                    <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+                  </span>
+                </div>
+                <div class="browser-viewport">
+                  <img src="assets/img/app-calendar.webp" alt="Ration Calendar showing a week of shared team events" width="1200" height="750" loading="lazy">
+                </div>
+              </div>
+            </figure>
+            <figure class="hero-slide" id="hero-slide-3" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-chrome">
+                  <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="browser-url">
+                    <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                    <span>app.ration.works/forms</span>
+                  </span>
+                  <span class="browser-window" aria-hidden="true">
+                    <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                    <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                    <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+                  </span>
+                </div>
+                <div class="browser-viewport">
+                  <img src="assets/img/app-forms.webp" alt="Ration Forms showing a structured request form and responses" width="1200" height="750" loading="lazy">
+                </div>
+              </div>
+            </figure>
           </div>
-
           <div class="hero-controls">
             <div class="hero-tabs" role="group" aria-label="Choose a Ration app to preview">
               <button class="hero-tab is-active" type="button" aria-pressed="true" data-index="0" aria-controls="hero-slide-0">

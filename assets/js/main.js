@@ -156,15 +156,14 @@
   var captionText = $('[data-caption-text]');
   var countEl = $('[data-hero-count]');
   var progressEl = $('[data-hero-progress]');
-  var urlEl = $('[data-browser-url]');
   var prevBtn = $('[data-hero-prev]');
   var nextBtn = $('[data-hero-next]');
 
   var slideMeta = [
-    { module: 'Ration Message', text: 'Email on your own domain — threaded, standards-based and built for business.', url: 'app.ration.works/mail' },
-    { module: 'Ration Chat', text: 'Direct messages, group conversations and rails that keep their context.', url: 'app.ration.works/chat' },
-    { module: 'Ration Calendar', text: 'Shared availability and invitations that stay in sync across teams.', url: 'app.ration.works/calendar' },
-    { module: 'Ration Forms', text: 'Structured requests that route straight to the team that acts on them.', url: 'app.ration.works/forms' }
+    { module: 'Ration Message', text: 'Email on your own domain — threaded, standards-based and built for business.' },
+    { module: 'Ration Chat', text: 'Direct messages, group conversations and rails that keep their context.' },
+    { module: 'Ration Calendar', text: 'Shared availability and invitations that stay in sync across teams.' },
+    { module: 'Ration Forms', text: 'Structured requests that route straight to the team that acts on them.' }
   ];
 
   var current = 0;
@@ -180,7 +179,6 @@
     var meta = slideMeta[index] || slideMeta[0];
     if (captionModule) captionModule.textContent = meta.module;
     if (captionText) captionText.textContent = meta.text;
-    if (urlEl) urlEl.textContent = meta.url;
     if (countEl) countEl.textContent = pad(index + 1) + ' / ' + pad(slides.length);
     tabs.forEach(function (tab, i) {
       tab.classList.toggle('is-active', i === index);
@@ -207,20 +205,63 @@
     progressTween.resume();
   }
 
+  function relativeOffset(i, active, count) {
+    var diff = i - active;
+    if (diff > count / 2) diff -= count;
+    if (diff < -count / 2) diff += count;
+    return diff;
+  }
+
+  function layoutSlides(active, animate, onComplete) {
+    var stacked = window.matchMedia('(max-width: 720px)').matches;
+    var tl = null;
+    if (animate && hasMotion && !prefersReduced) {
+      tl = gsap.timeline({ onComplete: onComplete });
+    }
+
+    slides.forEach(function (slide, i) {
+      var diff = relativeOffset(i, active, slides.length);
+      var abs = Math.abs(diff);
+      var zIndex = abs === 0 ? 100 : (abs === 1 ? 90 : 80);
+      var props;
+
+      if (stacked) {
+        props = { xPercent: 0, z: 0, rotateY: 0, autoAlpha: abs === 0 ? 1 : 0 };
+      } else {
+        props = {
+          xPercent: diff * (abs > 1 ? 92 : 46),
+          z: abs === 0 ? 0 : (abs === 1 ? -320 : -640),
+          rotateY: abs === 0 ? 0 : (diff > 0 ? -34 : 34) * abs,
+          autoAlpha: abs === 0 ? 1 : (abs === 1 ? .9 : 0)
+        };
+      }
+
+      gsap.set(slide, { zIndex: zIndex });
+      slide.setAttribute('aria-hidden', abs === 0 ? 'false' : 'true');
+
+      if (tl) {
+        tl.to(slide, Object.assign({ duration: .9, ease: 'power3.inOut', overwrite: true }, props), 0);
+      } else {
+        gsap.set(slide, props);
+      }
+    });
+
+    if (!tl && onComplete) onComplete();
+    return tl;
+  }
+
   function goTo(next) {
     if (!slides.length) return;
     next = ((next % slides.length) + slides.length) % slides.length;
     if (next === current || isAnimating) return;
 
     var outgoing = slides[current];
-    var incoming = slides[next];
     var focusWasOnTab = doc.activeElement && doc.activeElement.classList.contains('hero-tab');
     isAnimating = true;
 
-    incoming.classList.add('is-active');
-    incoming.setAttribute('aria-hidden', 'false');
-    outgoing.setAttribute('aria-hidden', 'true');
+    slides[next].classList.add('is-active');
     updateMeta(next);
+    current = next;
 
     var finish = function () {
       outgoing.classList.remove('is-active');
@@ -229,27 +270,23 @@
     };
 
     if (!hasMotion || prefersReduced) {
-      current = next;
-      finish();
-      return;
+      layoutSlides(next, false, finish);
+    } else {
+      layoutSlides(next, true, finish);
+      gsap.fromTo([captionModule, captionText],
+        { autoAlpha: 0, y: 5 },
+        { autoAlpha: 1, y: 0, duration: .4, stagger: .04, ease: 'power2.out', overwrite: true }
+      );
     }
 
-    gsap.killTweensOf([outgoing, incoming]);
-    gsap.set(outgoing, { autoAlpha: 1 });
-    gsap.set(incoming, { autoAlpha: 0, scale: 1.025 });
-
-    gsap.timeline({ onComplete: finish })
-      .to(outgoing, { autoAlpha: 0, scale: .995, duration: .55, ease: 'power2.inOut' }, 0)
-      .to(incoming, { autoAlpha: 1, scale: 1, duration: .85, ease: 'power2.out' }, .05);
-
-    gsap.fromTo([captionModule, captionText],
-      { autoAlpha: 0, y: 5 },
-      { autoAlpha: 1, y: 0, duration: .4, stagger: .04, ease: 'power2.out', overwrite: true }
-    );
-
-    current = next;
     if (focusWasOnTab && tabs[next]) tabs[next].focus();
   }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { layoutSlides(current, false); }, 150);
+  });
 
   tabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
@@ -317,6 +354,7 @@
   });
 
   updateMeta(0);
+  layoutSlides(0, false);
   restartProgress();
 
   /* -----------------------------------------------------------------------

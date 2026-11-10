@@ -9,8 +9,9 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 ## What changed
 
 - **Hero** rebuilt to match the supplied direction: quiet white canvas, oversized two-line
-  headline, a browser-framed app preview and a GSAP-driven image slider (Mail, Chat, Calendar,
-  Forms) with autoplay progress, tabs, arrows, keyboard and swipe support.
+  headline and a GSAP 3D coverflow of browser-framed app previews (Mail, Chat, Calendar, Forms).
+  It mirrors the live site’s rotating slides — active card in front, angled neighbours behind —
+  with autoplay progress, tabs, arrows, keyboard and swipe support.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
   “An EHR designed for how clinicians actually work” section: a large editorial callout with
   concentric rings, followed by a pinned horizontal track of eight app panels.
@@ -63,7 +64,7 @@ There is nothing to compile. Keep the `assets/` directory alongside `index.html`
 
 - All interactive motion is progressive enhancement; the content is readable if JS fails.
 - `prefers-reduced-motion: reduce` disables autoplay and scroll animation, and converts the
-  horizontal app track into a stacked, readable list.
+  horizontal app track into a stacked, readable list; the hero shows a single front card.
 - The slider supports arrow keys, tab/arrow buttons and touch swipes; captions are announced
   through `aria-live`.
 - Skip link, visible focus styles, labelled sections and semantic headings are included.
