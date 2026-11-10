@@ -144,47 +144,65 @@
   }
 
   /* -----------------------------------------------------------------------
-     Rotating headline word
+     Rotating headline word — continuous vertical track
      -------------------------------------------------------------------- */
   var rotator = $('[data-hero-rotate]');
-  var rotWords = rotator ? $$('.hero-rotate-word', rotator) : [];
-  var rotIndex = 0;
+  var rotateTrack = $('[data-hero-rotate-track]');
+  var rotWords = rotateTrack ? $$('.hero-rotate-word', rotateTrack) : [];
+  var rotStep = 0;
 
-  if (rotWords.length) {
+  if (rotateTrack && rotWords.length > 1) {
+    var cloneWord = rotateTrack.querySelector('.hero-rotate-clone');
+
     rotWords.forEach(function (word, i) {
       word.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
     });
+    if (cloneWord) cloneWord.setAttribute('aria-hidden', 'true');
 
     if (hasMotion && !prefersReduced) {
-      gsap.set(rotWords, {
-        yPercent: function (i) { return i === 0 ? 0 : 108; },
-        autoAlpha: function (i) { return i === 0 ? 1 : 0; }
-      });
-
       var rotateStep = function () {
-        var outgoing = rotWords[rotIndex];
-        rotIndex = (rotIndex + 1) % rotWords.length;
-        var incoming = rotWords[rotIndex];
+        var nextStep = rotStep + 1;
+        var isCloneStep = nextStep === rotWords.length - 1;
+        var outgoing = rotWords[rotStep];
+        var incoming = rotWords[nextStep];
 
-        outgoing.classList.remove('is-active');
-        incoming.classList.add('is-active');
-        outgoing.setAttribute('aria-hidden', 'true');
-        incoming.setAttribute('aria-hidden', 'false');
+        gsap.set(outgoing, { opacity: 1 });
+        gsap.set(incoming, { opacity: .35 });
 
-        gsap.killTweensOf([outgoing, incoming]);
-        gsap.set(outgoing, { yPercent: 0, autoAlpha: 1 });
-        gsap.set(incoming, { yPercent: 108, autoAlpha: 0 });
+        rotWords.forEach(function (w, i) {
+          w.classList.toggle('is-active', i === nextStep);
+          var spokenIndex = isCloneStep ? 0 : nextStep;
+          w.setAttribute('aria-hidden', i === spokenIndex ? 'false' : 'true');
+        });
+        if (cloneWord) cloneWord.setAttribute('aria-hidden', 'true');
 
         gsap.timeline({
           onComplete: function () {
+            if (isCloneStep) {
+              gsap.set(rotateTrack, { yPercent: 0 });
+              rotStep = 0;
+              rotWords.forEach(function (w, i) {
+                w.classList.toggle('is-active', i === 0);
+                w.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+              });
+              if (cloneWord) cloneWord.setAttribute('aria-hidden', 'true');
+              gsap.set(rotWords, { clearProps: 'opacity' });
+            } else {
+              rotStep = nextStep;
+            }
             gsap.delayedCall(2.6, rotateStep);
           }
         })
-          .to(outgoing, { yPercent: -108, autoAlpha: 0, duration: .52, ease: 'power2.in' }, 0)
-          .to(incoming, { yPercent: 0, autoAlpha: 1, duration: .62, ease: 'power3.out' }, .06);
+          .to(rotateTrack, {
+            yPercent: -(nextStep * 100 / rotWords.length),
+            duration: .9,
+            ease: 'power3.inOut'
+          }, 0)
+          .to(outgoing, { opacity: .35, duration: .55, ease: 'power2.inOut' }, 0)
+          .to(incoming, { opacity: 1, duration: .7, ease: 'power2.out' }, .08);
       };
 
-      gsap.delayedCall(2.4, rotateStep);
+      gsap.delayedCall(3.2, rotateStep);
     }
   }
 
@@ -201,7 +219,7 @@
   var pointerInside = false;
   var focusInside = false;
   var autoTimer = null;
-  var SLIDE_HOLD = 4.2;
+  var SLIDE_HOLD = 15;
   var SLIDE_MOVE = .55;
 
   function updateDots(index) {
