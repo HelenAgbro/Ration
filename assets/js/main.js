@@ -219,7 +219,7 @@
   var pointerInside = false;
   var focusInside = false;
   var autoTimer = null;
-  var SLIDE_HOLD = 15;
+  var SLIDE_HOLD = 10;
   var SLIDE_MOVE = .55;
 
   function updateDots(index) {

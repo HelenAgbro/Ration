@@ -421,6 +421,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 }
 
 .hero-rotate {
+  color: #B0741A;
   display: inline-grid;
   overflow: hidden;
   height: 1.16em;

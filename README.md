@@ -9,9 +9,9 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 ## What changed
 
 - **Hero** aligned with the live site’s copy and motion: the “Work. Communicate. Collaborate.”
-  headline with a rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
+  headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
   GSAP 3D coverflow of browser-framed app captures — active card in front, angled neighbours
-  behind — with a 15-second auto-advance, swipe, keyboard support and simple dot navigation. The grey
+  behind — with a 10-second auto-advance, swipe, keyboard support and simple dot navigation. The grey
   preview panel is gone, so the coverflow sits directly on the grid background.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
   “An EHR designed for how clinicians actually work” section: a large editorial callout with
