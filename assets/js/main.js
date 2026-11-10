@@ -22,6 +22,7 @@
   function $(sel, ctx) { return (ctx || doc).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); }
   function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
 
   /* -----------------------------------------------------------------------
      Navigation
@@ -133,76 +134,81 @@
      Hero entrance
      -------------------------------------------------------------------- */
   var heroTitle = $('[data-hero="title"]');
-  if (heroTitle) {
-    var heroWords = splitWords(heroTitle);
+  if (heroTitle && hasMotion && !prefersReduced) {
+    var intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    intro
+      .from(heroTitle, { y: 26, autoAlpha: 0, duration: .9 }, 0)
+      .from('[data-hero="sub"]', { y: 16, autoAlpha: 0, duration: .8 }, .22)
+      .from('[data-hero="actions"] > *', { y: 14, autoAlpha: 0, duration: .7, stagger: .08 }, .34)
+      .from('[data-hero="showcase"]', { y: 44, autoAlpha: 0, scale: .99, duration: 1, ease: 'power3.out' }, .46);
+  }
+
+  /* -----------------------------------------------------------------------
+     Rotating headline word
+     -------------------------------------------------------------------- */
+  var rotator = $('[data-hero-rotate]');
+  var rotWords = rotator ? $$('.hero-rotate-word', rotator) : [];
+  var rotIndex = 0;
+
+  if (rotWords.length) {
+    rotWords.forEach(function (word, i) {
+      word.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+    });
+
     if (hasMotion && !prefersReduced) {
-      var intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      intro
-        .from('[data-hero="eyebrow"]', { y: 14, autoAlpha: 0, duration: .6 }, 0)
-        .from(heroWords, { yPercent: 118, duration: 1, stagger: .05 }, .06)
-        .from('[data-hero="sub"]', { y: 16, autoAlpha: 0, duration: .8 }, .34)
-        .from('[data-hero="showcase"]', { y: 46, autoAlpha: 0, scale: .985, duration: 1.1 }, .42);
+      gsap.set(rotWords, {
+        yPercent: function (i) { return i === 0 ? 0 : 108; },
+        autoAlpha: function (i) { return i === 0 ? 1 : 0; }
+      });
+
+      var rotateStep = function () {
+        var outgoing = rotWords[rotIndex];
+        rotIndex = (rotIndex + 1) % rotWords.length;
+        var incoming = rotWords[rotIndex];
+
+        outgoing.classList.remove('is-active');
+        incoming.classList.add('is-active');
+        outgoing.setAttribute('aria-hidden', 'true');
+        incoming.setAttribute('aria-hidden', 'false');
+
+        gsap.killTweensOf([outgoing, incoming]);
+        gsap.set(outgoing, { yPercent: 0, autoAlpha: 1 });
+        gsap.set(incoming, { yPercent: 108, autoAlpha: 0 });
+
+        gsap.timeline({
+          onComplete: function () {
+            gsap.delayedCall(2.6, rotateStep);
+          }
+        })
+          .to(outgoing, { yPercent: -108, autoAlpha: 0, duration: .52, ease: 'power2.in' }, 0)
+          .to(incoming, { yPercent: 0, autoAlpha: 1, duration: .62, ease: 'power3.out' }, .06);
+      };
+
+      gsap.delayedCall(2.4, rotateStep);
     }
   }
 
   /* -----------------------------------------------------------------------
-     Hero slider
+     Hero coverflow
      -------------------------------------------------------------------- */
   var slides = $$('.hero-slide');
-  var tabs = $$('.hero-tab');
+  var dots = $$('.hero-dot');
   var showcase = $('[data-hero="showcase"]');
   var viewport = $('[data-hero-slider]');
-  var captionModule = $('[data-caption-module]');
-  var captionText = $('[data-caption-text]');
-  var countEl = $('[data-hero-count]');
-  var progressEl = $('[data-hero-progress]');
-  var prevBtn = $('[data-hero-prev]');
-  var nextBtn = $('[data-hero-next]');
-
-  var slideMeta = [
-    { module: 'Ration Message', text: 'Email on your own domain — threaded, standards-based and built for business.' },
-    { module: 'Ration Chat', text: 'Direct messages, group conversations and rails that keep their context.' },
-    { module: 'Ration Calendar', text: 'Shared availability and invitations that stay in sync across teams.' },
-    { module: 'Ration Forms', text: 'Structured requests that route straight to the team that acts on them.' }
-  ];
-
   var current = 0;
   var isAnimating = false;
-  var isHovering = false;
   var isInView = true;
-  var progressTween = null;
-  var slideDuration = 6.2;
+  var pointerInside = false;
+  var focusInside = false;
+  var autoTimer = null;
+  var SLIDE_HOLD = 4.2;
+  var SLIDE_MOVE = .55;
 
-  function pad(n) { return n < 10 ? '0' + n : String(n); }
-
-  function updateMeta(index) {
-    var meta = slideMeta[index] || slideMeta[0];
-    if (captionModule) captionModule.textContent = meta.module;
-    if (captionText) captionText.textContent = meta.text;
-    if (countEl) countEl.textContent = pad(index + 1) + ' / ' + pad(slides.length);
-    tabs.forEach(function (tab, i) {
-      tab.classList.toggle('is-active', i === index);
-      tab.setAttribute('aria-pressed', String(i === index));
+  function updateDots(index) {
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle('is-active', i === index);
+      dot.setAttribute('aria-pressed', String(i === index));
     });
-  }
-
-  function restartProgress() {
-    if (!hasMotion || prefersReduced || !progressEl) return;
-    if (progressTween) { progressTween.kill(); progressTween = null; }
-    gsap.set(progressEl, { width: '0%' });
-    if (!isInView || isHovering || doc.hidden) return;
-    progressTween = gsap.to(progressEl, {
-      width: '100%',
-      duration: slideDuration,
-      ease: 'none',
-      onComplete: function () { goTo(current + 1); }
-    });
-  }
-
-  function resumeProgress() {
-    if (!hasMotion || prefersReduced) return;
-    if (!progressTween || !progressTween.isActive()) { restartProgress(); return; }
-    progressTween.resume();
   }
 
   function relativeOffset(i, active, count) {
@@ -213,9 +219,10 @@
   }
 
   function layoutSlides(active, animate, onComplete) {
+    if (!hasMotion) return;
     var stacked = window.matchMedia('(max-width: 720px)').matches;
     var tl = null;
-    if (animate && hasMotion && !prefersReduced) {
+    if (animate && !prefersReduced) {
       tl = gsap.timeline({ onComplete: onComplete });
     }
 
@@ -240,7 +247,7 @@
       slide.setAttribute('aria-hidden', abs === 0 ? 'false' : 'true');
 
       if (tl) {
-        tl.to(slide, Object.assign({ duration: .9, ease: 'power3.inOut', overwrite: true }, props), 0);
+        tl.to(slide, Object.assign({ duration: SLIDE_MOVE, ease: 'power3.inOut', overwrite: true }, props), 0);
       } else {
         gsap.set(slide, props);
       }
@@ -250,71 +257,54 @@
     return tl;
   }
 
+  function scheduleNext() {
+    if (autoTimer) { autoTimer.kill(); autoTimer = null; }
+    if (!hasMotion || prefersReduced || !isInView || pointerInside || focusInside || doc.hidden) return;
+    autoTimer = gsap.delayedCall(SLIDE_HOLD, function () { goTo(current + 1); });
+  }
+
   function goTo(next) {
     if (!slides.length) return;
     next = ((next % slides.length) + slides.length) % slides.length;
     if (next === current || isAnimating) return;
+    if (autoTimer) { autoTimer.kill(); autoTimer = null; }
 
     var outgoing = slides[current];
-    var focusWasOnTab = doc.activeElement && doc.activeElement.classList.contains('hero-tab');
+    var focusWasOnDot = doc.activeElement && doc.activeElement.classList.contains('hero-dot');
     isAnimating = true;
 
     slides[next].classList.add('is-active');
-    updateMeta(next);
+    updateDots(next);
     current = next;
 
     var finish = function () {
       outgoing.classList.remove('is-active');
       isAnimating = false;
-      restartProgress();
+      scheduleNext();
     };
 
-    if (!hasMotion || prefersReduced) {
+    if (!hasMotion) {
+      slides.forEach(function (s, i) { s.classList.toggle('is-active', i === next); });
+      finish();
+    } else if (prefersReduced) {
       layoutSlides(next, false, finish);
     } else {
       layoutSlides(next, true, finish);
-      gsap.fromTo([captionModule, captionText],
-        { autoAlpha: 0, y: 5 },
-        { autoAlpha: 1, y: 0, duration: .4, stagger: .04, ease: 'power2.out', overwrite: true }
-      );
     }
 
-    if (focusWasOnTab && tabs[next]) tabs[next].focus();
+    if (focusWasOnDot && dots[next]) dots[next].focus();
   }
 
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { layoutSlides(current, false); }, 150);
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () { goTo(Number(dot.dataset.index)); });
   });
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      goTo(Number(tab.dataset.index));
-    });
-  });
-
-  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
-  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
 
   if (showcase) {
-    showcase.addEventListener('mouseenter', function () {
-      isHovering = true;
-      if (progressTween) progressTween.pause();
-    });
-    showcase.addEventListener('mouseleave', function () {
-      isHovering = false;
-      if (!doc.hidden) resumeProgress();
-    });
-    showcase.addEventListener('focusin', function () {
-      isHovering = true;
-      if (progressTween) progressTween.pause();
-    });
+    showcase.addEventListener('mouseenter', function () { pointerInside = true; scheduleNext(); });
+    showcase.addEventListener('mouseleave', function () { pointerInside = false; scheduleNext(); });
+    showcase.addEventListener('focusin', function () { focusInside = true; scheduleNext(); });
     showcase.addEventListener('focusout', function (event) {
-      if (!showcase.contains(event.relatedTarget)) {
-        isHovering = false;
-        if (!doc.hidden) resumeProgress();
-      }
+      if (!showcase.contains(event.relatedTarget)) { focusInside = false; scheduleNext(); }
     });
     showcase.addEventListener('keydown', function (event) {
       if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); }
@@ -324,9 +314,7 @@
 
   if (viewport) {
     var startX = null;
-    viewport.addEventListener('pointerdown', function (event) {
-      startX = event.clientX;
-    });
+    viewport.addEventListener('pointerdown', function (event) { startX = event.clientX; });
     viewport.addEventListener('pointercancel', function () { startX = null; });
     viewport.addEventListener('pointerup', function (event) {
       if (startX === null) return;
@@ -339,23 +327,21 @@
   if ('IntersectionObserver' in window && showcase) {
     new IntersectionObserver(function (entries) {
       isInView = entries[0].isIntersecting;
-      if (!isInView) {
-        if (progressTween) progressTween.pause();
-      } else if (!isHovering && !doc.hidden) {
-        resumeProgress();
-      }
-    }, { threshold: 0.08 }).observe(showcase);
+      scheduleNext();
+    }, { threshold: .08 }).observe(showcase);
   }
 
-  doc.addEventListener('visibilitychange', function () {
-    if (!progressTween) return;
-    if (doc.hidden) progressTween.pause();
-    else if (isInView && !isHovering) resumeProgress();
+  doc.addEventListener('visibilitychange', scheduleNext);
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { layoutSlides(current, false); }, 150);
   });
 
-  updateMeta(0);
+  updateDots(0);
   layoutSlides(0, false);
-  restartProgress();
+  scheduleNext();
 
   /* -----------------------------------------------------------------------
      Scroll reveals
