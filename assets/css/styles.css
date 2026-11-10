@@ -726,7 +726,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   width: min(760px, 74vw);
   transform: translateY(-46%);
   color: var(--blue);
-  opacity: .12;
+  opacity: .055;
   pointer-events: none;
 }
 .app-rings svg { width: 100%; height: auto; }
@@ -1541,7 +1541,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   .module-marquee-track { gap: 20px; font-size: 11px; }
 
   .apps-intro { padding: 72px 0 40px; }
-  .app-rings { left: -160px; width: 420px; opacity: .09; }
+  .app-rings { left: -160px; width: 420px; opacity: .04; }
   .apps-intro-copy { padding-right: 0; }
   .apps-intro .lede { margin-top: 20px; }
 

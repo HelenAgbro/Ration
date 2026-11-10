@@ -216,8 +216,6 @@
   var current = 0;
   var isAnimating = false;
   var isInView = true;
-  var pointerInside = false;
-  var focusInside = false;
   var autoTimer = null;
   var SLIDE_HOLD = 10;
   var SLIDE_MOVE = .55;
@@ -277,11 +275,11 @@
 
   function scheduleNext() {
     if (autoTimer) { autoTimer.kill(); autoTimer = null; }
-    if (!hasMotion || prefersReduced || !isInView || pointerInside || focusInside || doc.hidden) return;
+    if (!hasMotion || prefersReduced || !isInView || doc.hidden) return;
     autoTimer = gsap.delayedCall(SLIDE_HOLD, function () { goTo(current + 1); });
   }
 
-  function goTo(next) {
+  function goTo(next, userInitiated) {
     if (!slides.length) return;
     next = ((next % slides.length) + slides.length) % slides.length;
     if (next === current || isAnimating) return;
@@ -310,23 +308,17 @@
       layoutSlides(next, true, finish);
     }
 
-    if (focusWasOnDot && dots[next]) dots[next].focus();
+    if (userInitiated && focusWasOnDot && dots[next]) dots[next].focus();
   }
 
   dots.forEach(function (dot) {
-    dot.addEventListener('click', function () { goTo(Number(dot.dataset.index)); });
+    dot.addEventListener('click', function () { goTo(Number(dot.dataset.index), true); });
   });
 
   if (showcase) {
-    showcase.addEventListener('mouseenter', function () { pointerInside = true; scheduleNext(); });
-    showcase.addEventListener('mouseleave', function () { pointerInside = false; scheduleNext(); });
-    showcase.addEventListener('focusin', function () { focusInside = true; scheduleNext(); });
-    showcase.addEventListener('focusout', function (event) {
-      if (!showcase.contains(event.relatedTarget)) { focusInside = false; scheduleNext(); }
-    });
     showcase.addEventListener('keydown', function (event) {
-      if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1, true); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1, true); }
     });
   }
 
@@ -338,7 +330,7 @@
       if (startX === null) return;
       var dx = event.clientX - startX;
       startX = null;
-      if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1), true);
     });
   }
 
