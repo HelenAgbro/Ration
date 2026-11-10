@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ration — Communicate and collaborate seamlessly</title>
+  <meta name="description" content="Ration gives organisations one secure workspace for mail, chat, meetings, calendar, contacts, tasks, notes and forms. One directory, one login, sovereign by design.">
+  <link rel="canonical" href="https://www.ration.works/">
+  <meta name="theme-color" content="#002B40">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ration">
+  <meta property="og:title" content="Ration — Communicate and collaborate seamlessly">
+  <meta property="og:description" content="One secure workspace for communication, collaboration and getting work done. Built in Africa, deployed where you need it.">
+  <meta property="og:url" content="https://www.ration.works/">
+  <meta property="og:image" content="https://www.ration.works/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ration — Communicate and collaborate seamlessly">
+  <meta name="twitter:description" content="One secure workspace for communication, collaboration and getting work done.">
+  <meta name="twitter:image" content="https://www.ration.works/assets/img/og-image.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/app-mail.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("reduce-motion"); }</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Ration",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, iOS, Android, Windows, macOS",
+    "description": "A secure messaging and collaboration platform that brings mail, chat, meetings, calendar, contacts, tasks, notes and forms into one workspace.",
+    "url": "https://www.ration.works/",
+    "publisher": { "@type": "Organization", "name": "Stackchase Limited" },
+    "offers": { "@type": "Offer", "price": "2000", "priceCurrency": "NGN" }
+  }
+  </script>
+</head>
+<body>
+  <noscript>
+    <style>
+      .apps-stage { height: auto !important; min-height: 0; padding: 10px 0 26px; background: #fff; overflow: visible; }
+      .apps-viewport { position: static; overflow: visible; }
+      .apps-track { display: block; width: auto; height: auto; transform: none !important; }
+      .app-panel { width: 100%; height: auto; padding: 0; background: none; overflow: visible; }
+      .app-panel + .app-panel { margin-top: 14px; }
+      .app-panel::after { display: none; }
+      .app-panel-inner { display: flex; flex-direction: column; gap: 24px; width: min(1240px, 100% - 32px); padding: 28px; border-radius: 22px; background: linear-gradient(150deg, var(--tint-soft), var(--tint)); }
+      .app-panel-visual { min-height: 0; width: 100%; padding: 10px 0 18px; }
+      .ui-card { width: min(560px, 100%); margin-inline: auto; }
+      .apps-hud { display: none; }
+      .faq-a { height: auto; }
+    </style>
+  </noscript>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Icon sprite -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.2 12.4 2.6 2.6 5-5.4"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="m13 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4"/><path d="m11 19-7-7 7-7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 20V4"/><path d="m5 11 7-7 7 7"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.6 8.4 6 8.4-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.8-.8L3 20.5l1.5-5a8.1 8.1 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.1 3 8.4 8.4 0 0 1 21 11.5Z"/></symbol>
+    <symbol id="i-meet" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="m15 10.5 5.2-3v9l-5.2-3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M8 14h3v3H8z"/></symbol>
+    <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3.2 3.2 0 0 1 0 7M18 14.5a6 6 0 0 1 3 5.5"/></symbol>
+    <symbol id="i-tasks" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M8 3v3M16 3v3"/><path d="m7.5 12 2 2 4-4.2"/><path d="M14 16h3.5"/></symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 21V4.5A1.5 1.5 0 0 1 6.5 3Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h4.5"/></symbol>
+    <symbol id="i-forms" viewBox="0 0 24 24"><path d="M8 3h8a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M9 3v3h6V3M9.5 11h5M9.5 15h5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.5 18.5a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18.4 10a4.25 4.25 0 0 1-.9 8.5H7.5Z"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8.5 10.5V7a3.5 3.5 0 0 1 7 0v3.5"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h9A1.5 1.5 0 0 1 16 5.5V21"/><path d="M16 9h2.5A1.5 1.5 0 0 1 20 10.5V21M3 21h18M8 8h4M8 12h4M8 16h4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 16.5 20 19l2.5 1-2.5 1-1 2.5-1-2.5L15.5 20l2.5-1 1-2.5Z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="i-phone-down" viewBox="0 0 24 24"><path d="M4 14.5c4.7-4.7 11.3-4.7 16 0l-2.3 2.3a1.6 1.6 0 0 1-2 .2l-1.9-1.2a3 3 0 0 1-1.3-2.4v-1.2a12 12 0 0 0-3 0v1.2a3 3 0 0 1-1.3 2.4L6.3 17a1.6 1.6 0 0 1-2-.2L4 14.5Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  </svg>
+
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#home" aria-label="Ration home">
+        <img src="assets/img/ration-logo.svg" alt="Ration" width="120" height="34">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link is-active" href="#home">Home</a>
+        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="https://support.ration.works/guides/" target="_blank" rel="noopener">Docs</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-quiet nav-open" href="https://app.ration.works/" target="_blank" rel="noopener">Open App</a>
+        <a class="btn btn-primary nav-cta" href="https://app.ration.works/register" target="_blank" rel="noopener">Get Started</a>
+        <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-inner" aria-label="Mobile">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://support.ration.works/guides/" target="_blank" rel="noopener">Docs</a>
+      <a href="#contact">Contact</a>
+      <div class="mobile-menu-actions">
+        <a class="btn btn-ghost" href="https://app.ration.works/" target="_blank" rel="noopener">Open App</a>
+        <a class="btn btn-primary" href="https://app.ration.works/register" target="_blank" rel="noopener">Get Started</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="hero-glow hero-glow-a"></span>
+        <span class="hero-glow hero-glow-b"></span>
+        <span class="hero-grid"></span>
+      </div>
+
+      <div class="container hero-copy">
+        <p class="eyebrow-pill" data-hero="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          Lagos region live <span class="pill-sep" aria-hidden="true"></span> Four more regions planned
+        </p>
+
+        <h1 class="hero-title" data-hero="title">
+          Communicate and<br>
+          Collaborate Seamlessly.
+        </h1>
+
+        <p class="hero-sub" data-hero="sub">
+          Ration is a messaging and collaboration platform that offers intuitive,
+          flexible and extensible features.
+        </p>
+      </div>
+
+      <div class="container hero-showcase-wrap">
+        <div class="hero-showcase" data-hero="showcase">
+          <div class="browser">
+            <div class="browser-tabs">
+              <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="browser-tab">
+                <img src="assets/img/favicon.svg" alt="" width="13" height="13">
+                <span>Ration</span>
+                <svg class="browser-tab-x" aria-hidden="true" viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+              </span>
+              <span class="browser-newtab" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
+              <span class="browser-window" aria-hidden="true">
+                <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+              </span>
+            </div>
+
+            <div class="browser-bar">
+              <span class="browser-navbtns" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg>
+                <svg viewBox="0 0 20 20" class="is-dim"><path d="m7.5 4.5 5.5 5.5-5.5 5.5"/></svg>
+                <svg viewBox="0 0 20 20"><path d="M16 10a6 6 0 1 1-1.8-4.3"/><path d="M16 3.5V6h-2.5"/></svg>
+              </span>
+              <span class="browser-url">
+                <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <span data-browser-url>app.ration.works/mail</span>
+              </span>
+              <span class="browser-extra" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.4.9 4.8-4.3-2.4-4.3 2.4.9-4.8L3 7.9l4.9-.6L10 3Z"/></svg>
+                <svg viewBox="0 0 20 20"><circle cx="10" cy="4.5" r="1.2"/><circle cx="10" cy="10" r="1.2"/><circle cx="10" cy="15.5" r="1.2"/></svg>
+              </span>
+            </div>
+
+            <div class="browser-viewport" data-hero-slider aria-roledescription="carousel" aria-label="Ration app previews">
+              <figure class="hero-slide is-active" id="hero-slide-0" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 of 4" aria-hidden="false">
+                <img src="assets/img/app-mail.webp" alt="Ration Mail showing an inbox and a migration status email from Maxwell Craig" width="1600" height="1000" fetchpriority="high">
+              </figure>
+              <figure class="hero-slide" id="hero-slide-1" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 of 4" aria-hidden="true">
+                <img src="assets/img/app-chat.webp" alt="Ration Chat showing a direct conversation about an overnight mailbox migration" width="1200" height="750" loading="lazy">
+              </figure>
+              <figure class="hero-slide" id="hero-slide-2" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 of 4" aria-hidden="true">
+                <img src="assets/img/app-calendar.webp" alt="Ration Calendar showing a week of shared team events" width="1200" height="750" loading="lazy">
+              </figure>
+              <figure class="hero-slide" id="hero-slide-3" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 of 4" aria-hidden="true">
+                <img src="assets/img/app-forms.webp" alt="Ration Forms showing a structured request form and responses" width="1200" height="750" loading="lazy">
+              </figure>
+            </div>
+          </div>
+
+          <div class="hero-controls">
+            <div class="hero-tabs" role="group" aria-label="Choose a Ration app to preview">
+              <button class="hero-tab is-active" type="button" aria-pressed="true" data-index="0" aria-controls="hero-slide-0">
+                <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>Mail
+              </button>
+              <button class="hero-tab" type="button" aria-pressed="false" data-index="1" aria-controls="hero-slide-1">
+                <svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg>Chat
+              </button>
+              <button class="hero-tab" type="button" aria-pressed="false" data-index="2" aria-controls="hero-slide-2">
+                <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Calendar
+              </button>
+              <button class="hero-tab" type="button" aria-pressed="false" data-index="3" aria-controls="hero-slide-3">
+                <svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg>Forms
+              </button>
+            </div>
+
+            <p class="hero-caption" aria-live="polite">
+              <span class="hero-caption-module" data-caption-module>Ration Message</span>
+              <span class="hero-caption-text" data-caption-text>Email on your own domain — threaded, standards-based and built for business.</span>
+            </p>
+
+            <div class="hero-arrows">
+              <span class="hero-count" data-hero-count>01 / 04</span>
+              <button class="hero-arrow" type="button" data-hero-prev aria-label="Previous app">
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>
+              </button>
+              <button class="hero-arrow" type="button" data-hero-next aria-label="Next app">
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-progress" aria-hidden="true"><span class="hero-progress-bar" data-hero-progress></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof" aria-label="Ration at a glance">
+      <div class="container">
+        <div class="proof-top" data-reveal>
+          <p class="proof-label">Trusted where control matters — government, defence and regulated industries.</p>
+          <span class="proof-badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Built in Africa</span>
+        </div>
+        <dl class="proof-grid">
+          <div class="proof-item" data-reveal>
+            <dt>Apps in one workspace</dt>
+            <dd><span data-count="8">8</span></dd>
+          </div>
+          <div class="proof-item" data-reveal>
+            <dt>Data-centre regions</dt>
+            <dd><span data-count="5">5</span></dd>
+          </div>
+          <div class="proof-item" data-reveal>
+            <dt>Mailbox per user</dt>
+            <dd><span data-count="25">25</span><small>GB</small></dd>
+          </div>
+          <div class="proof-item" data-reveal>
+            <dt>Email support</dt>
+            <dd>24/7</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="module-marquee" aria-hidden="true">
+        <div class="module-marquee-track" data-marquee>
+          <span>Mail</span><i></i><span>Chat</span><i></i><span>Meet</span><i></i><span>Calendar</span><i></i><span>Contacts</span><i></i><span>Tasks</span><i></i><span>Notes</span><i></i><span>Forms</span><i></i>
+          <span>Mail</span><i></i><span>Chat</span><i></i><span>Meet</span><i></i><span>Calendar</span><i></i><span>Contacts</span><i></i><span>Tasks</span><i></i><span>Notes</span><i></i><span>Forms</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="apps-intro" id="features">
+      <div class="app-rings" aria-hidden="true">
+        <svg viewBox="0 0 720 720" fill="none" data-rings>
+          <circle cx="360" cy="360" r="90"/>
+          <circle cx="360" cy="360" r="150"/>
+          <circle cx="360" cy="360" r="215"/>
+          <circle cx="360" cy="360" r="280"/>
+          <circle cx="360" cy="360" r="345"/>
+        </svg>
+      </div>
+      <div class="container apps-intro-inner">
+        <div class="apps-intro-copy">
+          <p class="eyebrow" data-reveal>One workspace</p>
+          <h2 class="display-xl" data-split>Eight apps designed for how teams actually work.</h2>
+          <p class="lede" data-reveal>
+            One directory, one login, one place to interact with them. Every module shares
+            the same identity, permissions and audit trail — so work does not fragment as
+            your organisation grows.
+          </p>
+          <a class="link-arrow" href="#apps-stage" data-reveal>
+            Explore the modules
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="apps-stage" id="apps-stage" aria-label="The eight Ration apps">
+      <div class="apps-viewport">
+        <div class="apps-track" data-apps-track>
+
+          <article class="app-panel" data-app-panel data-app="mail" style="--tint:#DDEBF4;--tint-soft:#F3F9FC;--accent:#006699">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+                  <span class="app-num">01</span>
+                  <span class="app-label">Ration Message</span>
+                </div>
+                <h3>Email on your own domain</h3>
+                <p>Threaded business mail with the standards your existing clients already speak.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Conversation tree and thread map</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Rules, signatures and auto-reply</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>SMTP, IMAP and POP3</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/mail" target="_blank" rel="noopener">Explore Message <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-mail anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand"><img src="assets/img/favicon.svg" alt="" width="14" height="14"> Ration Mail</span>
+                    <span class="ui-pill">Inbox</span>
+                    <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="ui-mail-head">
+                    <span class="avatar av-blue">MC</span>
+                    <div class="ui-mail-from"><strong>Maxwell Craig</strong><span>Infrastructure · Stackchase</span></div>
+                    <span class="ui-mail-time">9:38 AM</span>
+                  </div>
+                  <h4 class="ui-mail-subject">Ogun State rollout — week 3 complete</h4>
+                  <div class="ui-mail-body">
+                    <p>Fela, week three of the <b>Ogun State secretariat rollout</b> is complete. Summary below.</p>
+                    <div class="ui-table">
+                      <div class="ui-tr ui-th"><span>Department</span><span>Mailboxes</span><span>Status</span></div>
+                      <div class="ui-tr"><span>Finance</span><span>96</span><span class="ok">Migrated</span></div>
+                      <div class="ui-tr"><span>Works &amp; Housing</span><span>88</span><span class="ok">Migrated</span></div>
+                      <div class="ui-tr"><span>Health</span><span>56</span><span class="warn">Friday</span></div>
+                    </div>
+                    <p class="ui-mail-foot">No data left Lagos at any point.</p>
+                  </div>
+                  <div class="ui-float float-mail anim-item">
+                    <span class="ui-float-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                    <span><b>316 mailboxes migrated</b><small>Residency log attached</small></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="chat" style="--tint:#DCEDE7;--tint-soft:#F2F9F6;--accent:#0F766E">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg></span>
+                  <span class="app-num">02</span>
+                  <span class="app-label">Ration Chat</span>
+                </div>
+                <h3>Chat that keeps its context</h3>
+                <p>Direct messages, group conversations and rails — tied to the people and work they belong to.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Direct, group and rail conversations</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Presence, read state and search</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Turn any message into a task</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/chat" target="_blank" rel="noopener">Explore Chat <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-chat anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand"><span class="hash">#</span> secretariat-rollout</span>
+                    <span class="ui-live"><i></i> 12 online</span>
+                  </div>
+                  <div class="ui-chat-body">
+                    <span class="chat-day">Today</span>
+                    <div class="bubble in"><span class="bubble-name">Maxwell Craig</span>Did the Education mailboxes finish overnight?</div>
+                    <div class="bubble out">Not yet — 64 left. They move Friday once their directory export lands.</div>
+                    <div class="bubble in"><span class="bubble-name">Fela Ani</span>The ministry asked about residency again. Can you send the log?</div>
+                    <div class="bubble out">Attached to the project note. Nothing left the Lagos region.</div>
+                    <div class="bubble in bubble-extra"><span class="bubble-name">Maxwell Craig</span>Education export lands Thursday, so Friday still holds.</div>
+                    <div class="bubble out bubble-extra">Perfect — I will take that to the board.</div>
+                    <div class="chat-typing"><i></i><i></i><i></i><span>Fela is typing</span></div>
+                  </div>
+                  <div class="ui-composer"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg><span>Message #secretariat-rollout</span><b>Aa</b></div>
+                  <div class="ui-float float-chat anim-item"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> Task created from message</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="meet" style="--tint:#E6E1F4;--tint-soft:#F7F5FC;--accent:#5B4B9E">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-meet"></use></svg></span>
+                  <span class="app-num">03</span>
+                  <span class="app-label">Ration Meet</span>
+                </div>
+                <h3>Meetings inside the workspace</h3>
+                <p>Start a call from a chat, an event or a contact card. No downloads, no separate links, no lost context.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Video and audio rooms</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Screen sharing and recording</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Up to 50 participants on Scale</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/meet" target="_blank" rel="noopener">Explore Meet <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-meet anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-live"><i></i> Live · 24:13</span>
+                    <span class="ui-pill">Weekly sync</span>
+                    <span class="ui-rec">REC</span>
+                  </div>
+                  <div class="meet-grid">
+                    <div class="meet-tile tile-a anim-item"><span class="avatar av-xl av-blue">MC</span><span class="meet-name">Maxwell</span><span class="meet-speak"></span></div>
+                    <div class="meet-tile tile-b anim-item"><span class="avatar av-xl av-sand">FA</span><span class="meet-name">Fela</span></div>
+                    <div class="meet-tile tile-c anim-item"><span class="avatar av-xl av-green">AO</span><span class="meet-name">Ademola</span></div>
+                    <div class="meet-tile tile-d anim-item"><span class="avatar av-xl av-lilac">ME</span><span class="meet-name">Mary</span><span class="meet-muted"><svg class="icon" aria-hidden="true"><use href="#i-mic"></use></svg></span></div>
+                  </div>
+                  <div class="meet-bar">
+                    <span class="meet-btn"><svg class="icon" aria-hidden="true"><use href="#i-mic"></use></svg></span>
+                    <span class="meet-btn"><svg class="icon" aria-hidden="true"><use href="#i-cam"></use></svg></span>
+                    <span class="meet-btn"><svg class="icon" aria-hidden="true"><use href="#i-screen"></use></svg></span>
+                    <span class="meet-btn is-end"><svg class="icon" aria-hidden="true"><use href="#i-phone-down"></use></svg></span>
+                  </div>
+                  <div class="ui-float float-meet anim-item"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Recording saved to Drive</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="calendar" style="--tint:#F7E9D5;--tint-soft:#FCF7EF;--accent:#8A560E">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+                  <span class="app-num">04</span>
+                  <span class="app-label">Ration Calendar</span>
+                </div>
+                <h3>Calendars that agree</h3>
+                <p>Shared availability, invitations and answers that stay in sync across teams, rooms and time zones.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Team and resource calendars</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Invitations and responses</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Availability across time zones</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/calendar" target="_blank" rel="noopener">Explore Calendar <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-calendar anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand">August 2026</span>
+                    <span class="ui-pill">Week</span>
+                    <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="cal-days">
+                    <span><b>Mon</b>10</span><span><b>Tue</b>11</span><span><b>Wed</b>12</span><span><b>Thu</b>13</span><span><b>Fri</b>14</span>
+                  </div>
+                  <div class="cal-grid">
+                    <div class="cal-col">
+                      <div class="cal-event ev-blue anim-item"><b>09:00</b> Ogun rollout sync</div>
+                      <div class="cal-event ev-amber anim-item ev-low"><b>14:00</b> Board pack</div>
+                    </div>
+                    <div class="cal-col">
+                      <div class="cal-event ev-green anim-item ev-mid"><b>11:30</b> Design review</div>
+                    </div>
+                    <div class="cal-col">
+                      <div class="cal-event ev-blue anim-item"><b>09:00</b> Secretariats</div>
+                      <div class="cal-event ev-green anim-item ev-low"><b>15:30</b> 1:1 · Fela</div>
+                    </div>
+                    <div class="cal-col">
+                      <div class="cal-event ev-amber anim-item ev-mid"><b>12:00</b> Residency review</div>
+                    </div>
+                    <div class="cal-col">
+                      <div class="cal-event ev-blue anim-item ev-low"><b>10:00</b> Education go-live</div>
+                    </div>
+                  </div>
+                  <div class="ui-float float-cal anim-item"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> 13:00–13:30 Focus time protected</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="contacts" style="--tint:#DDEDEE;--tint-soft:#F3F9F9;--accent:#0B5E66">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-contacts"></use></svg></span>
+                  <span class="app-num">05</span>
+                  <span class="app-label">Ration Contact</span>
+                </div>
+                <h3>One directory, everywhere</h3>
+                <p>A single organisational directory that every module reads from. Add a person once and they are known across the workspace.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Shared organisation directory</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Roles, groups and delegation</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Consistent identity in every app</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/contact" target="_blank" rel="noopener">Explore Contact <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-contacts anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand">Directory</span>
+                    <span class="ui-search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg> Search people</span>
+                  </div>
+                  <div class="contact-list">
+                    <div class="contact-row is-active anim-item"><span class="avatar av-blue">FA</span><span class="contact-name"><b>Fela Ani</b><small>IT Lead · Ogun State</small></span><i class="presence"></i></div>
+                    <div class="contact-row anim-item"><span class="avatar av-sand">MC</span><span class="contact-name"><b>Maxwell Craig</b><small>Infrastructure · Stackchase</small></span><i class="presence"></i></div>
+                    <div class="contact-row anim-item"><span class="avatar av-green">AA</span><span class="contact-name"><b>Ademola Adesakin</b><small>Programmes · Ogun State</small></span><i class="presence is-away"></i></div>
+                    <div class="contact-row anim-item"><span class="avatar av-lilac">MJ</span><span class="contact-name"><b>Mary Jane</b><small>Finance · Stackchase</small></span><i class="presence"></i></div>
+                    <div class="contact-row anim-item"><span class="avatar av-sand">OA</span><span class="contact-name"><b>Opeyemi Adeyemi</b><small>Programmes · Ogun State</small></span><i class="presence is-away"></i></div>
+                    <div class="contact-row anim-item"><span class="avatar av-green">OF</span><span class="contact-name"><b>Olaniran Fayemi</b><small>Support · Stackchase</small></span><i class="presence"></i></div>
+                  </div>
+                  <div class="contact-profile anim-item">
+                    <span class="avatar av-xxl av-blue">FA</span>
+                    <b>Fela Ani</b>
+                    <small>IT Lead · Ogun State</small>
+                    <div class="contact-actions"><span>Email</span><span>Chat</span><span>Meet</span></div>
+                  </div>
+                  <div class="ui-float float-contacts anim-item"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> One profile across all eight apps</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="tasks" style="--tint:#F5E2E0;--tint-soft:#FBF5F4;--accent:#8C332B">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-tasks"></use></svg></span>
+                  <span class="app-num">06</span>
+                  <span class="app-label">Ration Tasks</span>
+                </div>
+                <h3>Work that actually moves</h3>
+                <p>Turn a message into an owner, a due date and a status — without leaving the conversation it came from.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Personal and team task lists</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Due dates, priorities and owners</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Created from mail or chat</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/tasks" target="_blank" rel="noopener">Explore Tasks <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-tasks anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand">This week</span>
+                    <span class="ui-pill">Assigned to me</span>
+                    <span class="ui-filter"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></span>
+                  </div>
+                  <div class="kanban">
+                    <div class="kanban-col">
+                      <div class="kanban-head"><span class="k-dot k-todo"></span>To do <b>2</b></div>
+                      <div class="kanban-card anim-item"><span class="k-tag">Rollout</span><b>Confirm Education directory export</b><span class="k-meta"><span class="avatar av-xs av-sand">MC</span> Fri</span></div>
+                      <div class="kanban-card anim-item"><span class="k-tag">Compliance</span><b>Attach residency log to project note</b><span class="k-meta"><span class="avatar av-xs av-blue">FA</span> Today</span></div>
+                    </div>
+                    <div class="kanban-col">
+                      <div class="kanban-head"><span class="k-dot k-doing"></span>In progress <b>2</b></div>
+                      <div class="kanban-card anim-item"><span class="k-tag">Board pack</span><b>Draft Thursday review deck</b><span class="k-meta"><span class="avatar av-xs av-lilac">MJ</span> Thu</span></div>
+                      <div class="kanban-card anim-item"><span class="k-tag">Rollout</span><b>Verify Education export</b><span class="k-meta"><span class="avatar av-xs av-blue">FA</span> Tomorrow</span></div>
+                    </div>
+                    <div class="kanban-col">
+                      <div class="kanban-head"><span class="k-dot k-done"></span>Done <b>2</b></div>
+                      <div class="kanban-card anim-item is-done"><span class="k-tag">Rollout</span><b>Migrate Works &amp; Housing</b><span class="k-meta"><span class="avatar av-xs av-green">AO</span> Mon</span></div>
+                      <div class="kanban-card anim-item is-done"><span class="k-tag">Compliance</span><b>Publish residency log</b><span class="k-meta"><span class="avatar av-xs av-blue">FA</span> Mon</span></div>
+                    </div>
+                  </div>
+                  <div class="ui-float float-tasks anim-item"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> 2 tasks created from chat this week</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="notes" style="--tint:#E8E3F3;--tint-soft:#F7F5FB;--accent:#6A4C93">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-notes"></use></svg></span>
+                  <span class="app-num">07</span>
+                  <span class="app-label">Ration Notes</span>
+                </div>
+                <h3>Notes people can find</h3>
+                <p>A shared place for the thinking behind the work — searchable, mentionable and permissioned like everything else.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Shared notebooks and pages</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Rich text, mentions and comments</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Searchable across the workspace</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/notes" target="_blank" rel="noopener">Explore Notes <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-notes anim-item">
+                  <aside class="notes-side">
+                    <span class="notes-side-title">Notes</span>
+                    <span class="notes-tree is-active">Ogun State rollout</span>
+                    <span class="notes-tree">Weekly notes</span>
+                    <span class="notes-tree">Board pack</span>
+                    <span class="notes-tree">Migration log</span>
+                  </aside>
+                  <div class="notes-main">
+                    <span class="ui-crumb">Notes / Projects</span>
+                    <h4>Ogun State rollout</h4>
+                    <p>Week three closed with <b>240 mailboxes</b> moved across Finance, Works &amp; Housing and Health. Education moves Friday.</p>
+                    <ul>
+                      <li>Finance, Works &amp; Housing and Health complete</li>
+                      <li>Education export expected Thursday morning</li>
+                      <li>Residency log attached to the project note</li>
+                    </ul>
+                    <div class="notes-footer"><span class="avatar av-xs av-blue">FA</span> Edited by Fela · just now</div>
+                  </div>
+                  <div class="ui-comment anim-item"><b>Fela Ani</b>Can we confirm Friday for Education?<span>now</span></div>
+                  <div class="ui-float float-notes anim-item"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg> Shared with 6 people</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-panel" data-app-panel data-app="forms" style="--tint:#DEE8F4;--tint-soft:#F3F8FC;--accent:#1D4E89">
+            <div class="app-panel-inner">
+              <div class="app-panel-copy">
+                <div class="app-panel-meta">
+                  <span class="app-icon"><svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg></span>
+                  <span class="app-num">08</span>
+                  <span class="app-label">Ration Forms</span>
+                </div>
+                <h3>Forms that feed the work</h3>
+                <p>Collect structured data from inside or outside the organisation, then route it straight to the team that acts on it.</p>
+                <ul class="app-features">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Internal and external forms</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Required fields and validation</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Responses routed into workflows</li>
+                </ul>
+                <a class="link-arrow" href="https://explore.ration.works/forms" target="_blank" rel="noopener">Explore Forms <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+              <div class="app-panel-visual">
+                <div class="visual-disc" aria-hidden="true"></div>
+                <div class="ui-card ui-forms anim-item">
+                  <div class="ui-chrome">
+                    <span class="ui-brand">Forms</span>
+                    <span class="ui-pill">4 responses</span>
+                    <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="form-head"><span class="form-badge"><svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg></span><div><h4>Secretariat access request</h4><p>For new staff joining the rollout</p></div></div>
+                  <div class="form-body">
+                    <label class="form-field"><span>Full name</span><b class="form-input">Fela Ani</b></label>
+                    <label class="form-field"><span>Department</span><b class="form-input">Finance <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg></b></label>
+                    <label class="form-field"><span>Work email</span><b class="form-input">fela@ogun.gov.ng</b></label>
+                    <label class="form-check"><i></i> I need access to Mail, Chat and Calendar</label>
+                    <span class="form-submit">Submit request</span>
+                  </div>
+                  <div class="ui-float float-forms anim-item"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg> Response received · routed to IT</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="apps-hud">
+        <div class="apps-hud-inner">
+          <span class="hud-current" data-hud-name>Ration Message</span>
+          <div class="hud-track" aria-hidden="true"><span class="hud-bar" data-hud-bar></span></div>
+          <span class="hud-count"><b data-hud-index>01</b> <span>/ 08</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cloud" id="cloud">
+      <div class="cloud-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cloud-head">
+          <div>
+            <p class="eyebrow eyebrow-light" data-reveal>Sovereign infrastructure</p>
+            <h2 class="section-title section-title-light" data-split>Your data stays on the continent that governs it.</h2>
+          </div>
+          <p class="cloud-lede" data-reveal>
+            Ration Cloud runs from regional data centres across Africa, so residency,
+            jurisdiction and control stay where your policy requires them. Lagos is live
+            today, with four additional regions planned.
+          </p>
+        </div>
+
+        <div class="cloud-grid">
+          <ul class="region-list" data-reveal-group>
+            <li class="region-row is-live" data-region="lagos">
+              <span class="region-num">01</span>
+              <span class="region-name"><b>Lagos</b><small>Nigeria</small></span>
+              <span class="region-status">Live</span>
+            </li>
+            <li class="region-row" data-region="casablanca">
+              <span class="region-num">02</span>
+              <span class="region-name"><b>Casablanca</b><small>Morocco</small></span>
+              <span class="region-status is-planned">Planned</span>
+            </li>
+            <li class="region-row" data-region="nairobi">
+              <span class="region-num">03</span>
+              <span class="region-name"><b>Nairobi</b><small>Kenya</small></span>
+              <span class="region-status is-planned">Planned</span>
+            </li>
+            <li class="region-row" data-region="kinshasa">
+              <span class="region-num">04</span>
+              <span class="region-name"><b>Kinshasa</b><small>DR Congo</small></span>
+              <span class="region-status is-planned">Planned</span>
+            </li>
+            <li class="region-row" data-region="capetown">
+              <span class="region-num">05</span>
+              <span class="region-name"><b>Cape Town</b><small>South Africa</small></span>
+              <span class="region-status is-planned">Planned</span>
+            </li>
+          </ul>
+
+          <div class="cloud-map" data-map>
+            <div class="map-frame">
+              <img src="assets/img/africa-outline-dark.svg" alt="Map of Africa showing Ration data-centre regions in Lagos, Casablanca, Nairobi, Kinshasa and Cape Town" width="760" height="780" loading="lazy" data-map-img>
+              <span class="map-pin is-live" style="--x:33.4%;--y:44%" data-pin="lagos"><i></i><span class="map-label">Lagos <em>Live</em></span></span>
+              <span class="map-pin is-up" style="--x:19.8%;--y:8.7%" data-pin="casablanca"><i></i><span class="map-label">Casablanca</span></span>
+              <span class="map-pin" style="--x:74.9%;--y:53.5%" data-pin="nairobi"><i></i><span class="map-label">Nairobi</span></span>
+              <span class="map-pin" style="--x:48.1%;--y:57.3%" data-pin="kinshasa"><i></i><span class="map-label">Kinshasa</span></span>
+              <span class="map-pin is-up" style="--x:52.1%;--y:92.5%" data-pin="capetown"><i></i><span class="map-label">Cape Town</span></span>
+            </div>
+            <div class="map-legend">
+              <span><i class="legend-dot is-live"></i>Live</span>
+              <span><i class="legend-dot"></i>Planned</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cloud-foot">
+          <div class="cloud-foot-block" data-reveal>
+            <span class="cloud-foot-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span>
+            <div>
+              <h3>Identical hardware in every region</h3>
+              <p>Owned and operated by Ration, so the platform behaves the same wherever it runs.</p>
+            </div>
+          </div>
+          <div class="cloud-foot-block" data-reveal>
+            <span class="cloud-foot-icon"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+            <div>
+              <h3>Or keep the hardware in your hands</h3>
+              <p>Deploy on your own infrastructure or through a managed service provider. Same platform, same modules.</p>
+              <a class="link-arrow link-arrow-light" href="#contact">Talk to sales <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience" id="who">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Who Ration is for</p>
+            <h2 class="section-title" data-split>Built for organisations that want control, without more complexity.</h2>
+          </div>
+          <p class="section-lede" data-reveal>
+            Ration gives organisations a secure, integrated workspace for communication
+            and collaboration — with flexible deployment, local-currency billing where
+            available and a lower-cost alternative to managing separate platforms.
+          </p>
+        </div>
+
+        <div class="audience-grid" data-reveal-group>
+          <article class="audience-card">
+            <span class="audience-icon"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+            <h3>Government &amp; public sector</h3>
+            <p>Meet residency, jurisdiction, security and procurement requirements without compromising usability. Run in a supported region or inside your own infrastructure.</p>
+            <p class="audience-ideal"><span>Ideal for</span> Ministries, departments, agencies, state institutions and defence organisations.</p>
+            <span class="audience-note">Already deployed in state government and defence</span>
+          </article>
+
+          <article class="audience-card">
+            <span class="audience-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+            <h3>Regulated industries</h3>
+            <p>Choose where communications data resides, who can access it and how the platform is operated — while bringing mail, messaging and files into one controlled environment.</p>
+            <p class="audience-ideal"><span>Ideal for</span> Financial services, healthcare, telecommunications and utilities.</p>
+          </article>
+
+          <article class="audience-card">
+            <span class="audience-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+            <h3>Enterprises &amp; distributed organisations</h3>
+            <p>Replace overlapping subscriptions, fragmented administration and inconsistent policies with one workspace and one directory.</p>
+            <p class="audience-ideal"><span>Ideal for</span> Large enterprises, corporate groups, multi-site organisations and institutions.</p>
+          </article>
+
+          <article class="audience-card">
+            <span class="audience-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+            <h3>Small &amp; growing businesses</h3>
+            <p>Get a complete workplace platform without a large IT team or a stack of separate subscriptions. Start with the essentials and add modules as you grow.</p>
+            <p class="audience-ideal"><span>Ideal for</span> Lean teams, professional services and growing businesses.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="deploy" id="deploy">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Where Ration runs</p>
+            <h2 class="section-title" data-split>Three editions. One platform.</h2>
+          </div>
+          <p class="section-lede" data-reveal>
+            Same platform, same modules — sited wherever your organisation needs it.
+            Move between editions without changing how your teams work.
+          </p>
+        </div>
+
+        <div class="deploy-grid" data-reveal-group>
+          <article class="deploy-card">
+            <div class="deploy-top">
+              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></span>
+              <span class="deploy-tag">SaaS Edition</span>
+            </div>
+            <h3>We host it and run it for you</h3>
+            <p>Software-as-a-Service on Ration Cloud, in the region your policy requires.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Hosted and maintained by Ration</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Updates and patches applied for you</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Seats scale up or down</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Subscription billing</li>
+            </ul>
+            <a class="btn btn-primary deploy-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+          </article>
+
+          <article class="deploy-card is-highlight">
+            <div class="deploy-top">
+              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+              <span class="deploy-tag">MSP Edition</span>
+              <span class="deploy-pop">Hosted by you</span>
+            </div>
+            <h3>You host it, for your own customers</h3>
+            <p>Managed Service Provider edition for operators running Ration for multiple organisations.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Runs in your environment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Many customer organisations, one deployment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Add capacity as tenants grow</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Priority engineering support</li>
+            </ul>
+            <a class="btn btn-dark deploy-btn" href="#contact">Talk to sales</a>
+          </article>
+
+          <article class="deploy-card">
+            <div class="deploy-top">
+              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span>
+              <span class="deploy-tag">On-Premise Edition</span>
+            </div>
+            <h3>Your hardware, your control</h3>
+            <p>Deploy to your own data centre or infrastructure-as-a-service environment.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Deployed to your hardware or IaaS</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Full ownership of the environment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your existing security controls apply</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Tailored to your requirements</li>
+            </ul>
+            <a class="btn btn-outline deploy-btn" href="#contact">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="pricing-head">
+          <div class="pricing-head-copy">
+            <p class="eyebrow" data-reveal>Pricing</p>
+            <h2 class="section-title" data-split>Start with the essentials. Add control as you grow.</h2>
+            <p class="section-lede" data-reveal>
+              Simple per-user pricing in Naira, with USD, GBP and EUR available.
+              Every plan includes one directory, one login and every app you have licensed.
+            </p>
+          </div>
+          <div class="billing" role="group" aria-label="Billing period">
+            <button class="billing-btn is-active" type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
+            <button class="billing-btn" type="button" data-billing="annual" aria-pressed="false">Annual <span>2 months free</span></button>
+          </div>
+        </div>
+
+        <div class="price-grid" data-reveal-group>
+          <article class="price-card">
+            <div class="price-card-head">
+              <span class="plan-tier">Entry</span>
+              <h3>Start</h3>
+              <p>Secure communication foundation</p>
+            </div>
+            <div class="price">
+              <span class="price-currency">₦</span>
+              <span class="price-amount" data-monthly="2,000" data-annual="20,000">2,000</span>
+              <span class="price-period" data-monthly="/ user / month" data-annual="/ user / year">/ user / month</span>
+            </div>
+            <a class="btn btn-outline price-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+            <ul class="price-features">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Mail with 25 GB per user</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Calendar</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Basic chat</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Mobile and desktop apps</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>MFA and identity</li>
+            </ul>
+          </article>
+
+          <article class="price-card is-featured">
+            <span class="price-badge">Most teams start here</span>
+            <div class="price-card-head">
+              <span class="plan-tier">Revenue engine</span>
+              <h3>Do</h3>
+              <p>Where teams actually work together</p>
+            </div>
+            <div class="price">
+              <span class="price-currency">₦</span>
+              <span class="price-amount" data-monthly="4,000" data-annual="40,000">4,000</span>
+              <span class="price-period" data-monthly="/ user / month" data-annual="/ user / year">/ user / month</span>
+            </div>
+            <a class="btn btn-light price-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+            <p class="price-includes">Everything in Start, plus</p>
+            <ul class="price-features">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Rooms for video and audio</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Full chat with channels</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Drive and file sharing</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Notes and wiki</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Workflows and approvals</li>
+            </ul>
+            <p class="price-fine">60-min meetings · 25 participants · Fair usage limits apply</p>
+          </article>
+
+          <article class="price-card">
+            <div class="price-card-head">
+              <span class="plan-tier">Enterprise</span>
+              <h3>Scale</h3>
+              <p>Control, compliance and scale</p>
+            </div>
+            <div class="price">
+              <span class="price-currency">₦</span>
+              <span class="price-amount" data-monthly="6,000" data-annual="60,000">6,000</span>
+              <span class="price-period" data-monthly="/ user / month" data-annual="/ user / year">/ user / month</span>
+            </div>
+            <a class="btn btn-outline price-btn" href="#contact">Talk to sales</a>
+            <p class="price-includes">Everything in Do, plus</p>
+            <ul class="price-features">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Audit logs</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Compliance controls</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Policy enforcement</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Priority support</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Higher usage limits</li>
+            </ul>
+            <p class="price-fine">120-min meetings · 50 participants · Higher concurrency</p>
+          </article>
+        </div>
+
+        <p class="price-note">All prices exclude VAT where applicable. Annual plans are billed upfront. Fair usage limits apply to Do and Scale. 24/7 email support on all tiers; priority support on Scale.</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-intro">
+          <p class="eyebrow" data-reveal>FAQ</p>
+          <h2 class="section-title" data-split>Questions we get asked.</h2>
+          <p class="faq-intro-copy" data-reveal>
+            Something not covered? <a href="https://www.ration.works/contact">Ask us</a> or read the
+            <a href="https://support.ration.works/guides/" target="_blank" rel="noopener">documentation</a>.
+          </p>
+        </div>
+
+        <div class="faq-list" data-faq>
+          <div class="faq-item is-open">
+            <button class="faq-q" type="button" aria-expanded="true" aria-controls="faq-a1" id="faq-q1"><span>What is Ration?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div class="faq-a-inner"><p>Ration is a messaging and collaboration platform that brings mail, chat, meetings, calendar, contacts, tasks, notes and forms into one workspace. Its modules are designed to work together, and can run on Ration Cloud, in supported regional environments or within your own infrastructure.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><span>Do we have to host it ourselves?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div class="faq-a-inner"><p>No. Choose Ration Cloud, a supported regional environment, a managed service provider or your own infrastructure. The platform and modules are the same in every edition — only the operating model changes.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><span>Does Ration replace Microsoft 365 or Google Workspace?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div class="faq-a-inner"><p>For many organisations it replaces the collaboration layer they use today. Ration brings mail, messaging, meetings, files and everyday work into one controlled environment, with local-currency billing where available and a lower-cost alternative to managing several platforms.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4"><span>Can staff keep using Outlook and their phones?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p>Yes. Ration Message supports SMTP, IMAP and POP3, so existing mail clients and mobile devices can continue to connect. Native mobile and desktop apps are available as well.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5"><span>How secure is it, and can we control who sees what?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div class="faq-a-inner"><p>One policy engine decides access across every module. Revocation takes effect immediately rather than at cache expiry, and grants, shares and moderation are written to an audit trail. Hosting can stay in-region or in your own estate, with your existing controls applied.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6"><span>Can we migrate from our current platform?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div class="faq-a-inner"><p>Yes. We can help migrate mail, calendars and contacts from your current platform, and sequence the rollout so teams keep working throughout. Talk to us about scope, volume and timelines.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a7" id="faq-q7"><span>What is not ready yet?</span><span class="faq-icon" aria-hidden="true"><svg class="icon"><use href="#i-plus"></use></svg></span></button>
+            <div class="faq-a" id="faq-a7" role="region" aria-labelledby="faq-q7"><div class="faq-a-inner"><p>Ration Cloud is live in Lagos, with Casablanca, Nairobi, Kinshasa and Cape Town planned. Some add-ons, including meeting recording, are still being finalised. We will be specific with you about what is available for your deployment.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-panel" data-cta>
+          <div class="cta-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="eyebrow eyebrow-light" data-reveal>Get started</p>
+          <h2 class="cta-title" data-split>Your workspace, on your terms.</h2>
+          <p class="cta-copy" data-reveal>
+            Set yourself up on our cloud in minutes, or talk to us about running Ration
+            on your own infrastructure.
+          </p>
+          <div class="cta-actions" data-reveal>
+            <a class="btn btn-light btn-lg" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            <a class="btn btn-outline-light btn-lg" href="https://www.ration.works/contact">Talk to sales</a>
+          </div>
+          <p class="cta-meta" data-reveal>Built in Africa · Sovereign by design · Deployed wherever you need it</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" aria-label="Ration home"><img src="assets/img/ration-logo-light.svg" alt="Ration" width="120" height="34" loading="lazy"></a>
+          <p>Secure collaboration for organisations that need control over how they work. Built in Africa, ready for wherever work goes next.</p>
+          <div class="footer-meta">
+            <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Sovereign by design</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Regional hosting</span>
+          </div>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="https://www.ration.works/collaboration-platform">Collaboration platform</a>
+            <a href="https://www.ration.works/corporate-messaging">Corporate messaging</a>
+            <a href="https://www.ration.works/enterprise-collaboration">Enterprise collaboration</a>
+          </div>
+          <div class="footer-col">
+            <h4>Modules</h4>
+            <a href="https://explore.ration.works/mail">Business email</a>
+            <a href="https://explore.ration.works/chat">Chat</a>
+            <a href="https://explore.ration.works/calendar">Calendar</a>
+            <a href="https://explore.ration.works/forms">Forms</a>
+            <a href="https://support.ration.works/guides/">Ration Docs</a>
+          </div>
+          <div class="footer-col">
+            <h4>Assurance</h4>
+            <a href="https://www.ration.works/secure-messaging">Secure messaging</a>
+            <a href="https://www.ration.works/sovereign-collaboration">Sovereign collaboration</a>
+            <a href="https://www.ration.works/government-collaboration">Government collaboration</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#pricing">Pricing</a>
+            <a href="https://support.ration.works/">Support</a>
+            <a href="https://www.ration.works/contact">Contact</a>
+            <a href="https://www.ration.works/contact">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Ration — a Stackchase Limited product.</p>
+        <div class="footer-legal">
+          <a href="https://www.ration.works/privacy">Privacy</a>
+          <a href="https://www.ration.works/legal">Legal notice</a>
+          <span>English (NG)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/ScrollToPlugin.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "ration-marketing",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Marketing site for Ration \u2014 a secure messaging and collaboration platform.",
+  "scripts": {
+    "dev": "node scripts/serve.js",
+    "start": "node scripts/serve.js"
+  },
+  "devDependencies": {
+    "gsap": "^3.15.1",
+    "playwright-core": "^1.65.0",
+    "axe-core": "^4.14.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
