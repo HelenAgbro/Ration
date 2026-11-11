@@ -21,18 +21,14 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 - Each panel has a bespoke, animated product mockup (Mail, Chat, Meet, Calendar, Contacts, Tasks,
   Notes, Forms) instead of a static screenshot, so the visuals stay crisp at any size and can
   react to scroll.
-- **Sovereign cloud** opens with a scroll-scrubbed mask reveal inspired by Dops’
-  “Make your sales grow” section: a centred headline with a solid gold duplicate clipped and
-  swept across it, a travelling scan line, and a live region counter. The layout centres a much
-  larger 820px map, surrounded by twelve interactive doodles (apps plus Document, Sheet, Slides
-  and PDF) that pop in sequentially, and a five-card region rail that stays on one horizontal
-  line. The “One workspace” intro starts at the page grid’s left edge, with its concentric rings
-  back on the left as a faint but visible background layer.
-- **Where Ration runs** uses a Varco Pruden “Thinking beyond the expected” pattern as a pinned
-  vertical scroll sequence: the fixed left headline stays in place while the SaaS, MSP and
-  On-Premise panels advance over two screens of scroll with a directional slide and clip reveal,
-  then the page continues past it. Tabs and arrows jump to each segment; mobile uses direct
-  tabs/swipe.
+- **Sovereign cloud** opens with a large editorial statement that fills gold line by line as
+  you scroll. On spacious desktop screens the introduction pins while the reveal progresses;
+  smaller screens use an unpinned reveal and reduced-motion views show the complete statement.
+  The Africa map, twelve interactive app/document doodles and five-card region rail follow.
+- **Where Ration runs** holds the headline in place while three edition panels rise over one
+  another in a reversible, scroll-scrubbed sequence. Tabs and arrows navigate to each edition's
+  scroll position. Smaller or shorter screens and reduced-motion views use direct controls;
+  without JavaScript, all three editions remain readable in a vertical list.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
   spotlight adding movement.
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
