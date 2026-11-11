@@ -2384,7 +2384,7 @@ html.reduce-motion .apps-hud { display: none; }
 }
 .cta-panel > .cta-canvas { z-index: 0; }
 .cta-panel > .cta-scrim, .cta-panel > .cta-grain, .cta-panel > .spotlight { z-index: 1; }
-.cta-panel > *:not(.cta-canvas):not(.cta-scrim):not(.cta-grain):not(.spotlight) { position: relative; z-index: 2; }
+.cta-panel > *:not(.cta-canvas):not(.cta-scrim):not(.cta-grain):not(.spotlight):not(.cta-rings) { position: relative; z-index: 2; }
 .cta-stats {
   display: flex;
   flex-wrap: wrap;
@@ -2412,3 +2412,63 @@ html.reduce-motion .apps-hud { display: none; }
   .cta-stat { min-width: 0; width: 100%; justify-content: flex-start; }
   .cta-stat span { max-width: none; }
 }
+
+/* Minimal blue cursor treatment ------------------------------------------- */
+.spotlight {
+  width: 420px;
+  height: 420px;
+  margin: -210px 0 0 -210px;
+  background: radial-gradient(circle, rgba(168, 212, 232, .16), rgba(127, 184, 208, .06) 46%, transparent 70%);
+  filter: blur(24px);
+  mix-blend-mode: normal;
+}
+.spotlight::after { display: none; }
+.cursor-ring {
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-color: rgba(127, 184, 208, .55);
+  box-shadow: 0 0 12px rgba(127, 184, 208, .12);
+  mix-blend-mode: normal;
+}
+
+/* Workspace intro aligned to the page grid --------------------------------- */
+.apps-intro-copy {
+  max-width: 860px;
+  margin-left: 0;
+  padding-right: 0;
+  text-align: left;
+}
+.app-rings {
+  left: 48%;
+  right: auto;
+  top: 50%;
+  width: min(760px, 70vw);
+  transform: translate(-50%, -50%);
+  opacity: .045;
+  z-index: 0;
+}
+@media (max-width: 720px) {
+  .app-rings { left: 50%; right: auto; width: 420px; opacity: .035; }
+}
+
+/* Scroll-driven editions -------------------------------------------------- */
+.deploy-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #5B7280;
+}
+.deploy-hint i { width: 22px; height: 1px; background: #A9C3D0; display: block; }
+@media (min-width: 1025px) {
+  .deploy { min-height: 100vh; padding: clamp(80px, 10vh, 120px) 0; display: flex; align-items: center; }
+  .deploy .container { width: min(var(--container), 100% - 48px); }
+  .deploy-shell { width: 100%; }
+}
+@media (max-width: 1024px) { .deploy-hint { display: none; } }
+.cta-panel > .cta-rings { position: absolute; inset: 0; z-index: 1; }

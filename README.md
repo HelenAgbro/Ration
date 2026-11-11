@@ -23,19 +23,21 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   react to scroll.
 - **Sovereign cloud** opens with a scroll-scrubbed mask reveal inspired by Dops’
   “Make your sales grow” section: a centred headline with a solid gold duplicate clipped and
-  swept across it, a travelling scan line, and a live region counter. The layout now centres a
-  much larger 820px map, surrounded by eight interactive product doodles and a five-card region
-  strip below.
-- **Where Ration runs** now uses a Varco Pruden “Thinking beyond the expected” pattern: a fixed
-  left headline with arrows, tabs and progress, driving a three-slide edition carousel on the
-  right (SaaS, MSP, On-Premise).
-- **Closing CTA** uses a Plumeform-style animated canvas — drifting aurora fields, scrim and
-  grain — with glass stat cards layered above the motion.
+  swept across it, a travelling scan line, and a live region counter. The layout centres a much
+  larger 820px map, surrounded by twelve interactive doodles (apps plus Document, Sheet, Slides
+  and PDF) and a five-card region strip below. The “One workspace” intro now starts at the page
+  grid’s left edge, with its concentric rings sitting behind it as a faint background.
+- **Where Ration runs** uses a Varco Pruden “Thinking beyond the expected” pattern as a pinned
+  vertical scroll sequence: the fixed left headline stays in place while the SaaS, MSP and
+  On-Premise panels advance over two screens of scroll, then the page continues past it.
+  Tabs and arrows jump to each segment; mobile uses direct tabs/swipe.
+- **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
+  spotlight adding movement.
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
   toggle, FAQ accordion and footer.
-- **Whimsy layer**: scroll progress bar, a trailing cursor ring, magnetic CTA buttons, 3D tilt on
-  cards and app mockups, pointer-reactive hero tilt, cursor spotlights, and app doodles that
-  drift away from the pointer around the cloud map.
+- **Whimsy layer**: scroll progress bar, a faint light-blue trailing cursor ring, subtle magnetic
+  buttons, gentle 3D tilt on cards, a restrained hero tilt, soft blue cursor spotlights, and
+  doodles that drift away from the pointer around the cloud map.
 - Motion throughout via GSAP + ScrollTrigger, with `prefers-reduced-motion` support and a
   no-JavaScript fallback for the pinned section.
 
