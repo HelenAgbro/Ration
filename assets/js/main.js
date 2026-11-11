@@ -911,97 +911,158 @@
     if (!section || !slider) return;
 
     section.classList.add('is-enhanced');
+
     var slides = $$('[data-deploy-slide]', slider);
     var tabs = $$('[data-deploy-tab]');
+    var prev = $('[data-deploy-prev]');
+    var next = $('[data-deploy-next]');
     var indexEl = $('[data-deploy-index]');
     var progress = $('[data-deploy-progress]');
     var current = 0;
+    var animating = false;
+    var pendingTarget = null;
     var deployTrigger = null;
-    var timeline = null;
-    // Rest points in the scrubbed timeline: first, second and third editions.
-    var stops = [.15, 1.35, 2.55];
+    var transition = null;
 
     function setMeta(index) {
-      current = index;
       if (indexEl) indexEl.textContent = pad(index + 1);
+      if (progress) progress.style.width = (deployTrigger ? deployTrigger.progress * 100 : (index + 1) / slides.length * 100) + '%';
       tabs.forEach(function (tab, i) {
         tab.classList.toggle('is-active', i === index);
         tab.setAttribute('aria-pressed', String(i === index));
       });
-      slides.forEach(function (slide, i) {
-        slide.classList.toggle('is-active', i === index);
-        slide.inert = i !== index;
-        slide.setAttribute('aria-hidden', String(i !== index));
-      });
     }
 
-    function showEdition(target) {
-      target = clamp(target, 0, slides.length - 1);
-      if (deployTrigger) {
-        var y = deployTrigger.start + (deployTrigger.end - deployTrigger.start) * stops[target] / timeline.duration();
-        window.scrollTo({ top: y, behavior: 'smooth' });
+    function showEdition(target, animate) {
+      target = ((target % slides.length) + slides.length) % slides.length;
+      if (animating) { pendingTarget = target; return; }
+      if (target === current) return;
+
+      var outgoing = slides[current];
+      var incoming = slides[target];
+      animating = true;
+
+      var direction = target > current ? 1 : -1;
+      incoming.classList.add('is-active');
+      incoming.removeAttribute('inert');
+      incoming.setAttribute('aria-hidden', 'false');
+      outgoing.setAttribute('inert', '');
+      outgoing.setAttribute('aria-hidden', 'true');
+      setMeta(target);
+      current = target;
+
+      var finish = function () {
+        outgoing.classList.remove('is-active');
+        animating = false;
+        transition = null;
+        if (pendingTarget !== null) {
+          var pending = pendingTarget;
+          pendingTarget = null;
+          showEdition(pending, true);
+        }
+      };
+
+      if (!animate || !hasMotion || reduceQuery.matches) {
+        finish();
       } else {
-        setMeta(target);
-        if (progress) progress.style.width = ((target + 1) / slides.length * 100) + '%';
+        gsap.killTweensOf([outgoing, incoming]);
+        gsap.set(incoming, { autoAlpha: 0, y: 58 * direction, scale: .985, clipPath: 'inset(7% 0 7% 0)' });
+        transition = gsap.timeline({ onComplete: finish })
+          .to(outgoing, { autoAlpha: 0, y: -58 * direction, scale: .99, duration: .48, ease: 'power2.in' }, 0)
+          .to(incoming, { autoAlpha: 1, y: 0, scale: 1, duration: .85, ease: 'power3.out' }, .05)
+          .to(incoming, { clipPath: 'inset(0% 0 0% 0)', duration: .85, ease: 'power3.out' }, .05);
       }
     }
 
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () { showEdition(Number(tab.dataset.deployTab)); });
+    function resetFirst() {
+      if (transition) { transition.kill(); transition = null; }
+      if (hasMotion) {
+        gsap.killTweensOf(slides);
+        gsap.set(slides, { clearProps: 'opacity,visibility,transform,clipPath' });
+      }
+      current = 0;
+      animating = false;
+      pendingTarget = null;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === 0);
+        slide.inert = i !== 0;
+        slide.setAttribute('aria-hidden', String(i !== 0));
+      });
+      setMeta(0);
+    }
+
+    function requestEdition(target) {
+      target = ((target % slides.length) + slides.length) % slides.length;
+      if (deployTrigger) {
+        var p = (target + .02) / slides.length;
+        var y = deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
+        window.scrollTo({ top: y, behavior: reduceQuery.matches ? 'auto' : 'smooth' });
+      } else {
+        showEdition(target, true);
+      }
+    }
+
+    slides.forEach(function (slide, i) {
+      if (i !== 0) {
+        slide.setAttribute('inert', '');
+        slide.setAttribute('aria-hidden', 'true');
+      }
     });
-    $('[data-deploy-prev]').addEventListener('click', function () { showEdition(current - 1); });
-    $('[data-deploy-next]').addEventListener('click', function () { showEdition(current + 1); });
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { requestEdition(Number(tab.dataset.deployTab)); });
+    });
+    if (prev) prev.addEventListener('click', function () { requestEdition(current - 1); });
+    if (next) next.addEventListener('click', function () { requestEdition(current + 1); });
+
     slider.addEventListener('keydown', function (event) {
       if (event.target !== slider || !/^Arrow(Left|Right)$/.test(event.key)) return;
       event.preventDefault();
-      showEdition(current + (event.key === 'ArrowRight' ? 1 : -1));
+      requestEdition(current + (event.key === 'ArrowRight' ? 1 : -1));
     });
 
     var startX = null;
-    slider.addEventListener('pointerdown', function (event) {
-      if (event.pointerType === 'touch') startX = event.clientX;
-    });
+    slider.addEventListener('pointerdown', function (event) { startX = event.clientX; });
     slider.addEventListener('pointercancel', function () { startX = null; });
     slider.addEventListener('pointerup', function (event) {
       if (startX === null) return;
       var dx = event.clientX - startX;
       startX = null;
-      if (Math.abs(dx) > 45) showEdition(current + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 45) requestEdition(current + (dx < 0 ? 1 : -1));
     });
+
     setMeta(0);
+
     if (!hasMotion) return;
 
     var mm = gsap.matchMedia();
-    mm.add('(min-width: 1025px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)', function () {
-      section.classList.add('is-scroll-driven');
-      gsap.set(slides, { autoAlpha: 1, yPercent: 0 });
-      gsap.set(slides.slice(1), { yPercent: 110 });
-      timeline = gsap.timeline({
-        onUpdate: function () {
-          var time = timeline.time();
-          var index = time >= 1.975 ? 2 : time >= .775 ? 1 : 0;
-          if (index !== current) setMeta(index);
-          if (progress) progress.style.width = (timeline.progress() * 100) + '%';
-        }
-      });
-      slides.slice(1).forEach(function (slide, i) {
-        var at = .35 + i * 1.2;
-        timeline.to(slides[i], { scale: .94, opacity: .35, duration: .85, ease: 'none' }, at)
-          .to(slide, { yPercent: 0, duration: .85, ease: 'none' }, at);
-      });
-      timeline.to({}, { duration: .35 });
-      deployTrigger = ScrollTrigger.create({
-        id: 'deploy-editions', trigger: section, start: 'top top',
-        end: function () { return '+=' + window.innerHeight * 2.5; },
-        pin: true, scrub: .35, anticipatePin: 1,
-        invalidateOnRefresh: true, animation: timeline
-      });
+    mm.add({
+      all: 'all',
+      desktop: '(min-width: 1025px) and (min-height: 650px)',
+      reduced: '(prefers-reduced-motion: reduce)'
+    }, function (context) {
+      resetFirst();
+      if (context.conditions.desktop && !context.conditions.reduced) {
+        section.classList.add('is-scroll-driven');
+        deployTrigger = ScrollTrigger.create({
+          id: 'deploy-editions',
+          trigger: section,
+          start: 'top top',
+          end: '+=200%',
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: function (self) {
+            var index = Math.min(slides.length - 1, Math.floor(self.progress * slides.length + .0001));
+            showEdition(index, true);
+            if (progress) progress.style.width = (self.progress * 100).toFixed(2) + '%';
+          }
+        });
+      }
       return function () {
-        deployTrigger = null;
-        timeline = null;
+        if (deployTrigger) { deployTrigger.kill(); deployTrigger = null; }
         section.classList.remove('is-scroll-driven');
-        setMeta(current);
-        if (progress) progress.style.width = ((current + 1) / slides.length * 100) + '%';
+        resetFirst();
       };
     });
   }

@@ -25,11 +25,11 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   The scan line follows the reveal with softened scroll tracking and fades at both ends.
   The introduction flows naturally into the Africa map, twelve interactive app/document
   doodles and five-card region rail. Reduced-motion views show the complete statement.
-- **Where Ration runs** holds the headline in place while three edition panels rise over one
-  another in a reversible, scroll-scrubbed sequence. Each card keeps its copy above its visual
-  in a vertical layout at every screen size. Tabs and arrows navigate to each edition's scroll
-  position. Smaller or shorter screens and reduced-motion views use direct controls;
-  without JavaScript, all three editions remain readable in a vertical list.
+- **Where Ration runs** uses the original pinned edition slider: scrolling advances among
+  three editions with a directional slide, fade and clip reveal. The headline remains fixed;
+  tabs and arrows navigate to each edition's scroll segment. Each card places its text beside
+  its visual on desktop, stacking them on small screens. Smaller or very short screens and
+  reduced-motion views use direct controls; without JavaScript, all editions remain readable.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
   spotlight adding movement.
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
