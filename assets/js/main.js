@@ -832,6 +832,17 @@
           r: gsap.quickTo(d, 'rotation', { duration: .55, ease: 'power3.out' })
         };
       });
+      gsap.from(doodleFx.map(function (fx) { return fx.el; }), {
+        autoAlpha: 0,
+        scale: .42,
+        y: 18,
+        transformOrigin: '50% 60%',
+        duration: .55,
+        stagger: .09,
+        ease: 'back.out(1.8)',
+        scrollTrigger: { trigger: cloudStage, start: 'top 74%', once: true }
+      });
+
       cloudStage.addEventListener('pointermove', function (event) {
         var sr = cloudStage.getBoundingClientRect();
         doodleFx.forEach(function (fx) {
@@ -932,6 +943,7 @@
       var incoming = slides[target];
       animating = true;
 
+      var direction = target > current ? 1 : -1;
       incoming.classList.add('is-active');
       incoming.removeAttribute('inert');
       incoming.setAttribute('aria-hidden', 'false');
@@ -954,10 +966,11 @@
         finish();
       } else {
         gsap.killTweensOf([outgoing, incoming]);
-        gsap.set(incoming, { autoAlpha: 0, y: 16 });
+        gsap.set(incoming, { autoAlpha: 0, y: 58 * direction, scale: .985, clipPath: 'inset(7% 0 7% 0)' });
         gsap.timeline({ onComplete: finish })
-          .to(outgoing, { autoAlpha: 0, y: -12, duration: .3, ease: 'power2.in' }, 0)
-          .to(incoming, { autoAlpha: 1, y: 0, duration: .55, ease: 'power3.out' }, .04);
+          .to(outgoing, { autoAlpha: 0, y: -58 * direction, scale: .99, duration: .48, ease: 'power2.in' }, 0)
+          .to(incoming, { autoAlpha: 1, y: 0, scale: 1, duration: .85, ease: 'power3.out' }, .05)
+          .to(incoming, { clipPath: 'inset(0% 0 0% 0)', duration: .85, ease: 'power3.out' }, .05);
       }
     }
 

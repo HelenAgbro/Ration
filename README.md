@@ -25,12 +25,14 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   “Make your sales grow” section: a centred headline with a solid gold duplicate clipped and
   swept across it, a travelling scan line, and a live region counter. The layout centres a much
   larger 820px map, surrounded by twelve interactive doodles (apps plus Document, Sheet, Slides
-  and PDF) and a five-card region strip below. The “One workspace” intro now starts at the page
-  grid’s left edge, with its concentric rings sitting behind it as a faint background.
+  and PDF) that pop in sequentially, and a five-card region rail that stays on one horizontal
+  line. The “One workspace” intro starts at the page grid’s left edge, with its concentric rings
+  back on the left as a faint but visible background layer.
 - **Where Ration runs** uses a Varco Pruden “Thinking beyond the expected” pattern as a pinned
   vertical scroll sequence: the fixed left headline stays in place while the SaaS, MSP and
-  On-Premise panels advance over two screens of scroll, then the page continues past it.
-  Tabs and arrows jump to each segment; mobile uses direct tabs/swipe.
+  On-Premise panels advance over two screens of scroll with a directional slide and clip reveal,
+  then the page continues past it. Tabs and arrows jump to each segment; mobile uses direct
+  tabs/swipe.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
   spotlight adding movement.
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual

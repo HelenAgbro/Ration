@@ -2472,3 +2472,39 @@ html.reduce-motion .apps-hud { display: none; }
 }
 @media (max-width: 1024px) { .deploy-hint { display: none; } }
 .cta-panel > .cta-rings { position: absolute; inset: 0; z-index: 1; }
+
+/* Rings back left, left-aligned copy retained ----------------------------- */
+.app-rings {
+  left: -170px;
+  right: auto;
+  top: 50%;
+  width: min(720px, 70vw);
+  transform: translateY(-50%);
+  opacity: .09;
+  z-index: 0;
+}
+@media (max-width: 720px) {
+  .app-rings { left: -160px; right: auto; width: 420px; opacity: .06; }
+}
+
+/* Five region cards on one horizontal rail -------------------------------- */
+.region-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.region-list::-webkit-scrollbar { display: none; }
+.region-list .region-row {
+  flex: 1 1 0;
+  min-width: 160px;
+  min-height: 118px;
+  align-items: flex-start;
+}
+.region-list .region-status { margin-top: auto; }
+.region-list .region-name { flex: 0 0 auto; }
+
+/* Sharper hero yellow ------------------------------------------------------ */
+.hero-rotate { color: #BE8200; }
+.region-list:focus-visible { outline: 2px solid #8BE0B8; outline-offset: 6px; border-radius: 14px; }
