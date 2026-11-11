@@ -25,8 +25,9 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   The scan line follows the reveal with softened scroll tracking and fades at both ends.
   The introduction flows naturally into the Africa map, twelve interactive app/document
   doodles and five-card region rail. Reduced-motion views show the complete statement.
-- **Where Ration runs** uses the original pinned edition slider: scrolling advances among
-  three editions with a directional slide, fade and clip reveal. The headline remains fixed;
+- **Where Ration runs** uses a pinned edition sequence inspired by Varco Pruden's “Thinking
+  beyond the expected” section. Scrolling advances among three editions with a directional
+  slide, fade and masked clip reveal while the headline remains fixed;
   tabs and arrows navigate to each edition's scroll segment. Each card places its text beside
   its visual on desktop, stacking them on small screens. Smaller or very short screens and
   reduced-motion views use direct controls; without JavaScript, all editions remain readable.
