@@ -21,14 +21,21 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 - Each panel has a bespoke, animated product mockup (Mail, Chat, Meet, Calendar, Contacts, Tasks,
   Notes, Forms) instead of a static screenshot, so the visuals stay crisp at any size and can
   react to scroll.
-- **Sovereign cloud** now opens with a scroll-scrubbed mask reveal inspired by Dops’
-  “Make your sales grow” section: a muted headline with a gradient duplicate clipped and swept
-  across the text, a travelling scan line, a live region counter, and a map wipe into the
-  region list.
-- Supporting sections refreshed: proof strip, sovereign-cloud map, audience cards, deployment
-  editions, pricing with monthly/annual toggle, FAQ accordion, closing CTA and footer.
-- **Whimsy layer**: scroll progress bar, magnetic CTA buttons, 3D tilt on cards and app mockups,
-  pointer-reactive hero tilt, and soft cursor spotlights in the cloud and closing CTA sections.
+- **Sovereign cloud** opens with a scroll-scrubbed mask reveal inspired by Dops’
+  “Make your sales grow” section: a centred headline with a solid gold duplicate clipped and
+  swept across it, a travelling scan line, and a live region counter. The layout now centres a
+  much larger 820px map, surrounded by eight interactive product doodles and a five-card region
+  strip below.
+- **Where Ration runs** now uses a Varco Pruden “Thinking beyond the expected” pattern: a fixed
+  left headline with arrows, tabs and progress, driving a three-slide edition carousel on the
+  right (SaaS, MSP, On-Premise).
+- **Closing CTA** uses a Plumeform-style animated canvas — drifting aurora fields, scrim and
+  grain — with glass stat cards layered above the motion.
+- Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
+  toggle, FAQ accordion and footer.
+- **Whimsy layer**: scroll progress bar, a trailing cursor ring, magnetic CTA buttons, 3D tilt on
+  cards and app mockups, pointer-reactive hero tilt, cursor spotlights, and app doodles that
+  drift away from the pointer around the cloud map.
 - Motion throughout via GSAP + ScrollTrigger, with `prefers-reduced-motion` support and a
   no-JavaScript fallback for the pinned section.
 

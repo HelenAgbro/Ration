@@ -729,25 +729,22 @@
     } else {
       gsap.set(fill, { clipPath: 'inset(0 100% 0 0)' });
 
-      var lines = $$('.cloud-title-line', $('[data-cloud-title]'));
-      gsap.from(lines, {
+      gsap.from($('[data-cloud-title]'), {
         autoAlpha: 0,
-        duration: .7,
-        stagger: .12,
+        duration: .75,
         ease: 'power2.out',
-        scrollTrigger: { trigger: reveal, start: 'top 88%', once: true }
+        scrollTrigger: { trigger: reveal, start: 'top 92%', once: true }
       });
 
       gsap.timeline({
         scrollTrigger: {
           trigger: reveal,
-          start: 'top 82%',
-          end: 'top 34%',
-          scrub: .7
+          start: 'top 92%',
+          end: 'top 42%',
+          scrub: .6
         }
       })
         .to(fill, { clipPath: 'inset(0 0% 0 0)', ease: 'none' }, 0)
-        .to(fill, { backgroundPosition: '100% 50%', ease: 'none' }, 0)
         .to(scan, { xPercent: 100, ease: 'none' }, 0);
     }
 
@@ -790,8 +787,8 @@
       var yTo = gsap.quickTo(btn, 'y', { duration: .35, ease: 'power3.out' });
       btn.addEventListener('pointermove', function (event) {
         var r = btn.getBoundingClientRect();
-        xTo((event.clientX - r.left - r.width / 2) * .16);
-        yTo((event.clientY - r.top - r.height / 2) * .22);
+        xTo((event.clientX - r.left - r.width / 2) * .22);
+        yTo((event.clientY - r.top - r.height / 2) * .3);
       });
       btn.addEventListener('pointerleave', function () { xTo(0); yTo(0); });
     });
@@ -802,8 +799,8 @@
       var rY = gsap.quickTo(card, 'rotationY', { duration: .45, ease: 'power3.out' });
       card.addEventListener('pointermove', function (event) {
         var r = card.getBoundingClientRect();
-        rY(((event.clientX - r.left) / r.width - .5) * 6);
-        rX(-((event.clientY - r.top) / r.height - .5) * 5);
+        rY(((event.clientX - r.left) / r.width - .5) * 8);
+        rX(-((event.clientY - r.top) / r.height - .5) * 7);
       });
       card.addEventListener('pointerleave', function () {
         gsap.to(card, { rotationX: 0, rotationY: 0, duration: .65, ease: 'power2.out' });
@@ -817,11 +814,67 @@
       var hy = gsap.quickTo(heroStage, 'rotationY', { duration: .7, ease: 'power3.out' });
       heroShowcase.addEventListener('pointermove', function (event) {
         var r = heroShowcase.getBoundingClientRect();
-        hy(((event.clientX - r.left) / r.width - .5) * 3.2);
-        hx(-((event.clientY - r.top) / r.height - .5) * 2.2);
+        hy(((event.clientX - r.left) / r.width - .5) * 4.4);
+        hx(-((event.clientY - r.top) / r.height - .5) * 3);
       });
       heroShowcase.addEventListener('pointerleave', function () {
         gsap.to(heroStage, { rotationX: 0, rotationY: 0, duration: .9, ease: 'power3.out' });
+      });
+    }
+
+    var cloudStage = $('[data-cloud-stage]');
+    if (cloudStage) {
+      var doodleFx = $$('.doodle', cloudStage).map(function (d) {
+        return {
+          el: d,
+          x: gsap.quickTo(d, 'x', { duration: .55, ease: 'power3.out' }),
+          y: gsap.quickTo(d, 'y', { duration: .55, ease: 'power3.out' }),
+          r: gsap.quickTo(d, 'rotation', { duration: .55, ease: 'power3.out' })
+        };
+      });
+      cloudStage.addEventListener('pointermove', function (event) {
+        var sr = cloudStage.getBoundingClientRect();
+        doodleFx.forEach(function (fx) {
+          var baseX = sr.left + fx.el.offsetLeft + fx.el.offsetWidth / 2;
+          var baseY = sr.top + fx.el.offsetTop + fx.el.offsetHeight / 2;
+          var dx = baseX - event.clientX;
+          var dy = baseY - event.clientY;
+          var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (dist < 180) {
+            var force = 1 - dist / 180;
+            fx.x(dx / dist * force * 30);
+            fx.y(dy / dist * force * 30);
+            fx.r((dx > 0 ? 1 : -1) * force * 10);
+          } else {
+            fx.x(0); fx.y(0); fx.r(0);
+          }
+        });
+      });
+      cloudStage.addEventListener('pointerleave', function () {
+        doodleFx.forEach(function (fx) { fx.x(0); fx.y(0); fx.r(0); });
+      });
+    }
+
+    var cursorRing = $('[data-cursor-ring]');
+    if (cursorRing) {
+      var cx = gsap.quickTo(cursorRing, 'x', { duration: .35, ease: 'power3.out' });
+      var cy = gsap.quickTo(cursorRing, 'y', { duration: .35, ease: 'power3.out' });
+      gsap.set(cursorRing, { x: -100, y: -100 });
+      document.addEventListener('pointermove', function (event) {
+        cx(event.clientX);
+        cy(event.clientY);
+        gsap.to(cursorRing, { opacity: .65, duration: .25, overwrite: 'auto' });
+      });
+      document.documentElement.addEventListener('pointerleave', function () {
+        gsap.to(cursorRing, { opacity: 0, duration: .3, overwrite: 'auto' });
+      });
+      $$('a, button').forEach(function (el) {
+        el.addEventListener('pointerenter', function () {
+          gsap.to(cursorRing, { scale: 1.7, opacity: 1, duration: .3, overwrite: 'auto' });
+        });
+        el.addEventListener('pointerleave', function () {
+          gsap.to(cursorRing, { scale: 1, opacity: .65, duration: .3, overwrite: 'auto' });
+        });
       });
     }
 
@@ -834,7 +887,7 @@
         var r = area.getBoundingClientRect();
         sX(event.clientX - r.left);
         sY(event.clientY - r.top);
-        gsap.to(spot, { opacity: .85, duration: .45, overwrite: 'auto' });
+        gsap.to(spot, { opacity: 1, duration: .45, overwrite: 'auto' });
       });
       area.addEventListener('pointerleave', function () {
         gsap.to(spot, { opacity: 0, duration: .5, overwrite: 'auto' });
@@ -842,8 +895,188 @@
     });
   }
 
+  /* -----------------------------------------------------------------------
+     Deployment edition slider
+     -------------------------------------------------------------------- */
+  function initDeploySlider() {
+    var slider = $('[data-deploy-slider]');
+    if (!slider) return;
+
+    var slides = $$('[data-deploy-slide]', slider);
+    var tabs = $$('[data-deploy-tab]');
+    var prev = $('[data-deploy-prev]');
+    var next = $('[data-deploy-next]');
+    var indexEl = $('[data-deploy-index]');
+    var progress = $('[data-deploy-progress]');
+    var current = 0;
+    var animating = false;
+
+    slides.forEach(function (slide, i) {
+      if (i !== 0) {
+        slide.setAttribute('inert', '');
+        slide.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    function setMeta(index) {
+      if (indexEl) indexEl.textContent = pad(index + 1);
+      if (progress) progress.style.width = ((index + 1) / slides.length * 100) + '%';
+      tabs.forEach(function (tab, i) {
+        tab.classList.toggle('is-active', i === index);
+        tab.setAttribute('aria-pressed', String(i === index));
+      });
+    }
+
+    function goTo(target, userInitiated) {
+      target = ((target % slides.length) + slides.length) % slides.length;
+      if (target === current || animating) return;
+
+      var outgoing = slides[current];
+      var incoming = slides[target];
+      var focusWasOnTab = doc.activeElement && doc.activeElement.classList.contains('deploy-tab');
+      animating = true;
+
+      incoming.classList.add('is-active');
+      incoming.removeAttribute('inert');
+      incoming.setAttribute('aria-hidden', 'false');
+      outgoing.setAttribute('inert', '');
+      outgoing.setAttribute('aria-hidden', 'true');
+      setMeta(target);
+
+      var finish = function () {
+        outgoing.classList.remove('is-active');
+        current = target;
+        animating = false;
+      };
+
+      if (!hasMotion || prefersReduced) {
+        finish();
+      } else {
+        gsap.killTweensOf([outgoing, incoming]);
+        gsap.set(incoming, { autoAlpha: 0, y: 18 });
+        gsap.timeline({ onComplete: finish })
+          .to(outgoing, { autoAlpha: 0, y: -14, duration: .38, ease: 'power2.in' }, 0)
+          .to(incoming, { autoAlpha: 1, y: 0, duration: .65, ease: 'power3.out' }, .06);
+      }
+
+      if (userInitiated && focusWasOnTab && tabs[target]) tabs[target].focus();
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { goTo(Number(tab.dataset.deployTab), true); });
+    });
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1, true); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1, true); });
+
+    var startX = null;
+    slider.addEventListener('pointerdown', function (event) { startX = event.clientX; });
+    slider.addEventListener('pointercancel', function () { startX = null; });
+    slider.addEventListener('pointerup', function (event) {
+      if (startX === null) return;
+      var dx = event.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1), true);
+    });
+
+    setMeta(0);
+  }
+
+  /* -----------------------------------------------------------------------
+     Closing CTA canvas — soft aurora fields
+     -------------------------------------------------------------------- */
+  function initCtaCanvas() {
+    var canvas = $('[data-cta-canvas]');
+    if (!canvas) return;
+    var panel = canvas.parentElement;
+    var ctx = canvas.getContext('2d');
+    if (!panel || !ctx) return;
+
+    var w = 0, h = 0, dpr = 1, raf = null, visible = true, last = 0;
+    var blobs = [
+      { c: '14,107,138', a: .34, x: .28, y: .3, ax: .22, ay: .18, r: .62, sx: 1, sy: 1.2 },
+      { c: '47,138,122', a: .3, x: .72, y: .32, ax: .18, ay: .2, r: .58, sx: .8, sy: 1.4 },
+      { c: '176,122,24', a: .24, x: .58, y: .8, ax: .2, ay: .15, r: .55, sx: 1.2, sy: .9 },
+      { c: '58,75,138', a: .3, x: .16, y: .75, ax: .16, ay: .2, r: .6, sx: .9, sy: 1.1 }
+    ];
+
+    function paint(t) {
+      if (!w || !h) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = '#001C2A';
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'lighter';
+
+      blobs.forEach(function (b, i) {
+        var x = w * (b.x + Math.sin(t * .00012 * b.sx + i * 1.7) * b.ax);
+        var y = h * (b.y + Math.cos(t * .0001 * b.sy + i * 2.3) * b.ay);
+        var radius = Math.max(w, h) * b.r;
+        var g = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        g.addColorStop(0, 'rgba(' + b.c + ',' + b.a + ')');
+        g.addColorStop(.58, 'rgba(' + b.c + ',' + (b.a * .38) + ')');
+        g.addColorStop(1, 'rgba(' + b.c + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    function resize() {
+      var rect = panel.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      w = rect.width;
+      h = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      paint(performance.now());
+    }
+
+    function loop(t) {
+      if (!visible || doc.hidden) { raf = null; return; }
+      if (t - last > 32) { paint(t); last = t; }
+      raf = window.requestAnimationFrame(loop);
+    }
+
+    function start() {
+      if (prefersReduced) { paint(performance.now()); return; }
+      if (!raf) { last = 0; raf = window.requestAnimationFrame(loop); }
+    }
+
+    function stop() {
+      if (raf) { window.cancelAnimationFrame(raf); raf = null; }
+    }
+
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(panel);
+    else window.addEventListener('resize', resize);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) start(); else stop();
+      }, { threshold: .1 }).observe(panel);
+    } else {
+      start();
+    }
+
+    doc.addEventListener('visibilitychange', function () {
+      if (doc.hidden) stop();
+      else if (visible) start();
+    });
+
+    start();
+  }
+
   initWhimsy();
   initCloudReveal();
+  initDeploySlider();
+  initCtaCanvas();
 
 
   /* -----------------------------------------------------------------------

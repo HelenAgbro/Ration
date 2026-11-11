@@ -54,12 +54,13 @@
       .ui-card { width: min(560px, 100%); margin-inline: auto; }
       .apps-hud { display: none; }
       .faq-a { height: auto; }
-      .cloud-title-fill { clip-path: none !important; }
+      .cloud-title-reveal { clip-path: none !important; }
       .cloud-scan { display: none; }
     </style>
   </noscript>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+  <div class="cursor-ring" data-cursor-ring aria-hidden="true"></div>
 
   <!-- Icon sprite -->
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -735,58 +736,61 @@
           </div>
 
           <div class="cloud-reveal" data-cloud-reveal>
-            <h2 class="cloud-title" data-cloud-title>
-              <span class="cloud-title-line">Your data stays on the</span>
-              <span class="cloud-title-line">continent that governs it.</span>
-            </h2>
-            <div class="cloud-title-fill" data-cloud-fill aria-hidden="true">
-              <span class="cloud-title-line">Your data stays on the</span>
-              <span class="cloud-title-line">continent that governs it.</span>
-            </div>
+            <h2 class="cloud-title" data-cloud-title>Your data stays on the<br>continent that governs it.</h2>
+            <div class="cloud-title-reveal" data-cloud-fill aria-hidden="true">Your data stays on the<br>continent that governs it.</div>
             <span class="cloud-scan" data-cloud-scan aria-hidden="true"></span>
           </div>
 
-          <div class="cloud-intro-bottom">
-            <p class="cloud-lede" data-reveal>
-              Ration Cloud runs from regional data centres across Africa, so residency,
-              jurisdiction and control stay where your policy requires them. Lagos is live
-              today, with four additional regions planned.
-            </p>
-            <div class="cloud-stat" data-reveal>
+          <p class="cloud-lede" data-reveal>
+            Ration Cloud runs from regional data centres across Africa, so residency,
+            jurisdiction and control stay where your policy requires them. Lagos is live
+            today, with four additional regions planned.
+          </p>
+
+          <div class="cloud-intro-meta" data-reveal>
+            <div class="cloud-stat">
               <span class="cloud-stat-value"><b data-cloud-count>01</b><span>/ 05</span></span>
               <span class="cloud-stat-label">Regions live today</span>
             </div>
+            <a class="link-arrow link-arrow-light" href="#contact">Talk to sales <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
         </div>
 
-        <div class="cloud-grid">
-          <ul class="region-list" data-reveal-group>
-            <li class="region-row is-live" data-region="lagos">
-              <span class="region-num">01</span>
-              <span class="region-name"><b>Lagos</b><small>Nigeria</small></span>
-              <span class="region-status">Live</span>
-            </li>
-            <li class="region-row" data-region="casablanca">
-              <span class="region-num">02</span>
-              <span class="region-name"><b>Casablanca</b><small>Morocco</small></span>
-              <span class="region-status is-planned">Planned</span>
-            </li>
-            <li class="region-row" data-region="nairobi">
-              <span class="region-num">03</span>
-              <span class="region-name"><b>Nairobi</b><small>Kenya</small></span>
-              <span class="region-status is-planned">Planned</span>
-            </li>
-            <li class="region-row" data-region="kinshasa">
-              <span class="region-num">04</span>
-              <span class="region-name"><b>Kinshasa</b><small>DR Congo</small></span>
-              <span class="region-status is-planned">Planned</span>
-            </li>
-            <li class="region-row" data-region="capetown">
-              <span class="region-num">05</span>
-              <span class="region-name"><b>Cape Town</b><small>South Africa</small></span>
-              <span class="region-status is-planned">Planned</span>
-            </li>
-          </ul>
+        <div class="cloud-stage" data-cloud-stage>
+          <div class="cloud-doodles" aria-label="Ration apps — explore the workspace">
+            <a class="doodle" href="#features" aria-label="Explore Ration Mail" style="--x:2.5%;--y:15%;--delay:0s;--tint:#7FB8D0" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+              <span class="doodle-label">Mail</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Chat" style="--x:8.5%;--y:34%;--delay:.7s;--tint:#8BE0B8" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg></span>
+              <span class="doodle-label">Chat</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Meet" style="--x:3.5%;--y:56%;--delay:1.4s;--tint:#C3B3F5" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-meet"></use></svg></span>
+              <span class="doodle-label">Meet</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Calendar" style="--x:10%;--y:77%;--delay:2.1s;--tint:#FFB343" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+              <span class="doodle-label">Calendar</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Contacts" style="--x:86.5%;--y:18%;--delay:.4s;--tint:#8BE0B8" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-contacts"></use></svg></span>
+              <span class="doodle-label">Contacts</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Tasks" style="--x:91.5%;--y:39%;--delay:1.1s;--tint:#FFB343" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-tasks"></use></svg></span>
+              <span class="doodle-label">Tasks</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Notes" style="--x:85.5%;--y:62%;--delay:1.8s;--tint:#C3B3F5" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-notes"></use></svg></span>
+              <span class="doodle-label">Notes</span>
+            </a>
+            <a class="doodle" href="#features" aria-label="Explore Ration Forms" style="--x:92%;--y:83%;--delay:2.5s;--tint:#7FB8D0" data-doodle>
+              <span class="doodle-float"><svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg></span>
+              <span class="doodle-label">Forms</span>
+            </a>
+          </div>
 
           <div class="cloud-map" data-map>
             <div class="map-frame">
@@ -801,8 +805,24 @@
               <span><i class="legend-dot is-live"></i>Live</span>
               <span><i class="legend-dot"></i>Planned</span>
             </div>
+            <div class="cloud-map-card is-live">
+              <span class="cloud-map-dot" aria-hidden="true"></span>
+              <div><b>Lagos</b><small>Nigeria · Live region</small></div>
+            </div>
+            <div class="cloud-map-card is-planned">
+              <span class="cloud-map-num">04</span>
+              <div><b>Planned regions</b><small>Casablanca · Nairobi · Kinshasa · Cape Town</small></div>
+            </div>
           </div>
         </div>
+
+        <ul class="region-list" data-reveal-group>
+          <li class="region-row is-live" data-region="lagos"><span class="region-num">01</span><span class="region-name"><b>Lagos</b><small>Nigeria</small></span><span class="region-status">Live</span></li>
+          <li class="region-row" data-region="casablanca"><span class="region-num">02</span><span class="region-name"><b>Casablanca</b><small>Morocco</small></span><span class="region-status is-planned">Planned</span></li>
+          <li class="region-row" data-region="nairobi"><span class="region-num">03</span><span class="region-name"><b>Nairobi</b><small>Kenya</small></span><span class="region-status is-planned">Planned</span></li>
+          <li class="region-row" data-region="kinshasa"><span class="region-num">04</span><span class="region-name"><b>Kinshasa</b><small>DR Congo</small></span><span class="region-status is-planned">Planned</span></li>
+          <li class="region-row" data-region="capetown"><span class="region-num">05</span><span class="region-name"><b>Cape Town</b><small>South Africa</small></span><span class="region-status is-planned">Planned</span></li>
+        </ul>
 
         <div class="cloud-foot">
           <div class="cloud-foot-block" data-reveal>
@@ -873,66 +893,107 @@
 
     <section class="deploy" id="deploy">
       <div class="container">
-        <div class="section-head">
-          <div>
+        <div class="deploy-shell">
+          <div class="deploy-fixed">
             <p class="eyebrow" data-reveal>Where Ration runs</p>
-            <h2 class="section-title" data-split>Three editions. One platform.</h2>
+            <h2 class="deploy-title" data-split>Three editions. One platform.</h2>
+            <p class="deploy-lede" data-reveal>
+              Same platform, same modules — sited wherever your organisation needs it.
+              Move between editions without changing how your teams work.
+            </p>
+
+            <div class="deploy-controls">
+              <span class="deploy-count"><b data-deploy-index>01</b><span> / 03</span></span>
+              <div class="deploy-arrows">
+                <button class="deploy-arrow" type="button" data-deploy-prev aria-label="Previous edition"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
+                <button class="deploy-arrow" type="button" data-deploy-next aria-label="Next edition"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+              </div>
+            </div>
+
+            <div class="deploy-tabs" role="group" aria-label="Choose an edition">
+              <button class="deploy-tab is-active" type="button" data-deploy-tab="0" aria-pressed="true">SaaS</button>
+              <button class="deploy-tab" type="button" data-deploy-tab="1" aria-pressed="false">MSP</button>
+              <button class="deploy-tab" type="button" data-deploy-tab="2" aria-pressed="false">On-Premise</button>
+            </div>
+            <div class="deploy-progress" aria-hidden="true"><span data-deploy-progress></span></div>
           </div>
-          <p class="section-lede" data-reveal>
-            Same platform, same modules — sited wherever your organisation needs it.
-            Move between editions without changing how your teams work.
-          </p>
-        </div>
 
-        <div class="deploy-grid" data-reveal-group>
-          <article class="deploy-card">
-            <div class="deploy-top">
-              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></span>
-              <span class="deploy-tag">SaaS Edition</span>
-            </div>
-            <h3>We host it and run it for you</h3>
-            <p>Software-as-a-Service on Ration Cloud, in the region your policy requires.</p>
-            <ul class="ticks">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Hosted and maintained by Ration</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Updates and patches applied for you</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Seats scale up or down</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Subscription billing</li>
-            </ul>
-            <a class="btn btn-primary deploy-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
-          </article>
+          <div class="deploy-slider" data-deploy-slider aria-roledescription="carousel" aria-label="Ration deployment editions">
+            <article class="deploy-slide is-active" data-deploy-slide="0" role="group" aria-roledescription="slide" aria-label="SaaS Edition" aria-hidden="false">
+              <div class="deploy-slide-copy">
+                <span class="deploy-kicker">SaaS Edition</span>
+                <h3>We host it and run it for you</h3>
+                <p>Software-as-a-Service on Ration Cloud, in the region your policy requires.</p>
+                <ul class="ticks">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Hosted and maintained by Ration</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Updates and patches applied for you</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Seats scale up or down</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Subscription billing</li>
+                </ul>
+                <a class="btn btn-primary deploy-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+              </div>
+              <div class="deploy-visual" style="--accent:#7FB8D0">
+                <span class="deploy-orbit" aria-hidden="true"></span>
+                <span class="deploy-visual-icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></span>
+                <div class="deploy-visual-body">
+                  <span class="deploy-visual-kicker">Ration Cloud</span>
+                  <strong class="deploy-visual-name">Hosted for you</strong>
+                  <div class="deploy-visual-chips"><span>Lagos · Live</span><span>SaaS</span><span>Regional</span></div>
+                </div>
+                <div class="deploy-visual-meta"><span>Edition</span><b>01</b></div>
+              </div>
+            </article>
 
-          <article class="deploy-card is-highlight">
-            <div class="deploy-top">
-              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
-              <span class="deploy-tag">MSP Edition</span>
-              <span class="deploy-pop">Hosted by you</span>
-            </div>
-            <h3>You host it, for your own customers</h3>
-            <p>Managed Service Provider edition for operators running Ration for multiple organisations.</p>
-            <ul class="ticks">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Runs in your environment</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Many customer organisations, one deployment</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Add capacity as tenants grow</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Priority engineering support</li>
-            </ul>
-            <a class="btn btn-dark deploy-btn" href="#contact">Talk to sales</a>
-          </article>
+            <article class="deploy-slide" data-deploy-slide="1" role="group" aria-roledescription="slide" aria-label="MSP Edition" aria-hidden="true" inert>
+              <div class="deploy-slide-copy">
+                <span class="deploy-kicker">MSP Edition</span>
+                <h3>You host it, for your own customers</h3>
+                <p>Managed Service Provider edition for operators running Ration for multiple organisations.</p>
+                <ul class="ticks">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Runs in your environment</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Many customer organisations, one deployment</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Add capacity as tenants grow</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Priority engineering support</li>
+                </ul>
+                <a class="btn btn-dark deploy-btn" href="#contact">Talk to sales</a>
+              </div>
+              <div class="deploy-visual" style="--accent:#8BE0B8">
+                <span class="deploy-orbit" aria-hidden="true"></span>
+                <span class="deploy-visual-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+                <div class="deploy-visual-body">
+                  <span class="deploy-visual-kicker">Managed service</span>
+                  <strong class="deploy-visual-name">Your environment</strong>
+                  <div class="deploy-visual-chips"><span>Multi-tenant</span><span>MSP</span><span>Your hardware</span></div>
+                </div>
+                <div class="deploy-visual-meta"><span>Edition</span><b>02</b></div>
+              </div>
+            </article>
 
-          <article class="deploy-card">
-            <div class="deploy-top">
-              <span class="deploy-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span>
-              <span class="deploy-tag">On-Premise Edition</span>
-            </div>
-            <h3>Your hardware, your control</h3>
-            <p>Deploy to your own data centre or infrastructure-as-a-service environment.</p>
-            <ul class="ticks">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Deployed to your hardware or IaaS</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Full ownership of the environment</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your existing security controls apply</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Tailored to your requirements</li>
-            </ul>
-            <a class="btn btn-outline deploy-btn" href="#contact">Talk to sales</a>
-          </article>
+            <article class="deploy-slide" data-deploy-slide="2" role="group" aria-roledescription="slide" aria-label="On-Premise Edition" aria-hidden="true" inert>
+              <div class="deploy-slide-copy">
+                <span class="deploy-kicker">On-Premise Edition</span>
+                <h3>Your hardware, your control</h3>
+                <p>Deploy to your own data centre or infrastructure-as-a-service environment.</p>
+                <ul class="ticks">
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Deployed to your hardware or IaaS</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Full ownership of the environment</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your existing security controls apply</li>
+                  <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Tailored to your requirements</li>
+                </ul>
+                <a class="btn btn-outline deploy-btn" href="#contact">Talk to sales</a>
+              </div>
+              <div class="deploy-visual" style="--accent:#FFB343">
+                <span class="deploy-orbit" aria-hidden="true"></span>
+                <span class="deploy-visual-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span>
+                <div class="deploy-visual-body">
+                  <span class="deploy-visual-kicker">Your data centre</span>
+                  <strong class="deploy-visual-name">Full ownership</strong>
+                  <div class="deploy-visual-chips"><span>On-prem</span><span>IaaS</span><span>Sovereign</span></div>
+                </div>
+                <div class="deploy-visual-meta"><span>Edition</span><b>03</b></div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1075,7 +1136,9 @@
     <section class="cta" id="contact">
       <div class="container">
         <div class="cta-panel" data-cta>
-          <div class="cta-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+          <canvas class="cta-canvas" data-cta-canvas aria-hidden="true"></canvas>
+          <div class="cta-scrim" aria-hidden="true"></div>
+          <div class="cta-grain" aria-hidden="true"></div>
           <span class="spotlight" data-spotlight aria-hidden="true"></span>
           <p class="eyebrow eyebrow-light" data-reveal>Get started</p>
           <h2 class="cta-title" data-split>Your workspace, on your terms.</h2>
@@ -1086,6 +1149,11 @@
           <div class="cta-actions" data-reveal>
             <a class="btn btn-light btn-lg" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
             <a class="btn btn-outline-light btn-lg" href="https://www.ration.works/contact">Talk to sales</a>
+          </div>
+          <div class="cta-stats" data-reveal>
+            <div class="cta-stat"><b>08</b><span>apps in one workspace</span></div>
+            <div class="cta-stat"><b>05</b><span>data-centre regions</span></div>
+            <div class="cta-stat"><b>24/7</b><span>email support</span></div>
           </div>
           <p class="cta-meta" data-reveal>Built in Africa · Sovereign by design · Deployed wherever you need it</p>
         </div>
