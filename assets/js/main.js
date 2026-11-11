@@ -712,38 +712,55 @@
   }
 
   function initCloudReveal() {
-    var intro = $('[data-cloud-intro]');
+    var reveal = $('[data-cloud-reveal]');
     var fill = $('[data-cloud-fill]');
-    if (!intro || !fill || !hasMotion) return;
+    var scan = $('[data-cloud-scan]');
+    var count = $('[data-cloud-count]');
+    var map = $('.cloud-map .map-frame');
+    if (!reveal || !fill || !hasMotion) return;
 
-    intro.classList.add('is-enhanced');
-    var lines = $$('span', fill);
-    var bar = $('[data-cloud-progress]');
     var mm = gsap.matchMedia();
-    mm.add({
-      all: 'all',
-      desktop: '(min-width: 1025px) and (min-height: 800px)',
-      reduced: '(prefers-reduced-motion: reduce)'
-    }, function (context) {
-      if (context.conditions.reduced) return;
-      var pinned = context.conditions.desktop;
+    mm.add('(prefers-reduced-motion: no-preference)', function () {
+      reveal.classList.add('is-enhanced');
+      // Keep the original single wipe, with a softer catch-up to scroll input.
       var timeline = gsap.timeline({
         scrollTrigger: {
           id: 'cloud-reveal',
-          trigger: intro,
-          start: pinned ? 'top 80px' : 'top 75%',
-          end: pinned ? '+=100%' : 'bottom 65%',
-          pin: pinned,
-          scrub: .35,
-          anticipatePin: 1,
+          trigger: reveal,
+          start: 'top 92%',
+          end: 'top 42%',
+          scrub: .9,
           invalidateOnRefresh: true
         }
       });
-      // Read the statement line by line, with a short pause at either end.
-      timeline.fromTo(lines, { clipPath: 'inset(0 100% 0 0)' }, {
-        clipPath: 'inset(0 0% 0 0)', stagger: .75, duration: .9, ease: 'none'
-      }, .15).to({}, { duration: .25 });
-      if (bar) timeline.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: timeline.duration(), ease: 'none' }, 0);
+      timeline.fromTo(fill, { clipPath: 'inset(0 100% 0 0)' }, {
+        clipPath: 'inset(0 0% 0 0)', duration: 1, ease: 'none'
+      }, 0);
+      if (scan) {
+        timeline.fromTo(scan, { xPercent: 0 }, {
+          xPercent: 100, duration: 1, ease: 'none'
+        }, 0)
+          .fromTo(scan, { autoAlpha: 0 }, { autoAlpha: .85, duration: .1, ease: 'power1.out' }, 0)
+          .to(scan, { autoAlpha: 0, duration: .1, ease: 'power1.in' }, .9);
+      }
+      if (count) {
+        var state = { value: 0 };
+        gsap.to(state, {
+          value: 1, duration: 1.1, ease: 'power2.out',
+          scrollTrigger: { trigger: count, start: 'top 94%', once: true },
+          onUpdate: function () { count.textContent = pad(Math.round(state.value)); }
+        });
+      }
+      if (map) {
+        gsap.fromTo(map, { clipPath: 'inset(100% 0 0 0)' }, {
+          clipPath: 'inset(0% 0 0 0)', duration: 1.2, ease: 'power2.out',
+          scrollTrigger: { trigger: '.cloud-map', start: 'top 84%', once: true }
+        });
+      }
+      return function () {
+        reveal.classList.remove('is-enhanced');
+        if (count) count.textContent = '01';
+      };
     });
   }
 
