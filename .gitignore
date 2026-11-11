@@ -3,3 +3,4 @@ node_modules/
 .cline-home/
 .DS_Store
 *.log
+*.traineddata

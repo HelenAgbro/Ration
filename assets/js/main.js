@@ -217,7 +217,7 @@
   var isAnimating = false;
   var isInView = true;
   var autoTimer = null;
-  var SLIDE_HOLD = 10;
+  var SLIDE_HOLD = 5;
   var SLIDE_MOVE = .55;
 
   function updateDots(index) {
@@ -699,6 +699,152 @@
       });
     });
   }
+
+  /* -----------------------------------------------------------------------
+     Extra motion — scroll progress + cloud headline reveal
+     -------------------------------------------------------------------- */
+  var progressBar = $('[data-scroll-progress]');
+
+  function paintProgress() {
+    if (!progressBar) return;
+    var max = doc.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = 'scaleX(' + (max > 0 ? clamp(window.scrollY / max, 0, 1) : 0) + ')';
+  }
+
+  function initCloudReveal() {
+    var reveal = $('[data-cloud-reveal]');
+    var fill = $('[data-cloud-fill]');
+    var scan = $('[data-cloud-scan]');
+    if (!reveal || !fill) return;
+
+    if (!hasMotion) {
+      fill.style.clipPath = 'none';
+      if (scan) scan.style.display = 'none';
+      return;
+    }
+
+    if (prefersReduced) {
+      gsap.set(fill, { clipPath: 'none' });
+      if (scan) gsap.set(scan, { autoAlpha: 0 });
+    } else {
+      gsap.set(fill, { clipPath: 'inset(0 100% 0 0)' });
+
+      var lines = $$('.cloud-title-line', $('[data-cloud-title]'));
+      gsap.from(lines, {
+        autoAlpha: 0,
+        duration: .7,
+        stagger: .12,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: reveal, start: 'top 88%', once: true }
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: reveal,
+          start: 'top 82%',
+          end: 'top 34%',
+          scrub: .7
+        }
+      })
+        .to(fill, { clipPath: 'inset(0 0% 0 0)', ease: 'none' }, 0)
+        .to(fill, { backgroundPosition: '100% 50%', ease: 'none' }, 0)
+        .to(scan, { xPercent: 100, ease: 'none' }, 0);
+    }
+
+    var count = $('[data-cloud-count]');
+    if (count) {
+      var countState = { value: 0 };
+      gsap.to(countState, {
+        value: 1,
+        duration: 1.1,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: count, start: 'top 94%', once: true },
+        onUpdate: function () { count.textContent = pad(Math.round(countState.value)); }
+      });
+    }
+
+    gsap.from('.map-frame', {
+      clipPath: 'inset(100% 0 0 0)',
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.cloud-map', start: 'top 84%', once: true }
+    });
+  }
+
+  window.addEventListener('scroll', function () {
+    if (progressBar) window.requestAnimationFrame(paintProgress);
+  }, { passive: true });
+  window.addEventListener('resize', paintProgress);
+  paintProgress();
+
+
+  /* -----------------------------------------------------------------------
+     Whimsy — magnetic buttons, card tilt, hero tilt, cursors
+     -------------------------------------------------------------------- */
+  function initWhimsy() {
+    if (!hasMotion || prefersReduced) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    $$('.hero-actions .btn, .cta-actions .btn, .price-btn, .deploy-btn').forEach(function (btn) {
+      var xTo = gsap.quickTo(btn, 'x', { duration: .35, ease: 'power3.out' });
+      var yTo = gsap.quickTo(btn, 'y', { duration: .35, ease: 'power3.out' });
+      btn.addEventListener('pointermove', function (event) {
+        var r = btn.getBoundingClientRect();
+        xTo((event.clientX - r.left - r.width / 2) * .16);
+        yTo((event.clientY - r.top - r.height / 2) * .22);
+      });
+      btn.addEventListener('pointerleave', function () { xTo(0); yTo(0); });
+    });
+
+    $$('.audience-card, .deploy-card, .price-card, .ui-card').forEach(function (card) {
+      gsap.set(card, { transformPerspective: 900 });
+      var rX = gsap.quickTo(card, 'rotationX', { duration: .45, ease: 'power3.out' });
+      var rY = gsap.quickTo(card, 'rotationY', { duration: .45, ease: 'power3.out' });
+      card.addEventListener('pointermove', function (event) {
+        var r = card.getBoundingClientRect();
+        rY(((event.clientX - r.left) / r.width - .5) * 6);
+        rX(-((event.clientY - r.top) / r.height - .5) * 5);
+      });
+      card.addEventListener('pointerleave', function () {
+        gsap.to(card, { rotationX: 0, rotationY: 0, duration: .65, ease: 'power2.out' });
+      });
+    });
+
+    var heroStage = $('.hero-stage');
+    var heroShowcase = $('.hero-showcase');
+    if (heroStage && heroShowcase) {
+      var hx = gsap.quickTo(heroStage, 'rotationX', { duration: .7, ease: 'power3.out' });
+      var hy = gsap.quickTo(heroStage, 'rotationY', { duration: .7, ease: 'power3.out' });
+      heroShowcase.addEventListener('pointermove', function (event) {
+        var r = heroShowcase.getBoundingClientRect();
+        hy(((event.clientX - r.left) / r.width - .5) * 3.2);
+        hx(-((event.clientY - r.top) / r.height - .5) * 2.2);
+      });
+      heroShowcase.addEventListener('pointerleave', function () {
+        gsap.to(heroStage, { rotationX: 0, rotationY: 0, duration: .9, ease: 'power3.out' });
+      });
+    }
+
+    $$('[data-spotlight]').forEach(function (spot) {
+      var area = spot.parentElement;
+      if (!area) return;
+      var sX = gsap.quickTo(spot, 'x', { duration: .8, ease: 'power3.out' });
+      var sY = gsap.quickTo(spot, 'y', { duration: .8, ease: 'power3.out' });
+      area.addEventListener('pointermove', function (event) {
+        var r = area.getBoundingClientRect();
+        sX(event.clientX - r.left);
+        sY(event.clientY - r.top);
+        gsap.to(spot, { opacity: .85, duration: .45, overwrite: 'auto' });
+      });
+      area.addEventListener('pointerleave', function () {
+        gsap.to(spot, { opacity: 0, duration: .5, overwrite: 'auto' });
+      });
+    });
+  }
+
+  initWhimsy();
+  initCloudReveal();
+
 
   /* -----------------------------------------------------------------------
      Boot

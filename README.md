@@ -11,16 +11,24 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 - **Hero** aligned with the live site’s copy and motion: the “Work. Communicate. Collaborate.”
   headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
   GSAP 3D coverflow of browser-framed app captures — active card in front, angled neighbours
-  behind — with a 10-second auto-advance, swipe, keyboard support and simple dot navigation. The grey
-  preview panel is gone, so the coverflow sits directly on the grid background.
+  behind — with a 5-second auto-advance, swipe, keyboard support and simple dot navigation. The grey
+  preview panel is gone, so the coverflow sits directly on the grid background. Five captures are
+  included — Mail, Chat, Meet, Calendar and Forms — with the latest Chat/Forms/Meet screenshots
+  cropped into the browser cards.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
   “An EHR designed for how clinicians actually work” section: a large editorial callout with
   concentric rings, followed by a pinned horizontal track of eight app panels.
 - Each panel has a bespoke, animated product mockup (Mail, Chat, Meet, Calendar, Contacts, Tasks,
   Notes, Forms) instead of a static screenshot, so the visuals stay crisp at any size and can
   react to scroll.
+- **Sovereign cloud** now opens with a scroll-scrubbed mask reveal inspired by Dops’
+  “Make your sales grow” section: a muted headline with a gradient duplicate clipped and swept
+  across the text, a travelling scan line, a live region counter, and a map wipe into the
+  region list.
 - Supporting sections refreshed: proof strip, sovereign-cloud map, audience cards, deployment
   editions, pricing with monthly/annual toggle, FAQ accordion, closing CTA and footer.
+- **Whimsy layer**: scroll progress bar, magnetic CTA buttons, 3D tilt on cards and app mockups,
+  pointer-reactive hero tilt, and soft cursor spotlights in the cloud and closing CTA sections.
 - Motion throughout via GSAP + ScrollTrigger, with `prefers-reduced-motion` support and a
   no-JavaScript fallback for the pinned section.
 
