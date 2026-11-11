@@ -77,6 +77,14 @@ There is nothing to compile. Keep the `assets/` directory alongside `index.html`
 - `og-image.png` is 1200×630 and lives at `assets/img/og-image.png`.
 - Fonts and GSAP are self-hosted, so there are no third-party runtime requests.
 
+### Share a preview with Vercel
+
+[Deploy the preview to Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FHelenAgbro%2FRation%2Ftree%2Fration-share-preview&project-name=ration-design-preview&repository-name=ration-design-preview).
+Sign in with GitHub and complete Vercel's Create and Deploy steps. Vercel then
+provides the public HTTPS URL to share. The link uses the `ration-share-preview`
+branch. `vercel.json` deploys the repository root as a static site, with no
+dependency installation or build command needed.
+
 ## Motion and accessibility
 
 - All interactive motion is progressive enhancement; the content is readable if JS fails.
