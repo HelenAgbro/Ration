@@ -910,58 +910,67 @@
       </div>
     </section>
 
-    <section class="stories" aria-labelledby="stories-title">
+    <section class="workspace-roles" aria-labelledby="workspace-roles-title">
       <div class="container">
-        <h2 class="sr-only" id="stories-title">Together, with Ration</h2>
-        <div class="stories-grid">
-          <article class="story story-people">
-            <img class="story-photo" src="assets/img/app-meet.webp" alt="Colleagues connecting over a Ration Meet video call" width="1600" height="1000" loading="lazy">
-            <div class="story-topline"><span class="story-label">Made for your people</span><svg class="icon" aria-hidden="true"><use href="#i-meet"></use></svg></div>
-            <div class="story-copy">
-              <p class="story-eyebrow">Closer, wherever work happens</p>
-              <h3>Good work starts<br>with a conversation.</h3>
-              <p>Bring your people together with mail, chat and meetings that feel like one workspace.</p>
-              <a class="story-link" href="#apps-stage">Meet your workspace <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <div class="workspace-roles-heading">
+          <p class="workspace-roles-eyebrow">Built around the way you work</p>
+          <h2 id="workspace-roles-title">One workspace. Every perspective.</h2>
+          <p>From the people doing the work to the people keeping it running.<br> Ration brings everyone together, with control built in.</p>
+        </div>
+        <div class="workspace-roles-frame">
+          <div class="workspace-role-tabs" role="tablist" aria-label="Explore Ration for your role" hidden>
+            <button type="button" role="tab" id="role-tab-teams" aria-controls="role-panel-teams" aria-selected="true" tabindex="0">For teams</button>
+            <button type="button" role="tab" id="role-tab-it" aria-controls="role-panel-it" aria-selected="false" tabindex="-1">For IT administrators</button>
+            <button type="button" role="tab" id="role-tab-leaders" aria-controls="role-panel-leaders" aria-selected="false" tabindex="-1">For leaders</button>
+            <button type="button" role="tab" id="role-tab-growth" aria-controls="role-panel-growth" aria-selected="false" tabindex="-1">For growing organisations</button>
+          </div>
+          <article class="workspace-role-panel" id="role-panel-teams">
+            <div class="workspace-role-copy">
+              <p class="workspace-role-index">01 / COLLABORATION</p>
+              <h3>Bring your people and their work together.</h3>
+              <p>Keep conversations, meetings and everyday tasks in one connected workspace. Move from a message to a meeting without losing the context that keeps work moving.</p>
+              <a class="btn workspace-role-cta" href="#features">Explore the workspace<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+            <div class="workspace-role-image workspace-role-image-teams">
+              <img src="assets/img/app-meet.webp" alt="Colleagues connected in a Ration Meet video call" width="1600" height="1000" loading="lazy">
+              <span class="workspace-role-caption"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> Connected with Ration</span>
             </div>
           </article>
-
-          <article class="story story-connected">
-            <div class="story-topline"><span class="story-label">Connected by design</span><span class="story-number">02 / 03</span></div>
-            <div class="story-network" aria-hidden="true">
-              <svg class="story-orbits" viewBox="0 0 360 300" fill="none">
-                <ellipse cx="180" cy="150" rx="151" ry="122"/>
-                <ellipse cx="180" cy="150" rx="112" ry="88"/>
-                <ellipse cx="180" cy="150" rx="68" ry="53"/>
-                <path d="M180 150 Q95 152 65 100 M180 150 Q177 83 180 30 M180 150 Q239 73 290 81 M180 150 Q261 147 319 192 M180 150 Q195 223 153 264 M180 150 Q97 198 67 219"/>
-              </svg>
-              <span class="story-hub"><img src="assets/img/favicon.svg" alt="" width="42" height="42" loading="lazy"></span>
-              <span class="story-node story-node-mail"><svg class="icon"><use href="#i-mail"></use></svg></span>
-              <span class="story-node story-node-chat"><svg class="icon"><use href="#i-chat"></use></svg></span>
-              <span class="story-node story-node-meet"><svg class="icon"><use href="#i-meet"></use></svg></span>
-              <span class="story-node story-node-calendar"><svg class="icon"><use href="#i-calendar"></use></svg></span>
-              <span class="story-node story-node-notes"><svg class="icon"><use href="#i-notes"></use></svg></span>
-              <span class="story-node story-node-tasks"><svg class="icon"><use href="#i-check"></use></svg></span>
+          <article class="workspace-role-panel" id="role-panel-it">
+            <div class="workspace-role-copy">
+              <p class="workspace-role-index">02 / CONTROL</p>
+              <h3>One directory. A clearer view of access.</h3>
+              <p>Manage identity and permissions across the same connected apps. Choose a supported regional environment, a managed provider or your own infrastructure to suit your organisation’s requirements.</p>
+              <a class="btn workspace-role-cta" href="#deploy">Explore deployment options<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
             </div>
-            <div class="story-copy">
-              <p class="story-eyebrow">One identity. Every app.</p>
-              <h3>Less switching.<br>More getting there.</h3>
-              <p>Eight apps, a shared directory and the same permissions. Everything works better together.</p>
-              <a class="story-link" href="#features">Explore the eight apps <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            <div class="workspace-role-image workspace-role-image-it">
+              <img src="assets/img/app-mail.webp" alt="Ration Mail displaying a project rollout update" width="1600" height="1000" loading="lazy">
+              <span class="workspace-role-caption"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> Connected with Ration</span>
             </div>
           </article>
-
-          <article class="story story-control">
-            <div class="story-topline"><span class="story-label">Your workspace. Your rules.</span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></div>
-            <div class="story-copy">
-              <p class="story-eyebrow">Control comes built in</p>
-              <h3>Your conversations.<br>Your data.<br>Your choice.</h3>
-              <p>Choose where your workspace runs and who has access. Keep your team connected, on your terms.</p>
+          <article class="workspace-role-panel" id="role-panel-leaders">
+            <div class="workspace-role-copy">
+              <p class="workspace-role-index">03 / ALIGNMENT</p>
+              <h3>Keep everyone moving in the same direction.</h3>
+              <p>Bring updates, decisions and follow-through into one place. Shared conversations and notes help your people stay aligned, wherever their work takes them.</p>
+              <a class="btn workspace-role-cta" href="#contact">Talk to our team<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
             </div>
-            <div class="story-product">
-              <div class="story-product-bar"><span></span><span></span><span></span><b>Ration Mail</b></div>
-              <img src="assets/img/app-mail.webp" alt="Ration Mail with a shared project update open" width="1600" height="1000" loading="lazy">
+            <div class="workspace-role-image workspace-role-image-leaders">
+              <img src="assets/img/app-chat.webp" alt="Channels and team conversations in Ration Chat" width="1600" height="1000" loading="lazy">
+              <span class="workspace-role-caption"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> Connected with Ration</span>
             </div>
-            <a class="story-link" href="#deploy">Find your deployment <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+          <article class="workspace-role-panel" id="role-panel-growth">
+            <div class="workspace-role-copy">
+              <p class="workspace-role-index">04 / GROWTH</p>
+              <h3>Room to grow. Less to manage.</h3>
+              <p>Start with the essentials and add modules as your needs change. Give every new colleague a connected workspace, with fewer separate tools and subscriptions to manage.</p>
+              <a class="btn workspace-role-cta" href="#pricing">Find your plan<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+            <div class="workspace-role-image workspace-role-image-growth">
+              <img src="assets/img/app-calendar.webp" alt="A shared weekly schedule in Ration Calendar" width="1600" height="1000" loading="lazy">
+              <span class="workspace-role-caption"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg> Connected with Ration</span>
+            </div>
           </article>
         </div>
       </div>

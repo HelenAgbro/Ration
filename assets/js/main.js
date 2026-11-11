@@ -1139,6 +1139,44 @@
     });
   }
 
+  /* Workspace perspectives: manual tabs with keyboard navigation. */
+  var roleSection = $('.workspace-roles');
+  if (roleSection) {
+    var roleTabs = $$('.workspace-role-tabs [role="tab"]', roleSection);
+    var rolePanels = $$('.workspace-role-panel', roleSection);
+    function selectRole(index, focus) {
+      roleTabs.forEach(function (tab, i) {
+        var active = i === index;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        rolePanels[i].hidden = !active;
+      });
+      if (focus) roleTabs[index].focus();
+      if (hasMotion) ScrollTrigger.refresh();
+    }
+    rolePanels.forEach(function (panel, i) {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', roleTabs[i].id);
+      panel.tabIndex = 0;
+    });
+    roleTabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectRole(i, false); });
+      tab.addEventListener('keydown', function (event) {
+        var next = i;
+        if (event.key === 'ArrowRight') next = (i + 1) % roleTabs.length;
+        else if (event.key === 'ArrowLeft') next = (i + roleTabs.length - 1) % roleTabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = roleTabs.length - 1;
+        else return;
+        event.preventDefault();
+        selectRole(next, true);
+      });
+    });
+    roleSection.classList.add('is-enhanced');
+    $('.workspace-role-tabs', roleSection).hidden = false;
+    selectRole(0, false);
+  }
+
   initWhimsy();
   initCloudReveal();
   initDeploySlider();
