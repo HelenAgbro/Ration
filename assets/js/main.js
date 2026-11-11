@@ -922,6 +922,7 @@
     var animating = false;
     var pendingTarget = null;
     var deployTrigger = null;
+    var deployTimeline = null;
     var transition = null;
 
     function setMeta(index) {
@@ -931,6 +932,17 @@
         tab.classList.toggle('is-active', i === index);
         tab.setAttribute('aria-pressed', String(i === index));
       });
+    }
+
+    function setCurrent(index) {
+      current = index;
+      slides.forEach(function (slide, i) {
+        var active = i === index;
+        slide.classList.toggle('is-active', active);
+        slide.inert = !active;
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      setMeta(index);
     }
 
     function showEdition(target, animate) {
@@ -943,7 +955,6 @@
       animating = true;
 
       var direction = target > current ? 1 : -1;
-      var incomingClip = direction > 0 ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)';
       incoming.classList.add('is-active');
       incoming.removeAttribute('inert');
       incoming.setAttribute('aria-hidden', 'false');
@@ -973,57 +984,87 @@
         gsap.set(outgoing, { zIndex: 1, force3D: true });
         gsap.set(incoming, {
           autoAlpha: 1,
-          yPercent: 12 * direction,
-          scale: .992,
-          clipPath: incomingClip,
+          yPercent: 100 * direction,
           zIndex: 2,
           force3D: true
         });
         transition = gsap.timeline({ onComplete: finish })
           .to(outgoing, {
-            yPercent: -5 * direction,
-            scale: .99,
+            yPercent: -100 * direction,
             force3D: true,
-            duration: .9,
-            ease: 'power2.inOut'
+            duration: .85,
+            ease: 'power3.inOut'
           }, 0)
           .to(incoming, {
             yPercent: 0,
-            scale: 1,
             force3D: true,
-            duration: .9,
-            ease: 'power2.out'
-          }, 0)
-          .to(incoming, {
-            clipPath: 'inset(0% 0 0% 0)',
-            duration: .9,
-            ease: 'power2.out'
+            duration: .85,
+            ease: 'power3.inOut'
           }, 0);
       }
     }
 
     function resetFirst() {
       if (transition) { transition.kill(); transition = null; }
+      if (deployTimeline) { deployTimeline.kill(); deployTimeline = null; }
       if (hasMotion) {
         gsap.killTweensOf(slides);
-        gsap.set(slides, { clearProps: 'opacity,visibility,transform,clipPath' });
+        gsap.set(slides, { clearProps: 'opacity,visibility,transform,clipPath,zIndex' });
       }
-      current = 0;
       animating = false;
       pendingTarget = null;
-      slides.forEach(function (slide, i) {
-        slide.classList.toggle('is-active', i === 0);
-        slide.inert = i !== 0;
-        slide.setAttribute('aria-hidden', String(i !== 0));
+      setCurrent(0);
+    }
+
+    function buildScrollTimeline() {
+      gsap.set(slides, {
+        autoAlpha: 1,
+        yPercent: 100,
+        scale: 1,
+        clipPath: 'none',
+        zIndex: 1,
+        force3D: true
       });
-      setMeta(0);
+      gsap.set(slides[0], {
+        autoAlpha: 1,
+        yPercent: 0,
+        clipPath: 'none'
+      });
+
+      deployTimeline = gsap.timeline({ defaults: { ease: 'none' } });
+      slides.slice(1).forEach(function (incoming, offset) {
+        var outgoing = slides[offset];
+        deployTimeline
+          .to(outgoing, {
+            yPercent: -100,
+            duration: 1
+          }, offset)
+          .fromTo(incoming, {
+            autoAlpha: 1,
+            yPercent: 100,
+            scale: 1,
+            clipPath: 'none',
+            zIndex: offset + 2
+          }, {
+            autoAlpha: 1,
+            yPercent: 0,
+            scale: 1,
+            clipPath: 'none',
+            zIndex: offset + 2,
+            duration: 1,
+            immediateRender: false
+          }, offset);
+      });
+      return deployTimeline;
     }
 
     function requestEdition(target) {
       target = ((target % slides.length) + slides.length) % slides.length;
       if (deployTrigger) {
-        var p = (target + .02) / slides.length;
-        var y = deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
+        var p = target / (slides.length - 1);
+        var y = target === slides.length - 1
+          ? deployTrigger.end - 1
+          : deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
         window.scrollTo({ top: y, behavior: reduceQuery.matches ? 'auto' : 'smooth' });
       } else {
         showEdition(target, true);
@@ -1072,17 +1113,20 @@
       resetFirst();
       if (context.conditions.desktop && !context.conditions.reduced) {
         section.classList.add('is-scroll-driven');
+        buildScrollTimeline();
         deployTrigger = ScrollTrigger.create({
           id: 'deploy-editions',
           trigger: section,
           start: 'top top',
-          end: '+=200%',
+          end: '+=220%',
           pin: true,
+          animation: deployTimeline,
+          scrub: .65,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: function (self) {
-            var index = Math.min(slides.length - 1, Math.floor(self.progress * slides.length + .0001));
-            showEdition(index, true);
+            var index = Math.min(slides.length - 1, Math.round(self.progress * (slides.length - 1)));
+            if (index !== current) setCurrent(index);
             if (progress) progress.style.width = (self.progress * 100).toFixed(2) + '%';
           }
         });

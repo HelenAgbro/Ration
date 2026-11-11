@@ -2526,7 +2526,7 @@ html.reduce-motion .apps-hud { display: none; }
 .deploy-fixed { position: static; }
 .deploy-slider {
   isolation: isolate;
-  border-radius: 8px;
+  border-radius: 22px;
   overflow: clip;
   transform: translateZ(0);
 }
@@ -2537,10 +2537,10 @@ html.reduce-motion .apps-hud { display: none; }
   gap: 26px;
   align-items: stretch;
   padding: 30px;
-  border: 1px solid var(--edition-border, #D7E5EB);
-  border-radius: 8px;
+  border: 0;
+  border-radius: 22px;
   background: var(--edition-card, #F5FAFC);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 20px 46px -38px rgba(0, 43, 64, .5);
+  box-shadow: none;
   transform: none;
   transition: none;
   backface-visibility: hidden;
@@ -2549,22 +2549,19 @@ html.reduce-motion .apps-hud { display: none; }
 .deploy-slide-copy, .deploy-slide .deploy-visual { width: 100%; }
 .deploy-slide-copy { min-width: 0; }
 .deploy-slide:nth-child(1) {
-  --edition-card: linear-gradient(135deg, #C6EAF8 0%, #8BCBE4 100%);
-  --edition-border: #62A9C6;
-  --edition-accent: #00688F;
-  --edition-rule: rgba(0, 76, 107, .22);
+  --edition-card: linear-gradient(150deg, #F3F9FC 0%, #DDEBF4 100%);
+  --edition-accent: #006699;
+  --edition-rule: rgba(0, 102, 153, .14);
 }
 .deploy-slide:nth-child(2) {
-  --edition-card: linear-gradient(135deg, #CEF1DC 0%, #83CFA5 100%);
-  --edition-border: #61AD83;
-  --edition-accent: #176A48;
-  --edition-rule: rgba(21, 100, 68, .22);
+  --edition-card: linear-gradient(150deg, #F2F9F6 0%, #DCEDE7 100%);
+  --edition-accent: #0F766E;
+  --edition-rule: rgba(15, 118, 110, .14);
 }
 .deploy-slide:nth-child(3) {
-  --edition-card: linear-gradient(135deg, #FFE3A8 0%, #F3B44C 100%);
-  --edition-border: #D89425;
-  --edition-accent: #7A4B00;
-  --edition-rule: rgba(103, 61, 0, .23);
+  --edition-card: linear-gradient(150deg, #FCF7EF 0%, #F7E9D5 100%);
+  --edition-accent: #8A560E;
+  --edition-rule: rgba(138, 86, 14, .14);
 }
 .deploy-slide .deploy-kicker, .deploy-slide .ticks .icon { color: var(--edition-accent); }
 .deploy-slide h3 { max-width: 420px; font-size: clamp(1.45rem, 2vw, 1.8rem); }

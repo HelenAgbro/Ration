@@ -27,10 +27,10 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   doodles and an aligned five-card region grid that wraps without clipping on smaller
   screens. Reduced-motion views show the complete statement.
 - **Where Ration runs** uses a pinned edition sequence inspired by Varco Pruden's “Thinking
-  beyond the expected” section. Scrolling advances among three editions with a directional
-  slide, fade and masked clip reveal while the headline remains fixed;
+  beyond the expected” section. Scrolling moves complete edition cards through a continuous,
+  scrubbed vertical transition while the headline remains fixed;
   tabs and arrows navigate to each edition's scroll segment. Each card places its text beside
-  its visual on desktop, with strongly coloured blue, green and amber full-card backgrounds
+  its visual on desktop, with the same soft blue, green and sand tints used by the app panels
   making each transition distinct; small screens stack the contents. Smaller or very short screens and
   reduced-motion views use direct controls; without JavaScript, all editions remain readable.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
