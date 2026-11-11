@@ -29,7 +29,8 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   beyond the expected” section. Scrolling advances among three editions with a directional
   slide, fade and masked clip reveal while the headline remains fixed;
   tabs and arrows navigate to each edition's scroll segment. Each card places its text beside
-  its visual on desktop, stacking them on small screens. Smaller or very short screens and
+  its visual on desktop, with blue, green and amber card treatments making each transition
+  distinct; small screens stack the contents. Smaller or very short screens and
   reduced-motion views use direct controls; without JavaScript, all editions remain readable.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
   spotlight adding movement.

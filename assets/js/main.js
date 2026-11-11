@@ -943,8 +943,7 @@
       animating = true;
 
       var direction = target > current ? 1 : -1;
-      var incomingClip = direction > 0 ? 'inset(12% 0 0 0)' : 'inset(0 0 12% 0)';
-      var outgoingClip = direction > 0 ? 'inset(0 0 12% 0)' : 'inset(12% 0 0 0)';
+      var incomingClip = direction > 0 ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)';
       incoming.classList.add('is-active');
       incoming.removeAttribute('inert');
       incoming.setAttribute('aria-hidden', 'false');
@@ -955,6 +954,9 @@
 
       var finish = function () {
         outgoing.classList.remove('is-active');
+        gsap.set([outgoing, incoming], {
+          clearProps: 'opacity,visibility,transform,clipPath,zIndex'
+        });
         animating = false;
         transition = null;
         if (pendingTarget !== null) {
@@ -968,33 +970,35 @@
         finish();
       } else {
         gsap.killTweensOf([outgoing, incoming]);
+        gsap.set(outgoing, { zIndex: 1, force3D: true });
         gsap.set(incoming, {
-          autoAlpha: 0,
-          y: 72 * direction,
-          scale: .985,
-          clipPath: incomingClip
+          autoAlpha: 1,
+          yPercent: 12 * direction,
+          scale: .992,
+          clipPath: incomingClip,
+          zIndex: 2,
+          force3D: true
         });
         transition = gsap.timeline({ onComplete: finish })
           .to(outgoing, {
-            autoAlpha: 0,
-            y: -56 * direction,
+            yPercent: -5 * direction,
             scale: .99,
-            clipPath: outgoingClip,
-            duration: .52,
-            ease: 'power2.in'
+            force3D: true,
+            duration: .9,
+            ease: 'power2.inOut'
           }, 0)
           .to(incoming, {
-            autoAlpha: 1,
-            y: 0,
+            yPercent: 0,
             scale: 1,
+            force3D: true,
             duration: .9,
-            ease: 'power3.out'
-          }, .06)
+            ease: 'power2.out'
+          }, 0)
           .to(incoming, {
             clipPath: 'inset(0% 0 0% 0)',
             duration: .9,
-            ease: 'power3.out'
-          }, .06);
+            ease: 'power2.out'
+          }, 0);
       }
     }
 
