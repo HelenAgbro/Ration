@@ -2540,7 +2540,7 @@ html.reduce-motion .apps-hud { display: none; }
   border: 1px solid var(--edition-border, #D7E5EB);
   border-radius: 8px;
   background: var(--edition-card, #F5FAFC);
-  box-shadow: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42), 0 20px 46px -38px rgba(0, 43, 64, .5);
   transform: none;
   transition: none;
   backface-visibility: hidden;
@@ -2549,20 +2549,27 @@ html.reduce-motion .apps-hud { display: none; }
 .deploy-slide-copy, .deploy-slide .deploy-visual { width: 100%; }
 .deploy-slide-copy { min-width: 0; }
 .deploy-slide:nth-child(1) {
-  --edition-card: linear-gradient(145deg, #EAF5FA 0%, #F8FCFE 72%);
-  --edition-border: #C8E0EB;
+  --edition-card: linear-gradient(135deg, #C6EAF8 0%, #8BCBE4 100%);
+  --edition-border: #62A9C6;
+  --edition-accent: #00688F;
+  --edition-rule: rgba(0, 76, 107, .22);
 }
 .deploy-slide:nth-child(2) {
-  --edition-card: linear-gradient(145deg, #DDF2E9 0%, #F4FBF8 72%);
-  --edition-border: #B9DDCE;
+  --edition-card: linear-gradient(135deg, #CEF1DC 0%, #83CFA5 100%);
+  --edition-border: #61AD83;
+  --edition-accent: #176A48;
+  --edition-rule: rgba(21, 100, 68, .22);
 }
 .deploy-slide:nth-child(3) {
-  --edition-card: linear-gradient(145deg, #FDE8C5 0%, #FFF8EC 72%);
-  --edition-border: #EBCB98;
+  --edition-card: linear-gradient(135deg, #FFE3A8 0%, #F3B44C 100%);
+  --edition-border: #D89425;
+  --edition-accent: #7A4B00;
+  --edition-rule: rgba(103, 61, 0, .23);
 }
+.deploy-slide .deploy-kicker, .deploy-slide .ticks .icon { color: var(--edition-accent); }
 .deploy-slide h3 { max-width: 420px; font-size: clamp(1.45rem, 2vw, 1.8rem); }
 .deploy-slide-copy > p { max-width: 410px; font-size: 12.5px; }
-.deploy-slide .ticks { grid-template-columns: 1fr; gap: 7px; }
+.deploy-slide .ticks { grid-template-columns: 1fr; gap: 7px; border-top-color: var(--edition-rule); }
 .deploy-slide .ticks li { align-items: flex-start; line-height: 1.5; }
 .deploy-visual { min-height: 380px; border-radius: 5px; padding: 22px; }
 .deploy-visual-icon { position: absolute; right: 22px; top: 22px; }
