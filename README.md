@@ -24,7 +24,8 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 - **Sovereign cloud** uses the original centred, two-line headline and gold mask wipe.
   The scan line follows the reveal with softened scroll tracking and fades at both ends.
   The introduction flows naturally into the Africa map, twelve interactive app/document
-  doodles and five-card region rail. Reduced-motion views show the complete statement.
+  doodles and an aligned five-card region grid that wraps without clipping on smaller
+  screens. Reduced-motion views show the complete statement.
 - **Where Ration runs** uses a pinned edition sequence inspired by Varco Pruden's “Thinking
   beyond the expected” section. Scrolling advances among three editions with a directional
   slide, fade and masked clip reveal while the headline remains fixed;
