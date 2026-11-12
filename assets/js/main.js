@@ -909,190 +909,91 @@
     var section = $('.deploy');
     var slider = $('[data-deploy-slider]');
     if (!section || !slider) return;
-
+    var track = $('.container', section);
+    var shell = $('.deploy-shell', section);
+    var slides = $$('[data-deploy-slide]', slider);
+    var tabs = $$('[data-deploy-tab]', section);
+    var prev = $('[data-deploy-prev]', section);
+    var next = $('[data-deploy-next]', section);
+    var indexEl = $('[data-deploy-index]', section);
+    var progress = $('[data-deploy-progress]', section);
+    var current = 0;
+    var scrolling = false;
+    var frame = 0;
+    var hold = .5;
+    var move = 1;
+    var duration = slides.length * hold + (slides.length - 1) * move;
     section.classList.add('is-enhanced');
 
-    var slides = $$('[data-deploy-slide]', slider);
-    var tabs = $$('[data-deploy-tab]');
-    var prev = $('[data-deploy-prev]');
-    var next = $('[data-deploy-next]');
-    var indexEl = $('[data-deploy-index]');
-    var progress = $('[data-deploy-progress]');
-    var current = 0;
-    var animating = false;
-    var pendingTarget = null;
-    var deployTrigger = null;
-    var deployTimeline = null;
-    var transition = null;
-    var editionHold = .5;
-    var editionMove = 1;
-
-    function setMeta(index) {
-      if (indexEl) indexEl.textContent = pad(index + 1);
-      if (progress) progress.style.width = (deployTrigger && deployTimeline ? deployTimeline.progress() * 100 : (index + 1) / slides.length * 100) + '%';
+    function select(index) {
+      current = index;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === index);
+        slide.inert = i !== index;
+        slide.setAttribute('aria-hidden', String(i !== index));
+      });
       tabs.forEach(function (tab, i) {
         tab.classList.toggle('is-active', i === index);
         tab.setAttribute('aria-pressed', String(i === index));
       });
+      if (indexEl) indexEl.textContent = pad(index + 1);
     }
 
-    function setCurrent(index) {
-      current = index;
+    function render() {
+      frame = 0;
+      if (!scrolling) return;
+      var distance = Math.max(1, track.offsetHeight - shell.offsetHeight);
+      var p = clamp(-track.getBoundingClientRect().top / distance, 0, 1);
+      var time = p * duration;
       slides.forEach(function (slide, i) {
-        var active = i === index;
-        slide.classList.toggle('is-active', active);
-        slide.inert = !active;
-        slide.setAttribute('aria-hidden', String(!active));
+        var enter = i === 0 ? 1 : clamp((time - (hold + (i - 1) * (hold + move))) / move, 0, 1);
+        var leave = i === slides.length - 1 ? 0 : clamp((time - (hold + i * (hold + move))) / move, 0, 1);
+        slide.style.transform = 'translate3d(0,' + ((1 - enter - leave) * 100).toFixed(3) + '%,0)';
       });
-      setMeta(index);
+      var index = Math.min(slides.length - 1, Math.floor((time + move / 2) / (hold + move)));
+      if (index !== current) select(index);
+      if (progress) progress.style.width = (p * 100).toFixed(2) + '%';
     }
 
-    function showEdition(target, animate) {
-      target = ((target % slides.length) + slides.length) % slides.length;
-      if (animating) { pendingTarget = target; return; }
-      if (target === current) return;
+    function requestRender() {
+      if (scrolling && !frame) frame = window.requestAnimationFrame(render);
+    }
 
-      var outgoing = slides[current];
-      var incoming = slides[target];
-      animating = true;
-
-      var direction = target > current ? 1 : -1;
-      incoming.classList.add('is-active');
-      incoming.removeAttribute('inert');
-      incoming.setAttribute('aria-hidden', 'false');
-      outgoing.setAttribute('inert', '');
-      outgoing.setAttribute('aria-hidden', 'true');
-      setMeta(target);
-      current = target;
-
-      var finish = function () {
-        outgoing.classList.remove('is-active');
-        if (hasMotion) {
-          gsap.set([outgoing, incoming], {
-            clearProps: 'opacity,visibility,transform,clipPath,zIndex'
-          });
-        }
-        animating = false;
-        transition = null;
-        if (pendingTarget !== null) {
-          var pending = pendingTarget;
-          pendingTarget = null;
-          showEdition(pending, true);
-        }
-      };
-
-      if (!animate || !hasMotion || reduceQuery.matches) {
-        finish();
-      } else {
-        gsap.killTweensOf([outgoing, incoming]);
-        gsap.set(outgoing, { zIndex: 1, force3D: true });
-        gsap.set(incoming, {
-          autoAlpha: 1,
-          yPercent: 100 * direction,
-          zIndex: 2,
-          force3D: true
-        });
-        transition = gsap.timeline({ onComplete: finish })
-          .to(outgoing, {
-            yPercent: -100 * direction,
-            force3D: true,
-            duration: .85,
-            ease: 'power3.inOut'
-          }, 0)
-          .to(incoming, {
-            yPercent: 0,
-            force3D: true,
-            duration: .85,
-            ease: 'power3.inOut'
-          }, 0);
+    function configure() {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0;
+      // Let CSS do the pinning. Enable it wherever the complete frame fits,
+      // including smaller laptops; short screens keep usable manual controls.
+      scrolling = !reduceQuery.matches;
+      section.classList.toggle('is-scroll-driven', scrolling);
+      if (scrolling && shell.scrollHeight > window.innerHeight + 1) {
+        scrolling = false;
+        section.classList.remove('is-scroll-driven');
       }
-    }
-
-    function resetFirst() {
-      if (transition) { transition.kill(); transition = null; }
-      if (deployTimeline) { deployTimeline.kill(); deployTimeline = null; }
-      if (hasMotion) {
-        gsap.killTweensOf(slides);
-        gsap.set(slides, { clearProps: 'opacity,visibility,transform,clipPath,zIndex' });
-      }
-      animating = false;
-      pendingTarget = null;
-      setCurrent(0);
-    }
-
-    function buildScrollTimeline() {
-      gsap.set(slides, {
-        autoAlpha: 1,
-        yPercent: 100,
-        scale: 1,
-        clipPath: 'none',
-        zIndex: 1,
-        force3D: true
-      });
-      gsap.set(slides[0], {
-        autoAlpha: 1,
-        yPercent: 0,
-        clipPath: 'none'
-      });
-
-      // Metadata follows the rendered timeline, including scrub smoothing.
-      deployTimeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        onUpdate: function () {
-          var index = Math.min(slides.length - 1,
-            Math.floor((this.time() + editionMove / 2) / (editionHold + editionMove)));
-          if (index !== current) setCurrent(index);
-          if (progress) progress.style.width = (this.progress() * 100).toFixed(2) + '%';
-        }
-      });
-      deployTimeline.to({}, { duration: editionHold });
-      slides.slice(1).forEach(function (incoming, offset) {
-        var outgoing = slides[offset];
-        var at = editionHold + offset * (editionMove + editionHold);
-        deployTimeline
-          .to(outgoing, { yPercent: -100, duration: editionMove }, at)
-          .fromTo(incoming, {
-            autoAlpha: 1,
-            yPercent: 100,
-            zIndex: offset + 2
-          }, {
-            autoAlpha: 1,
-            yPercent: 0,
-            zIndex: offset + 2,
-            duration: editionMove,
-            immediateRender: false
-          }, at)
-          .to({}, { duration: editionHold });
-      });
-      return deployTimeline;
+      slides.forEach(function (slide) { slide.style.removeProperty('transform'); });
+      select(current);
+      if (scrolling) render();
+      else if (progress) progress.style.width = ((current + 1) / slides.length * 100) + '%';
     }
 
     function requestEdition(target) {
-      target = ((target % slides.length) + slides.length) % slides.length;
-      if (deployTrigger) {
-        // Land in the middle of the edition's reading pause, away from pin edges.
-        var time = editionHold / 2 + target * (editionHold + editionMove);
-        var p = time / deployTimeline.duration();
-        var y = deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
-        window.scrollTo({ top: y, behavior: reduceQuery.matches ? 'auto' : 'smooth' });
+      target = (target + slides.length) % slides.length;
+      if (scrolling) {
+        var distance = Math.max(1, track.offsetHeight - shell.offsetHeight);
+        var p = (hold / 2 + target * (hold + move)) / duration;
+        var top = window.scrollY + track.getBoundingClientRect().top + distance * p;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       } else {
-        showEdition(target, true);
+        select(target);
+        if (progress) progress.style.width = ((target + 1) / slides.length * 100) + '%';
       }
     }
-
-    slides.forEach(function (slide, i) {
-      if (i !== 0) {
-        slide.setAttribute('inert', '');
-        slide.setAttribute('aria-hidden', 'true');
-      }
-    });
 
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () { requestEdition(Number(tab.dataset.deployTab)); });
     });
     if (prev) prev.addEventListener('click', function () { requestEdition(current - 1); });
     if (next) next.addEventListener('click', function () { requestEdition(current + 1); });
-
     slider.addEventListener('keydown', function (event) {
       if (event.target !== slider || !/^(Arrow(Left|Right|Up|Down)|Home|End)$/.test(event.key)) return;
       event.preventDefault();
@@ -1100,7 +1001,6 @@
       else if (event.key === 'End') requestEdition(slides.length - 1);
       else requestEdition(current + (/Arrow(Right|Down)/.test(event.key) ? 1 : -1));
     });
-
     var startX = null;
     slider.addEventListener('pointerdown', function (event) { startX = event.clientX; });
     slider.addEventListener('pointercancel', function () { startX = null; });
@@ -1110,39 +1010,12 @@
       startX = null;
       if (Math.abs(dx) > 45) requestEdition(current + (dx < 0 ? 1 : -1));
     });
-
-    setMeta(0);
-
-    if (!hasMotion) return;
-
-    var mm = gsap.matchMedia();
-    mm.add({
-      all: 'all',
-      desktop: '(min-width: 1025px) and (min-height: 650px)',
-      reduced: '(prefers-reduced-motion: reduce)'
-    }, function (context) {
-      resetFirst();
-      if (context.conditions.desktop && !context.conditions.reduced) {
-        section.classList.add('is-scroll-driven');
-        buildScrollTimeline();
-        deployTrigger = ScrollTrigger.create({
-          id: 'deploy-editions',
-          trigger: section,
-          start: 'top top',
-          end: '+=220%',
-          pin: true,
-          animation: deployTimeline,
-          scrub: .65,
-          anticipatePin: 1,
-          invalidateOnRefresh: true
-        });
-      }
-      return function () {
-        if (deployTrigger) { deployTrigger.kill(); deployTrigger = null; }
-        section.classList.remove('is-scroll-driven');
-        resetFirst();
-      };
-    });
+    window.addEventListener('scroll', requestRender, { passive: true });
+    window.addEventListener('resize', configure);
+    window.addEventListener('load', configure);
+    reduceQuery.addEventListener('change', configure);
+    if (doc.fonts) doc.fonts.ready.then(configure);
+    configure();
   }
 
   /* Workspace perspectives: manual tabs with keyboard navigation. */

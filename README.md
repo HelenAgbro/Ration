@@ -26,13 +26,14 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   The introduction flows naturally into the Africa map, twelve interactive app/document
   doodles and an aligned five-card region grid that wraps without clipping on smaller
   screens. Reduced-motion views show the complete statement.
-- **Where Ration runs** uses a pinned edition sequence inspired by Varco Pruden's “Thinking
+- **Where Ration runs** uses a native sticky edition sequence inspired by Varco Pruden's “Thinking
   beyond the expected” section. Scrolling moves complete edition cards through a continuous,
   scrubbed vertical transition while the headline remains fixed;
-  tabs and arrows navigate to each edition's scroll segment. Each card places its text beside
+  tabs and arrows navigate to each edition's reading pause. The sticky frame works
+  independently of GSAP, and includes compact layouts for smaller windows. Each card places its text beside
   its visual on desktop, with the same soft blue, green and sand tints used by the app panels
-  making each transition distinct; small screens stack the contents. Smaller or very short screens and
-  reduced-motion views use direct controls; without JavaScript, all editions remain readable.
+  making each transition distinct. Compact screens keep the edition text in view; windows too
+  short to fit the complete frame and reduced-motion views use direct controls; without JavaScript, all editions remain readable.
 - **Closing CTA** is back to the concentric ring layout, with only a faint blue cursor
   spotlight adding movement.
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
@@ -114,3 +115,6 @@ cp node_modules/gsap/dist/ScrollToPlugin.min.js assets/vendor/
 Copy is based on the live ration.works site and the supplied design direction. Product
 screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms captures. The
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
+
+The editorial infrastructure background (`assets/img/story-infrastructure.webp`) is from
+[Unsplash](https://images.unsplash.com/photo-1558494949-ef010cbdcc31); the other editorial backgrounds reuse the supplied team photos.
