@@ -116,6 +116,7 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
   try {
     assert.equal(d.querySelectorAll('#stories .assurance-panel').length, 2);
     assert.equal(d.querySelectorAll('#stories .story').length, 0);
+    assert.equal(d.querySelector('.assurance-globe-hint'), null);
     assert.equal(d.querySelector('#stories').previousElementSibling.id, 'pricing');
     assert.equal(d.querySelector('#stories').nextElementSibling.id, 'faq');
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
@@ -168,21 +169,23 @@ test('globe has no icons, rotates on hover and drag, and supports keyboard reset
   } finally { p.close(); }
 });
 
-test('a single glowing trail travels, changes wires and pauses offscreen', () => {
+test('three distinct glowing trails travel and pause offscreen', () => {
   const p = page({observer: true});
   try {
     const trail = p.d.querySelector('.assurance-trail');
     const halo = p.d.querySelector('.assurance-trail-halo');
-    assert.equal(p.d.querySelectorAll('.assurance-trail').length, 1);
+    const trails = [...p.d.querySelectorAll('.assurance-trail')];
+    assert.equal(trails.length, 3);
     p.intersect(true); p.advance(1000);
     const first = trail.getAttribute('d');
+    assert.equal(new Set(trails.map(t => t.getAttribute('d'))).size, 3);
     assert.ok(first.length > 20);
     assert.equal(first, halo.getAttribute('d'));
     p.advance(30000);
     assert.notEqual(trail.getAttribute('d'), first);
-    const running = trail.getAttribute('d');
+    const running = trails.map(t => t.getAttribute('d'));
     p.intersect(false); p.advance(34000);
-    assert.equal(trail.getAttribute('d'), running);
+    assert.deepEqual(trails.map(t => t.getAttribute('d')), running);
   } finally { p.close(); }
 });
 
@@ -196,7 +199,7 @@ test('reduced motion stops automatic light and hover but permits intentional key
     globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:200,clientY:200})); p.flush();
     assert.equal(node.getAttribute('transform'), before);
     p.advance(1000);
-    assert.equal(p.d.querySelector('.assurance-trail').getAttribute('d'), '');
+    assert.ok([...p.d.querySelectorAll('.assurance-trail')].every(t => t.getAttribute('d') === ''));
     globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
     assert.notEqual(node.getAttribute('transform'), before);
   } finally { p.close(); }

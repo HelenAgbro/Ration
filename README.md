@@ -119,5 +119,5 @@ in-panel mockups use representative product content (Ogun State rollout) for con
 The security and collaboration spread after Pricing pairs a rotatable glowing globe with
 the supplied conference meeting photo, served as an optimised WebP. It uses product statements rather than customer testimonials.
 
-The globe responds to mouse movement, dragging and arrow keys. One gold light travels
-along one wire at a time, with faint motes and a soft ambient glow; automatic motion pauses offscreen and respects reduced motion.
+The globe responds to mouse movement, dragging and arrow keys. Three faint gold lights travel slowly
+along separate wires, with faint motes and a soft ambient glow; automatic motion pauses offscreen and respects reduced motion.

@@ -1194,6 +1194,8 @@
                     <radialGradient id="assurance-glow"><stop stop-color="#5599BB" stop-opacity=".22"/><stop offset="1" stop-color="#5599BB" stop-opacity="0"/></radialGradient>
                     <radialGradient id="assurance-warm-glow"><stop stop-color="#FFCE8B" stop-opacity=".08"/><stop offset="1" stop-color="#FFCE8B" stop-opacity="0"/></radialGradient>
                     <linearGradient id="assurance-trail-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFB343" stop-opacity="0"/><stop offset=".55" stop-color="#FFCC80" stop-opacity=".2"/><stop offset="1" stop-color="#FFE2B5" stop-opacity=".85"/></linearGradient>
+                    <linearGradient id="assurance-trail-gradient-1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFB343" stop-opacity="0"/><stop offset=".55" stop-color="#FFCC80" stop-opacity=".2"/><stop offset="1" stop-color="#FFE2B5" stop-opacity=".85"/></linearGradient>
+                    <linearGradient id="assurance-trail-gradient-2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFB343" stop-opacity="0"/><stop offset=".55" stop-color="#FFCC80" stop-opacity=".2"/><stop offset="1" stop-color="#FFE2B5" stop-opacity=".85"/></linearGradient>
                     <filter id="assurance-trail-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.8"/></filter>
                   </defs>
                   <ellipse class="assurance-ambient" cx="260" cy="150" rx="170" ry="140" fill="url(#assurance-glow)"/>
@@ -1201,8 +1203,12 @@
                   <circle cx="260" cy="150" r="120" stroke="#81B1C8" stroke-opacity=".25"/>
                   <path class="assurance-mesh-back" d="M140 150h240M260 30v240"/>
                   <path class="assurance-mesh-front" d="M140 150a120 45 0 1 0 240 0 120 45 0 1 0-240 0"/>
-                  <path class="assurance-trail-halo" filter="url(#assurance-trail-glow)"/>
-                  <path class="assurance-trail"/>
+                  <path class="assurance-trail-halo" stroke="url(#assurance-trail-gradient)" filter="url(#assurance-trail-glow)"/>
+                  <path class="assurance-trail" stroke="url(#assurance-trail-gradient)"/>
+                  <path class="assurance-trail-halo" stroke="url(#assurance-trail-gradient-1)" filter="url(#assurance-trail-glow)"/>
+                  <path class="assurance-trail" stroke="url(#assurance-trail-gradient-1)"/>
+                  <path class="assurance-trail-halo" stroke="url(#assurance-trail-gradient-2)" filter="url(#assurance-trail-glow)"/>
+                  <path class="assurance-trail" stroke="url(#assurance-trail-gradient-2)"/>
                   <g class="assurance-motes">
                     <g class="assurance-mote" transform="translate(360.0 150.0)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
                     <g class="assurance-mote" transform="translate(186.3 217.5)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
@@ -1225,7 +1231,6 @@
                   </g>
                 </svg>
               </div>
-              <span class="assurance-globe-hint" aria-hidden="true">Drag to explore</span>
               <span class="sr-only" id="globe-help">Move your mouse or drag to turn the glowing globe. Use arrow keys to rotate, or Home to reset.</span>
             </div>
             <div class="assurance-panel-copy">

@@ -1018,7 +1018,7 @@
     configure();
   }
 
-  /* A glowing globe: direct rotation, quiet motes and one travelling light. */
+  /* A glowing globe: direct rotation, quiet motes and three slow travelling lights. */
   function initAssuranceMotion() {
     var section = $('.assurance');
     var globe = $('.assurance-globe');
@@ -1028,9 +1028,10 @@
     var warmGlow = $('.assurance-ambient-warm', globe);
     var front = $('.assurance-mesh-front', globe);
     var back = $('.assurance-mesh-back', globe);
-    var trail = $('.assurance-trail', globe);
-    var halo = $('.assurance-trail-halo', globe);
-    var glowGradient = $('#assurance-trail-gradient', globe);
+    var halos = $$('.assurance-trail-halo', globe);
+    var trails = $$('.assurance-trail', globe).map(function (path, i) {
+      return { path: path, halo: halos[i], gradient: $('#assurance-trail-gradient' + (i ? '-' + i : ''), globe), offset: i * 9000, wire: i * 3 };
+    });
     var yaw = .35, pitch = -.18;
     var active = !('IntersectionObserver' in window);
     var frame = 0, lastTime = null, elapsed = 0, dirty = true;
@@ -1097,29 +1098,32 @@
       warmGlow.style.opacity = (.65 + .12 * Math.sin(time / 7200 + 1)).toFixed(3);
     }
     function renderTrail() {
-      var d = '';
-      if (!reduceQuery.matches) {
-        var curve = curves[Math.floor(elapsed / 28000) % curves.length];
-        var head = (elapsed % 28000) / 26000 * 1.04;
-        var start = Math.max(0, head - .04);
-        var end = Math.min(1, head);
-        if (start < end) {
-          // Follow a single wire; include interpolated endpoints for smooth travel.
-          for (var i = 0; i <= 20; i++) {
-            var t = (start + (end - start) * i / 20) * (curve.length - 1);
-            var a = Math.floor(t), b = Math.min(curve.length - 1, a + 1), f = t - a;
-            var point = curve[a].map(function (v, axis) { return v + (curve[b][axis] - v) * f; });
-            var projected = project(point);
-            if (i === 0 || i === 20) {
-              glowGradient.setAttribute(i === 0 ? 'x1' : 'x2', projected.x.toFixed(2));
-              glowGradient.setAttribute(i === 0 ? 'y1' : 'y2', projected.y.toFixed(2));
+      trails.forEach(function (light) {
+        var lightTime = elapsed + light.offset;
+        var d = '';
+        if (!reduceQuery.matches) {
+          var curve = curves[(Math.floor(lightTime / 28000) + light.wire) % curves.length];
+          var head = (lightTime % 28000) / 26000 * 1.04;
+          var start = Math.max(0, head - .04);
+          var end = Math.min(1, head);
+          if (start < end) {
+            // Follow a single wire; include interpolated endpoints for smooth travel.
+            for (var i = 0; i <= 20; i++) {
+              var t = (start + (end - start) * i / 20) * (curve.length - 1);
+              var a = Math.floor(t), b = Math.min(curve.length - 1, a + 1), f = t - a;
+              var point = curve[a].map(function (v, axis) { return v + (curve[b][axis] - v) * f; });
+              var projected = project(point);
+              if (i === 0 || i === 20) {
+                light.gradient.setAttribute(i === 0 ? 'x1' : 'x2', projected.x.toFixed(2));
+                light.gradient.setAttribute(i === 0 ? 'y1' : 'y2', projected.y.toFixed(2));
+              }
+              d += (i ? 'L' : 'M') + coord(projected);
             }
-            d += (i ? 'L' : 'M') + coord(projected);
           }
         }
-      }
-      trail.setAttribute('d', d);
-      halo.setAttribute('d', d);
+        light.path.setAttribute('d', d);
+        light.halo.setAttribute('d', d);
+      });
     }
     function tick(time) {
       frame = 0;
