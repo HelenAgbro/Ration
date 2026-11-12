@@ -1018,34 +1018,167 @@
     configure();
   }
 
-  /* Security spread: a soft reveal and small pointer drift, independent of GSAP. */
+  /* A projected app globe: direct rotation and one travelling light at a time. */
   function initAssuranceMotion() {
     var section = $('.assurance');
-    var panel = $('.assurance-sovereignty');
-    if (!section || !panel) return;
+    var globe = $('.assurance-globe');
+    if (!section || !globe) return;
+    var nodes = $$('.assurance-app', globe);
+    var nodeLayer = $('.assurance-apps', globe);
+    var front = $('.assurance-mesh-front', globe);
+    var back = $('.assurance-mesh-back', globe);
+    var trail = $('.assurance-trail', globe);
+    var halo = $('.assurance-trail-halo', globe);
+    var yaw = .35, pitch = -.18;
+    var active = !('IntersectionObserver' in window);
+    var frame = 0, lastTime = null, elapsed = 0, dirty = true;
+    var dragging = false, pointerId = null, lastPoint = null;
+    var curves = [];
+    // Latitude and longitude circles share the same sphere as the app icons.
+    [-60, -30, 0, 30, 60].forEach(function (degrees) {
+      var lat = degrees * Math.PI / 180;
+      var points = [];
+      for (var i = 0; i <= 96; i++) {
+        var angle = i / 96 * Math.PI * 2;
+        points.push([Math.cos(lat) * Math.cos(angle), Math.sin(lat), Math.cos(lat) * Math.sin(angle)]);
+      }
+      curves.push(points);
+    });
+    for (var m = 0; m < 4; m++) {
+      var longitude = m * Math.PI / 4;
+      var points = [];
+      for (var i = 0; i <= 96; i++) {
+        var angle = i / 96 * Math.PI * 2;
+        points.push([Math.cos(angle) * Math.cos(longitude), Math.sin(angle), Math.cos(angle) * Math.sin(longitude)]);
+      }
+      curves.push(points);
+    }
+    var apps = nodes.map(function (node, i) {
+      var y = 1 - 2 * (i + .5) / nodes.length;
+      var radius = Math.sqrt(1 - y * y);
+      var angle = i * Math.PI * (3 - Math.sqrt(5));
+      return { node: node, point: [radius * Math.cos(angle), y, radius * Math.sin(angle)] };
+    });
+    function project(point) {
+      var x = point[0] * Math.cos(yaw) + point[2] * Math.sin(yaw);
+      var z = -point[0] * Math.sin(yaw) + point[2] * Math.cos(yaw);
+      var y = point[1] * Math.cos(pitch) - z * Math.sin(pitch);
+      z = point[1] * Math.sin(pitch) + z * Math.cos(pitch);
+      return { x: 260 + x * 120, y: 150 + y * 120, z: z };
+    }
+    function coord(p) { return p.x.toFixed(2) + ',' + p.y.toFixed(2); }
+    function renderMesh() {
+      var paths = ['', ''];
+      curves.forEach(function (curve) {
+        var previous = project(curve[0]);
+        curve.slice(1).forEach(function (point) {
+          var next = project(point);
+          var side = (previous.z + next.z) / 2 >= 0 ? 1 : 0;
+          paths[side] += 'M' + coord(previous) + 'L' + coord(next);
+          previous = next;
+        });
+      });
+      back.setAttribute('d', paths[0]);
+      front.setAttribute('d', paths[1]);
+      apps.map(function (app) {
+        return { node: app.node, projected: project(app.point) };
+      }).sort(function (a, b) { return a.projected.z - b.projected.z; }).forEach(function (app) {
+        var p = app.projected;
+        app.node.setAttribute('transform', 'translate(' + coord(p) + ') scale(' + (.84 + p.z * .18).toFixed(3) + ')');
+        app.node.style.opacity = (.57 + p.z * .4).toFixed(3);
+        $('text', app.node).style.opacity = p.z > -.1 ? '1' : '0';
+        nodeLayer.appendChild(app.node);
+      });
+      dirty = false;
+    }
+    function renderTrail() {
+      var d = '';
+      if (!reduceQuery.matches) {
+        var curve = curves[Math.floor(elapsed / 4400) % curves.length];
+        var head = (elapsed % 4400) / 3800 * 1.18;
+        var start = Math.max(0, head - .18);
+        var end = Math.min(1, head);
+        if (start < end) {
+          // Follow a single wire; include interpolated endpoints for smooth travel.
+          for (var i = 0; i <= 20; i++) {
+            var t = (start + (end - start) * i / 20) * (curve.length - 1);
+            var a = Math.floor(t), b = Math.min(curve.length - 1, a + 1), f = t - a;
+            var point = curve[a].map(function (v, axis) { return v + (curve[b][axis] - v) * f; });
+            d += (i ? 'L' : 'M') + coord(project(point));
+          }
+        }
+      }
+      trail.setAttribute('d', d);
+      halo.setAttribute('d', d);
+    }
+    function tick(time) {
+      frame = 0;
+      if (active && !doc.hidden && !reduceQuery.matches) {
+        if (lastTime !== null) elapsed += Math.min(64, Math.max(0, time - lastTime));
+        lastTime = time;
+      } else lastTime = null;
+      if (dirty) renderMesh();
+      renderTrail();
+      if (active && !doc.hidden && !reduceQuery.matches) schedule();
+    }
+    function schedule() { if (!frame) frame = window.requestAnimationFrame(tick); }
+    function updateActivity() {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0; lastTime = null;
+      schedule();
+    }
     if ('IntersectionObserver' in window) {
       section.classList.add('is-reveal-ready');
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          section.classList.toggle('is-art-active', entry.isIntersecting);
-          if (entry.isIntersecting) section.classList.add('has-entered');
+          active = entry.isIntersecting;
+          section.classList.toggle('is-art-active', active);
+          if (active) section.classList.add('has-entered');
+          updateActivity();
         });
       }, { threshold: .12 });
       observer.observe(section);
     }
-    panel.addEventListener('pointermove', function (event) {
-      if (reduceQuery.matches || event.pointerType === 'touch') return;
-      var box = panel.getBoundingClientRect();
-      if (!box.width || !box.height) return;
-      panel.style.setProperty('--art-x', (clamp((event.clientX - box.left) / box.width - .5, -.5, .5) * 10).toFixed(2) + 'px');
-      panel.style.setProperty('--art-y', (clamp((event.clientY - box.top) / box.height - .5, -.5, .5) * 8).toFixed(2) + 'px');
+    globe.addEventListener('pointerdown', function (event) {
+      if (event.button !== undefined && event.button !== 0) return;
+      dragging = true; pointerId = event.pointerId;
+      lastPoint = { x: event.clientX, y: event.clientY };
+      globe.classList.add('is-dragging');
+      if (globe.setPointerCapture && pointerId !== undefined) globe.setPointerCapture(pointerId);
     });
-    function reset() {
-      panel.style.removeProperty('--art-x');
-      panel.style.removeProperty('--art-y');
+    globe.addEventListener('pointermove', function (event) {
+      if (pointerId !== null && dragging && event.pointerId !== pointerId) return;
+      if (!dragging && (reduceQuery.matches || event.pointerType === 'touch')) return;
+      if (lastPoint) {
+        var speed = dragging ? .012 : .004;
+        yaw += clamp(event.clientX - lastPoint.x, -100, 100) * speed;
+        pitch = clamp(pitch + clamp(event.clientY - lastPoint.y, -100, 100) * speed, -1.25, 1.25);
+        dirty = true; schedule();
+      }
+      lastPoint = { x: event.clientX, y: event.clientY };
+    });
+    function release(event) {
+      if (dragging && event.pointerId !== undefined && pointerId !== event.pointerId) return;
+      if (globe.hasPointerCapture && globe.hasPointerCapture(pointerId)) globe.releasePointerCapture(pointerId);
+      dragging = false; pointerId = null; lastPoint = null;
+      globe.classList.remove('is-dragging');
     }
-    panel.addEventListener('pointerleave', reset);
-    reduceQuery.addEventListener('change', reset);
+    globe.addEventListener('pointerup', release);
+    globe.addEventListener('pointercancel', release);
+    globe.addEventListener('lostpointercapture', release);
+    globe.addEventListener('pointerleave', function () { if (!dragging) lastPoint = null; });
+    globe.addEventListener('keydown', function (event) {
+      if (!/^(Arrow(Left|Right|Up|Down)|Home)$/.test(event.key)) return;
+      event.preventDefault();
+      if (event.key === 'Home') { yaw = .35; pitch = -.18; }
+      else if (/Arrow(Left|Right)/.test(event.key)) yaw += event.key === 'ArrowRight' ? .3 : -.3;
+      else pitch = clamp(pitch + (event.key === 'ArrowDown' ? .2 : -.2), -1.25, 1.25);
+      dirty = true; schedule();
+    });
+    doc.addEventListener('visibilitychange', updateActivity);
+    reduceQuery.addEventListener('change', updateActivity);
+    renderMesh();
+    schedule();
   }
 
   /* Workspace perspectives: manual tabs with keyboard navigation. */

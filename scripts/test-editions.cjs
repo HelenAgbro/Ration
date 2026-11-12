@@ -43,9 +43,9 @@ function page({ width = 1440, height = 900, contentHeight = 760, reduced = false
   w.requestAnimationFrame = callback => { frames.set(++serial, callback); return serial; };
   w.cancelAnimationFrame = id => frames.delete(id);
   w.addEventListener('error', e => { errors.push(e.error); e.preventDefault(); });
-  function flush() {
-    for (let n = 0; frames.size && n < 10; n++) {
-      const pending = [...frames.values()]; frames.clear(); pending.forEach(cb => cb(0));
+  function flush(steps = 10, time = 0) {
+    for (let n = 0; frames.size && n < steps; n++) {
+      const pending = [...frames.values()]; frames.clear(); pending.forEach(cb => cb(time));
     }
     assert.deepEqual(errors, []);
   }
@@ -66,7 +66,7 @@ function page({ width = 1440, height = 900, contentHeight = 760, reduced = false
     });
     assert.deepEqual(errors, []);
   }
-  return { w, d, slides, check, scroll, flush, intersect: visible => intersect([{isIntersecting: visible}]), start, distance: height * 2.2, close: () => dom.window.close() };
+  return { w, d, slides, check, scroll, flush, advance: time => { for (let t = 0; t <= time; t += 32) flush(1, t); }, intersect: visible => intersect([{isIntersecting: visible}]), start, distance: height * 2.2, close: () => dom.window.close() };
 }
 
 for (const [width, height, contentHeight] of [[1440,900,760], [1024,768,720], [390,844,800]]) {
@@ -130,35 +130,74 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
 });
 
 
-test('security illustration reveals once, pauses offscreen and bounds pointer drift', () => {
+test('globe rotates on hover and drag, reveals apps, and supports keyboard reset', () => {
   const p = page({observer: true});
   try {
     const section = p.d.querySelector('.assurance');
-    const panel = p.d.querySelector('.assurance-sovereignty');
-    assert.equal(section.classList.contains('has-entered'), false);
+    const globe = p.d.querySelector('.assurance-globe');
+    assert.equal(p.d.querySelector('.assurance-vault'), null);
+    const nodes = [...p.d.querySelectorAll('.assurance-app')];
+    assert.equal(nodes.length, 8);
+    const before = nodes.map(n => n.getAttribute('transform'));
+    const opacity = nodes.map(n => n.style.opacity);
     p.intersect(true);
     assert.equal(section.classList.contains('has-entered'), true);
-    assert.equal(section.classList.contains('is-art-active'), true);
+    function pointer(type, x, y) {
+      globe.dispatchEvent(new p.w.MouseEvent(type, {clientX:x,clientY:y,button:0}));
+      p.flush();
+    }
+    pointer('pointermove', 100, 100);
+    pointer('pointermove', 180, 120);
+    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
+    pointer('pointerdown', 180, 120);
+    pointer('pointermove', 280, 150);
+    pointer('pointermove', 380, 150);
+    pointer('pointerup', 380, 150);
+    assert.equal(globe.classList.contains('is-dragging'), false);
+    assert.ok(nodes.some((n,i) => (Number(n.style.opacity) > .6) !== (Number(opacity[i]) > .6)), 'Turning must reveal previously distant icons');
+    const turned = nodes.map(n => n.getAttribute('transform'));
+    pointer('pointerleave', 380, 150);
+    assert.deepEqual(nodes.map(n => n.getAttribute('transform')), turned, 'Rotation persists on leave');
+    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'Home'})); p.flush();
+    assert.deepEqual(nodes.map(n => n.getAttribute('transform')), before);
+    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
+    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
     p.intersect(false);
     assert.equal(section.classList.contains('has-entered'), true);
     assert.equal(section.classList.contains('is-art-active'), false);
-    panel.getBoundingClientRect = () => ({left: 0, top: 0, width: 400, height: 400});
-    panel.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX: 9999, clientY: 9999}));
-    assert.equal(panel.style.getPropertyValue('--art-x'), '5.00px');
-    assert.equal(panel.style.getPropertyValue('--art-y'), '4.00px');
-    panel.dispatchEvent(new p.w.Event('pointerleave'));
-    assert.equal(panel.style.getPropertyValue('--art-x'), '');
-    assert.equal(panel.style.getPropertyValue('--art-y'), '');
   } finally { p.close(); }
 });
 
-test('reduced motion prevents pointer drift', () => {
+test('a single glowing trail travels, changes wires and pauses offscreen', () => {
+  const p = page({observer: true});
+  try {
+    const trail = p.d.querySelector('.assurance-trail');
+    const halo = p.d.querySelector('.assurance-trail-halo');
+    assert.equal(p.d.querySelectorAll('.assurance-trail').length, 1);
+    p.intersect(true); p.advance(1000);
+    const first = trail.getAttribute('d');
+    assert.ok(first.length > 20);
+    assert.equal(first, halo.getAttribute('d'));
+    p.advance(6000);
+    assert.notEqual(trail.getAttribute('d'), first);
+    const running = trail.getAttribute('d');
+    p.intersect(false); p.advance(12000);
+    assert.equal(trail.getAttribute('d'), running);
+  } finally { p.close(); }
+});
+
+test('reduced motion stops automatic light and hover but permits intentional keyboard rotation', () => {
   const p = page({reduced: true});
   try {
-    const panel = p.d.querySelector('.assurance-sovereignty');
-    panel.getBoundingClientRect = () => ({left: 0, top: 0, width: 400, height: 400});
-    panel.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX: 400, clientY: 400}));
-    assert.equal(panel.style.getPropertyValue('--art-x'), '');
-    assert.equal(panel.style.getPropertyValue('--art-y'), '');
+    const globe = p.d.querySelector('.assurance-globe');
+    const node = p.d.querySelector('.assurance-app');
+    const before = node.getAttribute('transform');
+    globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:100,clientY:100}));
+    globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:200,clientY:200})); p.flush();
+    assert.equal(node.getAttribute('transform'), before);
+    p.advance(1000);
+    assert.equal(p.d.querySelector('.assurance-trail').getAttribute('d'), '');
+    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
+    assert.notEqual(node.getAttribute('transform'), before);
   } finally { p.close(); }
 });

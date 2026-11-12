@@ -116,5 +116,8 @@ Copy is based on the live ration.works site and the supplied design direction. P
 screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms captures. The
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
 
-The security and collaboration spread after Pricing pairs a Ration security graphic with
+The security and collaboration spread after Pricing pairs a rotatable globe of Ration apps with
 the supplied conference meeting photo, served as an optimised WebP. It uses product statements rather than customer testimonials.
+
+The globe responds to mouse movement, dragging and arrow keys. One gold light travels
+along one wire at a time; automatic motion pauses offscreen and respects reduced motion.
