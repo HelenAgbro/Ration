@@ -1392,15 +1392,15 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .price-note { max-width: 860px; margin-top: 24px; font-size: 11px; line-height: 1.65; color: #5F7581; }
 
 /* Security and collaboration editorial spread ---------------------------- */
-.assurance { padding: 24px 0 clamp(48px, 6vw, 80px); }
-.assurance > .container { width: calc(100% - 48px); }
-.assurance-heading { display: grid; grid-template-columns: 1.4fr 1fr; align-items: end; gap: clamp(32px, 6vw, 96px); margin-bottom: clamp(28px, 4vw, 48px); }
+.assurance { padding-block: 24px; }
+.assurance > .container { width: calc(100% - 48px); height: calc(100svh - var(--nav-h) - 48px); display: grid; grid-template-rows: auto minmax(0, 1fr); gap: clamp(24px, 3vh, 36px); }
+.assurance-heading { display: grid; grid-template-columns: 1.4fr 1fr; align-items: end; gap: clamp(32px, 6vw, 96px); margin-bottom: 0; }
 .assurance-heading .eyebrow { margin-bottom: 16px; }
-.assurance-heading h2 { color: var(--navy); font-size: clamp(32px, 3.6vw, 60px); font-weight: 500; line-height: 1.08; letter-spacing: -.05em; }
+.assurance-heading h2 { color: var(--navy); font-size: clamp(30px, 3.2vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -.05em; }
 .assurance-heading h2 > span { color: #638290; }
 .assurance-intro { max-width: 420px; padding-bottom: 4px; color: var(--body); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.65; }
 .assurance-panels { display: grid; grid-template-columns: 5fr 7fr; gap: 1px; background: #C4D5DF; border: 1px solid #C4D5DF; }
-.assurance-panel { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; height: clamp(360px, 52svh, 520px); padding: clamp(24px, 3vw, 48px); overflow: hidden; color: #fff; background: var(--navy-deep); }
+.assurance-panel { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; height: 100%; padding: clamp(24px, 3vw, 48px); overflow: hidden; color: #fff; background: var(--navy-deep); }
 .assurance-panel-copy { position: relative; z-index: 1; }
 .assurance-label { display: flex; align-items: center; gap: 9px; margin-bottom: 18px; color: #D6E5EB; font-size: 11px; letter-spacing: .02em; }
 .assurance-label::before { content: ''; flex: none; width: 6px; height: 6px; background: var(--amber); }
@@ -1409,11 +1409,11 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .assurance-link { display: inline-flex; align-items: center; gap: 14px; margin-top: 24px; padding-bottom: 4px; border-bottom: 1px solid #A8C4D366; font-size: 12px; font-weight: 550; }
 .assurance-link .icon { width: 16px; height: 16px; }
 .assurance-link:hover { color: var(--amber); }
-.assurance-art { position: absolute; width: 85%; max-width: 440px; right: -7%; top: -12%; opacity: .8; }
-.assurance-art svg { width: 100%; height: auto; }
-.assurance-sovereignty::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, #001c2a66 35%, var(--navy-deep) 80%); }
-.assurance-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 43%; z-index: -2; }
-.assurance-together::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, #001c2a40, #001c2a33 20%, #001c2abf 50%, #001c2aeb 100%); }
+.assurance-art { position: absolute; inset: 0 0 auto; height: 58%; display: grid; place-items: center; transform: translate3d(var(--art-x, 0px), var(--art-y, 0px), 0); transition: transform .7s ease-out; }
+.assurance-art svg { width: min(100%, 560px); height: 100%; max-height: 340px; overflow: visible; }
+.assurance-sovereignty::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 38%, #001c2a66 62%, var(--navy-deep) 84%); }
+.assurance-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; z-index: -2; }
+.assurance-together::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #000000b8, #00000066 48%, #0000001a), linear-gradient(0deg, #000000b3, transparent 72%); }
 .assurance-brand { position: absolute; top: clamp(24px, 3vw, 48px); left: clamp(24px, 3vw, 48px); width: 110px; height: auto; }
 @media (max-width: 1000px) {
   .assurance-heading { grid-template-columns: 1.3fr 1fr; gap: 32px; }
@@ -1422,20 +1422,47 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   .assurance-brand { top: 28px; left: 28px; }
 }
 @media (max-width: 700px) {
+  .assurance > .container { height: auto; grid-template-rows: auto auto; }
   .assurance-heading { grid-template-columns: 1fr; gap: 20px; }
   .assurance-heading h2 { font-size: clamp(32px, 7.8vw, 48px); }
   .assurance-intro { max-width: 520px; font-size: 14px; }
   .assurance-panels { grid-template-columns: 1fr; }
   .assurance-panel { height: min(440px, calc(100svh - var(--nav-h) - 48px)); padding: 28px; }
-  .assurance-art { width: 70%; top: -20%; }
+  .assurance-art { height: 55%; }
+  .assurance-together::after { background: linear-gradient(0deg, #000000e0, #00000066 55%, #0000001a); }
 }
 @media (max-width: 600px) { .assurance > .container { width: calc(100% - 32px); } }
-@media (max-height: 650px) {
+@media (max-height: 700px) {
+  .assurance > .container { height: auto; grid-template-rows: auto auto; }
   .assurance-panel { height: 360px; padding: 24px; }
   .assurance-panel h3 { font-size: 32px; }
   .assurance-label { margin-bottom: 12px; }
   .assurance-link { margin-top: 16px; }
   .assurance-brand { top: 24px; left: 24px; width: 90px; }
+}
+
+/* Small, slow movements keep the security illustration quietly alive. */
+.assurance-orbit, .assurance-vault, .assurance-satellite { transform-box: fill-box; transform-origin: center; }
+.assurance-orbit-a { animation: assurance-orbit 28s ease-in-out infinite alternate; }
+.assurance-orbit-b { animation: assurance-orbit 34s ease-in-out infinite alternate-reverse; }
+.assurance-vault { animation: assurance-float 9s ease-in-out infinite; }
+.assurance-satellite { animation: assurance-float 11s ease-in-out infinite; }
+.assurance-satellite-b { animation-delay: -4s; }
+.assurance-satellite-c { animation-delay: -7s; }
+.assurance-data-path { animation: assurance-data 24s linear infinite; }
+.assurance-art * { animation-play-state: paused; }
+.assurance.is-art-active .assurance-art * { animation-play-state: running; }
+@keyframes assurance-orbit { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+@keyframes assurance-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes assurance-data { to { stroke-dashoffset: -136; } }
+.assurance.is-reveal-ready .assurance-heading { transition: opacity .7s ease, transform .7s ease; }
+.assurance.is-reveal-ready .assurance-panels { transition: opacity .9s ease .1s, transform .9s cubic-bezier(.2,.65,.3,1) .1s; }
+.assurance.is-reveal-ready:not(.has-entered) .assurance-heading,
+.assurance.is-reveal-ready:not(.has-entered) .assurance-panels { opacity: 0; transform: translateY(18px); }
+@media (prefers-reduced-motion: reduce) {
+  .assurance-art, .assurance-art * { animation: none !important; transition: none; transform: none; }
+  .assurance.is-reveal-ready .assurance-heading,
+  .assurance.is-reveal-ready .assurance-panels { opacity: 1; transform: none; transition: none; }
 }
 
 /* ==========================================================================

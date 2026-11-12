@@ -1018,6 +1018,36 @@
     configure();
   }
 
+  /* Security spread: a soft reveal and small pointer drift, independent of GSAP. */
+  function initAssuranceMotion() {
+    var section = $('.assurance');
+    var panel = $('.assurance-sovereignty');
+    if (!section || !panel) return;
+    if ('IntersectionObserver' in window) {
+      section.classList.add('is-reveal-ready');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          section.classList.toggle('is-art-active', entry.isIntersecting);
+          if (entry.isIntersecting) section.classList.add('has-entered');
+        });
+      }, { threshold: .12 });
+      observer.observe(section);
+    }
+    panel.addEventListener('pointermove', function (event) {
+      if (reduceQuery.matches || event.pointerType === 'touch') return;
+      var box = panel.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      panel.style.setProperty('--art-x', (clamp((event.clientX - box.left) / box.width - .5, -.5, .5) * 10).toFixed(2) + 'px');
+      panel.style.setProperty('--art-y', (clamp((event.clientY - box.top) / box.height - .5, -.5, .5) * 8).toFixed(2) + 'px');
+    });
+    function reset() {
+      panel.style.removeProperty('--art-x');
+      panel.style.removeProperty('--art-y');
+    }
+    panel.addEventListener('pointerleave', reset);
+    reduceQuery.addEventListener('change', reset);
+  }
+
   /* Workspace perspectives: manual tabs with keyboard navigation. */
   var roleSection = $('.workspace-roles');
   if (roleSection) {
@@ -1059,6 +1089,7 @@
   initWhimsy();
   initCloudReveal();
   initDeploySlider();
+  initAssuranceMotion();
 
 
   /* -----------------------------------------------------------------------

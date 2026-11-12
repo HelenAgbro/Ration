@@ -9,7 +9,7 @@ const source = readFileSync(path.join(root, 'assets/js/main.js'), 'utf8');
 
 // Run the complete interaction layer without GSAP. Layout measurements are
 // fixtures: these tests verify scroll math and controls, not browser layout.
-function page({ width = 1440, height = 900, contentHeight = 760, reduced = false } = {}) {
+function page({ width = 1440, height = 900, contentHeight = 760, reduced = false, observer = false } = {}) {
   const dom = new JSDOM(html, { runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window;
   const d = w.document;
@@ -18,7 +18,11 @@ function page({ width = 1440, height = 900, contentHeight = 760, reduced = false
   const errors = [];
   const frames = new Map();
   const changes = [];
-  let y = 0, serial = 0;
+  let y = 0, serial = 0, intersect;
+  if (observer) w.IntersectionObserver = class {
+    constructor(callback) { intersect = callback; }
+    observe() {}
+  };
   const start = 10000;
   Object.defineProperties(w, {
     innerWidth: { value: width, configurable: true },
@@ -62,7 +66,7 @@ function page({ width = 1440, height = 900, contentHeight = 760, reduced = false
     });
     assert.deepEqual(errors, []);
   }
-  return { w, d, slides, check, scroll, flush, start, distance: height * 2.2, close: () => dom.window.close() };
+  return { w, d, slides, check, scroll, flush, intersect: visible => intersect([{isIntersecting: visible}]), start, distance: height * 2.2, close: () => dom.window.close() };
 }
 
 for (const [width, height, contentHeight] of [[1440,900,760], [1024,768,720], [390,844,800]]) {
@@ -123,4 +127,38 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
       assert.ok(existsSync(path.resolve(root,'assets/css',match[1])), match[1]);
     }
   } finally { dom.window.close(); }
+});
+
+
+test('security illustration reveals once, pauses offscreen and bounds pointer drift', () => {
+  const p = page({observer: true});
+  try {
+    const section = p.d.querySelector('.assurance');
+    const panel = p.d.querySelector('.assurance-sovereignty');
+    assert.equal(section.classList.contains('has-entered'), false);
+    p.intersect(true);
+    assert.equal(section.classList.contains('has-entered'), true);
+    assert.equal(section.classList.contains('is-art-active'), true);
+    p.intersect(false);
+    assert.equal(section.classList.contains('has-entered'), true);
+    assert.equal(section.classList.contains('is-art-active'), false);
+    panel.getBoundingClientRect = () => ({left: 0, top: 0, width: 400, height: 400});
+    panel.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX: 9999, clientY: 9999}));
+    assert.equal(panel.style.getPropertyValue('--art-x'), '5.00px');
+    assert.equal(panel.style.getPropertyValue('--art-y'), '4.00px');
+    panel.dispatchEvent(new p.w.Event('pointerleave'));
+    assert.equal(panel.style.getPropertyValue('--art-x'), '');
+    assert.equal(panel.style.getPropertyValue('--art-y'), '');
+  } finally { p.close(); }
+});
+
+test('reduced motion prevents pointer drift', () => {
+  const p = page({reduced: true});
+  try {
+    const panel = p.d.querySelector('.assurance-sovereignty');
+    panel.getBoundingClientRect = () => ({left: 0, top: 0, width: 400, height: 400});
+    panel.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX: 400, clientY: 400}));
+    assert.equal(panel.style.getPropertyValue('--art-x'), '');
+    assert.equal(panel.style.getPropertyValue('--art-y'), '');
+  } finally { p.close(); }
 });

@@ -1188,17 +1188,43 @@
         <div class="assurance-panels">
           <article class="assurance-panel assurance-sovereignty">
             <div class="assurance-art" aria-hidden="true">
-              <svg viewBox="0 0 440 300" fill="none">
-                <g stroke="#8BBAD0" stroke-opacity=".22">
-                  <circle cx="170" cy="130" r="104"/><circle cx="270" cy="130" r="104"/><circle cx="220" cy="210" r="104"/>
-                  <circle cx="170" cy="130" r="78"/><circle cx="270" cy="130" r="78"/><circle cx="220" cy="210" r="78"/>
-                  <circle cx="170" cy="130" r="52"/><circle cx="270" cy="130" r="52"/><circle cx="220" cy="210" r="52"/>
-                  <path d="M66 130h308M220 26v288M100 50l240 240M340 50L100 290" stroke-opacity=".35"/>
+              <svg viewBox="0 0 520 300" fill="none">
+                <defs>
+                  <radialGradient id="assurance-glow"><stop stop-color="#5599BB" stop-opacity=".16"/><stop offset="1" stop-color="#5599BB" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="assurance-glass" x1="207" y1="90" x2="310" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#16485F"/><stop offset="1" stop-color="#052D40"/></linearGradient>
+                </defs>
+                <ellipse cx="260" cy="152" rx="216" ry="144" fill="url(#assurance-glow)"/>
+                <g class="assurance-orbit assurance-orbit-a" stroke="#81B1C8" stroke-opacity=".3">
+                  <ellipse cx="260" cy="150" rx="190" ry="72" transform="rotate(-24 260 150)"/>
+                  <ellipse cx="260" cy="150" rx="190" ry="72" transform="rotate(24 260 150)"/>
                 </g>
-                <path d="M220 114l48 18v37c0 30-22 51-48 65-26-14-48-35-48-65v-37l48-18Z" fill="#006699" fill-opacity=".18" stroke="#FFB343" stroke-width="1.5"/>
-                <path d="m201 170 13 13 26-28" stroke="#FFB343" stroke-width="2"/>
-                <g fill="#FFB343"><rect x="216" y="22" width="8" height="8"/><rect x="62" y="126" width="8" height="8"/><rect x="370" y="126" width="8" height="8"/><rect x="216" y="310" width="8" height="8"/></g>
-                <g fill="#C8DFE9"><rect x="131" y="92" width="5" height="5"/><rect x="300" y="170" width="5" height="5"/><rect x="169" y="237" width="5" height="5"/><rect x="280" y="64" width="5" height="5"/><rect x="103" y="194" width="5" height="5"/></g>
+                <g class="assurance-orbit assurance-orbit-b" stroke="#81B1C8" stroke-opacity=".18">
+                  <ellipse cx="260" cy="150" rx="132" ry="116"/>
+                  <ellipse cx="260" cy="150" rx="208" ry="100" stroke-dasharray="2 9"/>
+                </g>
+                <path class="assurance-data-path" d="M77 185Q260 20 443 185M97 99Q260 260 423 99" stroke="#FFB343" stroke-opacity=".6" stroke-dasharray="2 32" stroke-linecap="round"/>
+                <g class="assurance-vault">
+                  <rect x="208" y="100" width="104" height="130" rx="16" fill="#001521" stroke="#558BA3" stroke-opacity=".5" transform="rotate(-9 260 165)"/>
+                  <rect x="208" y="91" width="104" height="130" rx="16" fill="url(#assurance-glass)" stroke="#8AB7CD" stroke-opacity=".65"/>
+                  <path d="M223 181h74M223 197h48" stroke="#7AAAC0" stroke-opacity=".45" stroke-linecap="round"/>
+                  <circle cx="290" cy="197" r="2.5" fill="#FFB343"/>
+                  <path d="m260 111 23 9v18c0 15-11 25-23 32-12-7-23-17-23-32v-18l23-9Z" fill="#FFB343" fill-opacity=".08" stroke="#FFB343" stroke-width="1.5"/>
+                  <path d="m249 139 8 8 15-18" stroke="#FFB343" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="assurance-satellite assurance-satellite-a">
+                  <rect x="78" y="99" width="38" height="32" rx="8" fill="#0A354A" stroke="#6098B1" stroke-opacity=".6"/>
+                  <path d="M87 110h20v12H87zM87 110l10 7 10-7" stroke="#C0DCE8" stroke-linejoin="round"/>
+                </g>
+                <g class="assurance-satellite assurance-satellite-b">
+                  <rect x="402" y="166" width="38" height="34" rx="8" fill="#0A354A" stroke="#6098B1" stroke-opacity=".6"/>
+                  <path d="M411 176h20v14h-20zM411 180h20M416 173v6M426 173v6" stroke="#C0DCE8" stroke-linecap="round"/>
+                </g>
+                <g class="assurance-satellite assurance-satellite-c">
+                  <rect x="349" y="47" width="32" height="32" rx="8" fill="#0A354A" stroke="#6098B1" stroke-opacity=".6"/>
+                  <path d="M358 57h14v10h-8l-5 4v-4h-1V57Z" stroke="#C0DCE8" stroke-linejoin="round"/>
+                </g>
+                <g fill="#FFB343"><circle cx="167" cy="62" r="3"/><circle cx="348" cy="232" r="3"/><rect x="133" y="214" width="4" height="4" rx="1"/></g>
+                <g fill="#9CC4D7" fill-opacity=".5"><circle cx="198" cy="258" r="2"/><circle cx="391" cy="111" r="2"/><circle cx="303" cy="38" r="2"/><circle cx="55" cy="154" r="2"/></g>
               </svg>
             </div>
             <div class="assurance-panel-copy">
