@@ -924,10 +924,12 @@
     var deployTrigger = null;
     var deployTimeline = null;
     var transition = null;
+    var editionHold = .5;
+    var editionMove = 1;
 
     function setMeta(index) {
       if (indexEl) indexEl.textContent = pad(index + 1);
-      if (progress) progress.style.width = (deployTrigger ? deployTrigger.progress * 100 : (index + 1) / slides.length * 100) + '%';
+      if (progress) progress.style.width = (deployTrigger && deployTimeline ? deployTimeline.progress() * 100 : (index + 1) / slides.length * 100) + '%';
       tabs.forEach(function (tab, i) {
         tab.classList.toggle('is-active', i === index);
         tab.setAttribute('aria-pressed', String(i === index));
@@ -965,9 +967,11 @@
 
       var finish = function () {
         outgoing.classList.remove('is-active');
-        gsap.set([outgoing, incoming], {
-          clearProps: 'opacity,visibility,transform,clipPath,zIndex'
-        });
+        if (hasMotion) {
+          gsap.set([outgoing, incoming], {
+            clearProps: 'opacity,visibility,transform,clipPath,zIndex'
+          });
+        }
         animating = false;
         transition = null;
         if (pendingTarget !== null) {
@@ -1031,29 +1035,34 @@
         clipPath: 'none'
       });
 
-      deployTimeline = gsap.timeline({ defaults: { ease: 'none' } });
+      // Metadata follows the rendered timeline, including scrub smoothing.
+      deployTimeline = gsap.timeline({
+        defaults: { ease: 'none' },
+        onUpdate: function () {
+          var index = Math.min(slides.length - 1,
+            Math.floor((this.time() + editionMove / 2) / (editionHold + editionMove)));
+          if (index !== current) setCurrent(index);
+          if (progress) progress.style.width = (this.progress() * 100).toFixed(2) + '%';
+        }
+      });
+      deployTimeline.to({}, { duration: editionHold });
       slides.slice(1).forEach(function (incoming, offset) {
         var outgoing = slides[offset];
+        var at = editionHold + offset * (editionMove + editionHold);
         deployTimeline
-          .to(outgoing, {
-            yPercent: -100,
-            duration: 1
-          }, offset)
+          .to(outgoing, { yPercent: -100, duration: editionMove }, at)
           .fromTo(incoming, {
             autoAlpha: 1,
             yPercent: 100,
-            scale: 1,
-            clipPath: 'none',
             zIndex: offset + 2
           }, {
             autoAlpha: 1,
             yPercent: 0,
-            scale: 1,
-            clipPath: 'none',
             zIndex: offset + 2,
-            duration: 1,
+            duration: editionMove,
             immediateRender: false
-          }, offset);
+          }, at)
+          .to({}, { duration: editionHold });
       });
       return deployTimeline;
     }
@@ -1061,10 +1070,10 @@
     function requestEdition(target) {
       target = ((target % slides.length) + slides.length) % slides.length;
       if (deployTrigger) {
-        var p = target / (slides.length - 1);
-        var y = target === slides.length - 1
-          ? deployTrigger.end - 1
-          : deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
+        // Land in the middle of the edition's reading pause, away from pin edges.
+        var time = editionHold / 2 + target * (editionHold + editionMove);
+        var p = time / deployTimeline.duration();
+        var y = deployTrigger.start + (deployTrigger.end - deployTrigger.start) * p;
         window.scrollTo({ top: y, behavior: reduceQuery.matches ? 'auto' : 'smooth' });
       } else {
         showEdition(target, true);
@@ -1085,9 +1094,11 @@
     if (next) next.addEventListener('click', function () { requestEdition(current + 1); });
 
     slider.addEventListener('keydown', function (event) {
-      if (event.target !== slider || !/^Arrow(Left|Right)$/.test(event.key)) return;
+      if (event.target !== slider || !/^(Arrow(Left|Right|Up|Down)|Home|End)$/.test(event.key)) return;
       event.preventDefault();
-      requestEdition(current + (event.key === 'ArrowRight' ? 1 : -1));
+      if (event.key === 'Home') requestEdition(0);
+      else if (event.key === 'End') requestEdition(slides.length - 1);
+      else requestEdition(current + (/Arrow(Right|Down)/.test(event.key) ? 1 : -1));
     });
 
     var startX = null;
@@ -1123,12 +1134,7 @@
           animation: deployTimeline,
           scrub: .65,
           anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: function (self) {
-            var index = Math.min(slides.length - 1, Math.round(self.progress * (slides.length - 1)));
-            if (index !== current) setCurrent(index);
-            if (progress) progress.style.width = (self.progress * 100).toFixed(2) + '%';
-          }
+          invalidateOnRefresh: true
         });
       }
       return function () {
