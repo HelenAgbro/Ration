@@ -1029,6 +1029,7 @@
     var back = $('.assurance-mesh-back', globe);
     var trail = $('.assurance-trail', globe);
     var halo = $('.assurance-trail-halo', globe);
+    var glowGradient = $('#assurance-trail-gradient', globe);
     var yaw = .35, pitch = -.18;
     var active = !('IntersectionObserver' in window);
     var frame = 0, lastTime = null, elapsed = 0, dirty = true;
@@ -1094,9 +1095,9 @@
     function renderTrail() {
       var d = '';
       if (!reduceQuery.matches) {
-        var curve = curves[Math.floor(elapsed / 4400) % curves.length];
-        var head = (elapsed % 4400) / 3800 * 1.18;
-        var start = Math.max(0, head - .18);
+        var curve = curves[Math.floor(elapsed / 28000) % curves.length];
+        var head = (elapsed % 28000) / 26000 * 1.04;
+        var start = Math.max(0, head - .04);
         var end = Math.min(1, head);
         if (start < end) {
           // Follow a single wire; include interpolated endpoints for smooth travel.
@@ -1104,7 +1105,12 @@
             var t = (start + (end - start) * i / 20) * (curve.length - 1);
             var a = Math.floor(t), b = Math.min(curve.length - 1, a + 1), f = t - a;
             var point = curve[a].map(function (v, axis) { return v + (curve[b][axis] - v) * f; });
-            d += (i ? 'L' : 'M') + coord(project(point));
+            var projected = project(point);
+            if (i === 0 || i === 20) {
+              glowGradient.setAttribute(i === 0 ? 'x1' : 'x2', projected.x.toFixed(2));
+              glowGradient.setAttribute(i === 0 ? 'y1' : 'y2', projected.y.toFixed(2));
+            }
+            d += (i ? 'L' : 'M') + coord(projected);
           }
         }
       }

@@ -178,10 +178,10 @@ test('a single glowing trail travels, changes wires and pauses offscreen', () =>
     const first = trail.getAttribute('d');
     assert.ok(first.length > 20);
     assert.equal(first, halo.getAttribute('d'));
-    p.advance(6000);
+    p.advance(30000);
     assert.notEqual(trail.getAttribute('d'), first);
     const running = trail.getAttribute('d');
-    p.intersect(false); p.advance(12000);
+    p.intersect(false); p.advance(34000);
     assert.equal(trail.getAttribute('d'), running);
   } finally { p.close(); }
 });
