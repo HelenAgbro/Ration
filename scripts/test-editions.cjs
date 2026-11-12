@@ -130,16 +130,16 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
 });
 
 
-test('globe rotates on hover and drag, reveals apps, and supports keyboard reset', () => {
+test('globe has no icons, rotates on hover and drag, and supports keyboard reset', () => {
   const p = page({observer: true});
   try {
     const section = p.d.querySelector('.assurance');
     const globe = p.d.querySelector('.assurance-globe');
     assert.equal(p.d.querySelector('.assurance-vault'), null);
-    const nodes = [...p.d.querySelectorAll('.assurance-app')];
-    assert.equal(nodes.length, 8);
+    assert.equal(globe.querySelectorAll('use, text, .assurance-app').length, 0);
+    const nodes = [...globe.querySelectorAll('.assurance-mote')];
+    assert.equal(nodes.length, 18);
     const before = nodes.map(n => n.getAttribute('transform'));
-    const opacity = nodes.map(n => n.style.opacity);
     p.intersect(true);
     assert.equal(section.classList.contains('has-entered'), true);
     function pointer(type, x, y) {
@@ -154,7 +154,7 @@ test('globe rotates on hover and drag, reveals apps, and supports keyboard reset
     pointer('pointermove', 380, 150);
     pointer('pointerup', 380, 150);
     assert.equal(globe.classList.contains('is-dragging'), false);
-    assert.ok(nodes.some((n,i) => (Number(n.style.opacity) > .6) !== (Number(opacity[i]) > .6)), 'Turning must reveal previously distant icons');
+    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
     const turned = nodes.map(n => n.getAttribute('transform'));
     pointer('pointerleave', 380, 150);
     assert.deepEqual(nodes.map(n => n.getAttribute('transform')), turned, 'Rotation persists on leave');
@@ -190,7 +190,7 @@ test('reduced motion stops automatic light and hover but permits intentional key
   const p = page({reduced: true});
   try {
     const globe = p.d.querySelector('.assurance-globe');
-    const node = p.d.querySelector('.assurance-app');
+    const node = p.d.querySelector('.assurance-mote');
     const before = node.getAttribute('transform');
     globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:100,clientY:100}));
     globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:200,clientY:200})); p.flush();
@@ -199,5 +199,21 @@ test('reduced motion stops automatic light and hover but permits intentional key
     assert.equal(p.d.querySelector('.assurance-trail').getAttribute('d'), '');
     globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
     assert.notEqual(node.getAttribute('transform'), before);
+  } finally { p.close(); }
+});
+
+
+test('subtle motes shimmer in view and remain quiet offscreen', () => {
+  const p = page({observer: true});
+  try {
+    const nodes = [...p.d.querySelectorAll('.assurance-mote')];
+    p.intersect(true); p.advance(1000);
+    const before = nodes.map(n => n.style.opacity);
+    p.advance(9000);
+    assert.notDeepEqual(nodes.map(n => n.style.opacity), before);
+    assert.ok(nodes.every(n => Number(n.style.opacity) < .6));
+    const after = nodes.map(n => n.style.opacity);
+    p.intersect(false); p.advance(15000);
+    assert.deepEqual(nodes.map(n => n.style.opacity), after);
   } finally { p.close(); }
 });

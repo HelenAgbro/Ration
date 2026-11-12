@@ -1188,65 +1188,45 @@
         <div class="assurance-panels">
           <article class="assurance-panel assurance-sovereignty">
             <div class="assurance-art">
-              <div class="assurance-globe" tabindex="0" role="group" aria-label="Interactive globe: Mail, Chat, Meet, Calendar, Contacts, Tasks, Notes and Forms" aria-describedby="globe-help">
+              <div class="assurance-globe" tabindex="0" role="group" aria-label="Interactive glowing globe" aria-describedby="globe-help">
                 <svg viewBox="110 0 300 300" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
                   <defs>
-                    <radialGradient id="assurance-glow"><stop stop-color="#5599BB" stop-opacity=".16"/><stop offset="1" stop-color="#5599BB" stop-opacity="0"/></radialGradient>
+                    <radialGradient id="assurance-glow"><stop stop-color="#5599BB" stop-opacity=".22"/><stop offset="1" stop-color="#5599BB" stop-opacity="0"/></radialGradient>
+                    <radialGradient id="assurance-warm-glow"><stop stop-color="#FFCE8B" stop-opacity=".08"/><stop offset="1" stop-color="#FFCE8B" stop-opacity="0"/></radialGradient>
                     <linearGradient id="assurance-trail-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FFB343" stop-opacity="0"/><stop offset=".55" stop-color="#FFCC80" stop-opacity=".2"/><stop offset="1" stop-color="#FFE2B5" stop-opacity=".85"/></linearGradient>
                     <filter id="assurance-trail-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.8"/></filter>
                   </defs>
-                  <ellipse cx="260" cy="150" rx="170" ry="140" fill="url(#assurance-glow)"/>
+                  <ellipse class="assurance-ambient" cx="260" cy="150" rx="170" ry="140" fill="url(#assurance-glow)"/>
+                  <ellipse class="assurance-ambient-warm" cx="300" cy="115" rx="120" ry="110" fill="url(#assurance-warm-glow)"/>
                   <circle cx="260" cy="150" r="120" stroke="#81B1C8" stroke-opacity=".25"/>
                   <path class="assurance-mesh-back" d="M140 150h240M260 30v240"/>
                   <path class="assurance-mesh-front" d="M140 150a120 45 0 1 0 240 0 120 45 0 1 0-240 0"/>
                   <path class="assurance-trail-halo" filter="url(#assurance-trail-glow)"/>
                   <path class="assurance-trail"/>
-                  <g class="assurance-apps">
-                  <g class="assurance-app" data-app="Mail" transform="translate(365.0 150.0)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-mail" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Mail</text>
-                  </g>
-                  <g class="assurance-app" data-app="Chat" transform="translate(334.2 224.2)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-chat" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Chat</text>
-                  </g>
-                  <g class="assurance-app" data-app="Meet" transform="translate(260.0 255.0)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-meet" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Meet</text>
-                  </g>
-                  <g class="assurance-app" data-app="Calendar" transform="translate(185.8 224.2)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-calendar" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Calendar</text>
-                  </g>
-                  <g class="assurance-app" data-app="Contacts" transform="translate(155.0 150.0)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-contacts" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Contacts</text>
-                  </g>
-                  <g class="assurance-app" data-app="Tasks" transform="translate(185.8 75.8)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-tasks" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Tasks</text>
-                  </g>
-                  <g class="assurance-app" data-app="Notes" transform="translate(260.0 45.0)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-notes" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Notes</text>
-                  </g>
-                  <g class="assurance-app" data-app="Forms" transform="translate(334.2 75.8)">
-                    <rect x="-19" y="-19" width="38" height="38" rx="11"/>
-                    <use class="icon" href="#i-forms" x="-10" y="-10" width="20" height="20"/>
-                    <text y="35" text-anchor="middle">Forms</text>
-                  </g>
+                  <g class="assurance-motes">
+                    <g class="assurance-mote" transform="translate(360.0 150.0)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(186.3 217.5)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(268.7 50.4)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
+                    <g class="assurance-mote" transform="translate(320.8 229.4)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(161.5 132.6)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(344.4 96.3)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
+                    <g class="assurance-mote" transform="translate(234.0 246.6)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(213.9 61.2)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(353.9 184.3)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
+                    <g class="assurance-mote" transform="translate(167.6 188.1)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(302.4 59.4)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(289.9 245.4)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
+                    <g class="assurance-mote" transform="translate(173.5 99.8)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(357.7 128.6)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(202.4 231.8)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
+                    <g class="assurance-mote" transform="translate(247.2 50.8)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.55"/></g>
+                    <g class="assurance-mote" transform="translate(336.4 214.5)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.75"/></g>
+                    <g class="assurance-mote" transform="translate(160.1 154.1)"><circle class="assurance-mote-halo" r="3.5"/><circle class="assurance-mote-core" r="0.95"/></g>
                   </g>
                 </svg>
               </div>
               <span class="assurance-globe-hint" aria-hidden="true">Drag to explore</span>
-              <span class="sr-only" id="globe-help">Move your mouse or drag to turn the globe and discover eight apps. Use arrow keys to rotate, or Home to reset.</span>
+              <span class="sr-only" id="globe-help">Move your mouse or drag to turn the glowing globe. Use arrow keys to rotate, or Home to reset.</span>
             </div>
             <div class="assurance-panel-copy">
               <p class="assurance-label">Your workspace. Your rules.</p>

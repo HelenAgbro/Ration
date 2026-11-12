@@ -1018,13 +1018,14 @@
     configure();
   }
 
-  /* A projected app globe: direct rotation and one travelling light at a time. */
+  /* A glowing globe: direct rotation, quiet motes and one travelling light. */
   function initAssuranceMotion() {
     var section = $('.assurance');
     var globe = $('.assurance-globe');
     if (!section || !globe) return;
-    var nodes = $$('.assurance-app', globe);
-    var nodeLayer = $('.assurance-apps', globe);
+    var nodes = $$('.assurance-mote', globe);
+    var coolGlow = $('.assurance-ambient', globe);
+    var warmGlow = $('.assurance-ambient-warm', globe);
     var front = $('.assurance-mesh-front', globe);
     var back = $('.assurance-mesh-back', globe);
     var trail = $('.assurance-trail', globe);
@@ -1035,7 +1036,7 @@
     var frame = 0, lastTime = null, elapsed = 0, dirty = true;
     var dragging = false, pointerId = null, lastPoint = null;
     var curves = [];
-    // Latitude and longitude circles share the same sphere as the app icons.
+    // Project the wireframe and quiet points of light onto the same sphere.
     [-60, -30, 0, 30, 60].forEach(function (degrees) {
       var lat = degrees * Math.PI / 180;
       var points = [];
@@ -1054,11 +1055,11 @@
       }
       curves.push(points);
     }
-    var apps = nodes.map(function (node, i) {
+    var motes = nodes.map(function (node, i) {
       var y = 1 - 2 * (i + .5) / nodes.length;
       var radius = Math.sqrt(1 - y * y);
       var angle = i * Math.PI * (3 - Math.sqrt(5));
-      return { node: node, point: [radius * Math.cos(angle), y, radius * Math.sin(angle)] };
+      return { node: node, phase: i * 1.7, point: [radius * Math.cos(angle), y, radius * Math.sin(angle)] };
     });
     function project(point) {
       var x = point[0] * Math.cos(yaw) + point[2] * Math.sin(yaw);
@@ -1081,16 +1082,19 @@
       });
       back.setAttribute('d', paths[0]);
       front.setAttribute('d', paths[1]);
-      apps.map(function (app) {
-        return { node: app.node, projected: project(app.point) };
-      }).sort(function (a, b) { return a.projected.z - b.projected.z; }).forEach(function (app) {
-        var p = app.projected;
-        app.node.setAttribute('transform', 'translate(' + coord(p) + ') scale(' + (.84 + p.z * .18).toFixed(3) + ')');
-        app.node.style.opacity = (.57 + p.z * .4).toFixed(3);
-        $('text', app.node).style.opacity = p.z > -.1 ? '1' : '0';
-        nodeLayer.appendChild(app.node);
-      });
       dirty = false;
+    }
+    function renderMotes() {
+      var time = reduceQuery.matches ? 0 : elapsed;
+      motes.forEach(function (mote) {
+        var p = project(mote.point);
+        var twinkle = .55 + .2 * Math.sin(time / 3200 + mote.phase);
+        var depth = .48 + p.z * .28;
+        mote.node.setAttribute('transform', 'translate(' + coord(p) + ')');
+        mote.node.style.opacity = (twinkle * depth).toFixed(3);
+      });
+      coolGlow.style.opacity = (.78 + .12 * Math.sin(time / 6000)).toFixed(3);
+      warmGlow.style.opacity = (.65 + .12 * Math.sin(time / 7200 + 1)).toFixed(3);
     }
     function renderTrail() {
       var d = '';
@@ -1124,6 +1128,7 @@
         lastTime = time;
       } else lastTime = null;
       if (dirty) renderMesh();
+      renderMotes();
       renderTrail();
       if (active && !doc.hidden && !reduceQuery.matches) schedule();
     }
@@ -1184,6 +1189,7 @@
     doc.addEventListener('visibilitychange', updateActivity);
     reduceQuery.addEventListener('change', updateActivity);
     renderMesh();
+    renderMotes();
     schedule();
   }
 

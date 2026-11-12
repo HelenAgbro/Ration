@@ -1418,9 +1418,10 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .assurance-globe svg > circle { stroke-width: .45; stroke-opacity: .16; }
 .assurance-mesh-back { stroke-opacity: .09; }
 .assurance-mesh-front { stroke-opacity: .24; }
-.assurance-app rect { fill: #0A354A; stroke: #6098B1; stroke-opacity: .8; }
-.assurance-app .icon { color: #D5E8F1; width: 20px; height: 20px; }
-.assurance-app text { fill: #C9DEE8; font-family: var(--font); font-size: 10px; }
+.assurance-mote { fill: #B6D8E7; }
+.assurance-mote:nth-child(3n) { fill: #FFE0AF; }
+.assurance-mote-halo { opacity: .09; }
+.assurance-mote-core { opacity: .8; }
 .assurance-trail, .assurance-trail-halo { stroke: url(#assurance-trail-gradient); stroke-linecap: round; stroke-linejoin: round; }
 .assurance-trail { stroke-width: .55; opacity: .65; }
 .assurance-trail-halo { stroke-width: 1.8; opacity: .35; }
