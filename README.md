@@ -116,5 +116,5 @@ Copy is based on the live ration.works site and the supplied design direction. P
 screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms captures. The
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
 
-The editorial infrastructure background (`assets/img/story-infrastructure.webp`) is from
-[Unsplash](https://images.unsplash.com/photo-1558494949-ef010cbdcc31); the other editorial backgrounds reuse the supplied team photos.
+The security and collaboration spread after Pricing pairs a Ration security graphic with
+the supplied team meeting photo. It uses product statements rather than customer testimonials.

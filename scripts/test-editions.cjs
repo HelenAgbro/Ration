@@ -110,7 +110,8 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
   const dom = new JSDOM(html);
   const d = dom.window.document;
   try {
-    assert.equal(d.querySelectorAll('#stories .story').length, 3);
+    assert.equal(d.querySelectorAll('#stories .assurance-panel').length, 2);
+    assert.equal(d.querySelectorAll('#stories .story').length, 0);
     assert.equal(d.querySelector('#stories').previousElementSibling.id, 'pricing');
     assert.equal(d.querySelector('#stories').nextElementSibling.id, 'faq');
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
