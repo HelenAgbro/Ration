@@ -117,4 +117,4 @@ screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms c
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
 
 The security and collaboration spread after Pricing pairs a Ration security graphic with
-the supplied team meeting photo. It uses product statements rather than customer testimonials.
+the supplied conference meeting photo, served as an optimised WebP. It uses product statements rather than customer testimonials.
