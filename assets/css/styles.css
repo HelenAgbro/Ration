@@ -2511,7 +2511,7 @@ html.reduce-motion .apps-hud { display: none; }
 }
 .cta-panel > .cta-canvas { z-index: 0; }
 .cta-panel > .cta-scrim, .cta-panel > .cta-grain, .cta-panel > .spotlight { z-index: 1; }
-.cta-panel > *:not(.cta-canvas):not(.cta-scrim):not(.cta-grain):not(.spotlight):not(.cta-rings) { position: relative; z-index: 2; }
+.cta-panel > *:not(.cta-canvas):not(.cta-scrim):not(.cta-grain):not(.spotlight):not(.cta-rings):not(.cta-edge-pattern) { position: relative; z-index: 2; }
 .cta-stats {
   display: flex;
   flex-wrap: wrap;
@@ -2756,3 +2756,49 @@ html.reduce-motion .apps-hud { display: none; }
 .deploy:not(.is-enhanced) .deploy-progress, .deploy:not(.is-enhanced) .deploy-hint { display: none; }
 .deploy:not(.is-enhanced) .deploy-slider { display: flex; flex-direction: column; gap: 24px; }
 .deploy:not(.is-enhanced) .deploy-slide { opacity: 1; visibility: visible; pointer-events: auto; }
+
+/* Regional infrastructure: editorial copy beside the map. */
+.cloud-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(36px, 5vw, 80px); }
+.cloud-content { min-width: 0; }
+.cloud-content .cloud-intro { text-align: left; margin-bottom: 32px; }
+.cloud-content .cloud-intro-top { justify-content: flex-start; gap: 14px; }
+.cloud-content .cloud-reveal { margin: 0 0 22px; }
+.cloud-content .cloud-title, .cloud-content .cloud-title-reveal { font-size: clamp(2.3rem, 3.8vw, 3.6rem); text-align: left; line-height: 1.06; }
+.cloud-content .cloud-title br, .cloud-content .cloud-title-reveal br { display: none; }
+.cloud-content .cloud-lede { text-align: left; margin: 0; font-size: 14px; }
+.cloud-content .cloud-intro-meta { justify-content: flex-start; gap: 24px; margin-top: 22px; }
+.cloud-layout .cloud-stage { width: 100%; margin: 0; min-width: 0; }
+.cloud-content .region-list { grid-template-columns: 1fr; gap: 0; margin: 0; border-top: 1px solid rgba(255,255,255,.15); }
+.cloud-content .region-row { display: flex; flex-direction: row; align-items: center; gap: 16px; min-height: 0; padding: 14px 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.12); border-radius: 0; background: transparent; }
+.cloud-content .region-row:hover, .cloud-content .region-row.is-active { padding-left: 10px; background: rgba(255,255,255,.04); transform: none; }
+.cloud-content .region-name { flex: 1; }
+.cloud-content .region-name b { font-size: 15px; }
+.cloud-content .region-status { margin: 0; }
+.cloud-content .cloud-foot { grid-template-columns: 1fr; gap: 18px; border: 0; margin-top: 26px; padding-top: 0; }
+.cloud-content .cloud-foot-block p { max-width: none; }
+.cloud-content .cloud-foot-block .link-arrow { margin-top: 6px; }
+
+/* A continuous closing section, from the invitation through the footer. */
+.cta { padding: 0; background: #001E2D; }
+.cta > .container { width: 100%; max-width: none; padding: 0; }
+.cta-panel { padding: clamp(90px, 10vw, 150px) 24px 90px; border-radius: 0; background: #001E2D; }
+.cta-panel::after { background: radial-gradient(ellipse at 50% 0%, rgba(67,133,159,.13), transparent 65%); }
+.cta-title { max-width: 800px; font-size: clamp(2.5rem, 5vw, 4.6rem); }
+.cta-copy { margin-top: 24px; }
+.cta-actions { margin-top: 32px; }
+.cta-panel > .cta-edge-pattern { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-image: radial-gradient(circle, rgba(143,175,189,.28) 1.3px, transparent 1.6px); background-size: 10px 10px; mask-image: linear-gradient(90deg, #000, transparent 15%, transparent 85%, #000), linear-gradient(0deg, transparent, #000); mask-composite: intersect; }
+.footer { border-top: 1px solid rgba(255,255,255,.13); padding-top: 58px; }
+@media (max-width: 900px) {
+  .cloud-layout { grid-template-columns: 1fr; gap: 40px; }
+  .cloud-layout .cloud-stage { max-width: 580px; }
+  .cloud-content .cloud-title, .cloud-content .cloud-title-reveal { font-size: clamp(2.3rem, 6vw, 3.8rem); }
+  .cloud-content .cloud-lede { max-width: 640px; }
+  .cta-panel { padding: 80px 24px 64px; }
+}
+@media (max-width: 560px) {
+  .cloud { padding-block: 64px; }
+  .cloud-content .cloud-intro-top { align-items: flex-start; }
+  .cloud-content .cloud-intro-meta { gap: 20px; }
+  .cta-title { font-size: clamp(2.4rem, 10vw, 3rem); }
+  .cta-meta { max-width: 280px; margin-inline: auto; line-height: 1.7; }
+}

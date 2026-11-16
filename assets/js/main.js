@@ -818,50 +818,6 @@
       });
     }
 
-    var cloudStage = $('[data-cloud-stage]');
-    if (cloudStage) {
-      var doodleFx = $$('.doodle', cloudStage).map(function (d) {
-        return {
-          el: d,
-          x: gsap.quickTo(d, 'x', { duration: .55, ease: 'power3.out' }),
-          y: gsap.quickTo(d, 'y', { duration: .55, ease: 'power3.out' }),
-          r: gsap.quickTo(d, 'rotation', { duration: .55, ease: 'power3.out' })
-        };
-      });
-      gsap.from(doodleFx.map(function (fx) { return fx.el; }), {
-        autoAlpha: 0,
-        scale: .42,
-        y: 18,
-        transformOrigin: '50% 60%',
-        duration: .55,
-        stagger: .09,
-        ease: 'back.out(1.8)',
-        scrollTrigger: { trigger: cloudStage, start: 'top 74%', once: true }
-      });
-
-      cloudStage.addEventListener('pointermove', function (event) {
-        var sr = cloudStage.getBoundingClientRect();
-        doodleFx.forEach(function (fx) {
-          var baseX = sr.left + fx.el.offsetLeft + fx.el.offsetWidth / 2;
-          var baseY = sr.top + fx.el.offsetTop + fx.el.offsetHeight / 2;
-          var dx = baseX - event.clientX;
-          var dy = baseY - event.clientY;
-          var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (dist < 180) {
-            var force = 1 - dist / 180;
-            fx.x(dx / dist * force * 16);
-            fx.y(dy / dist * force * 16);
-            fx.r((dx > 0 ? 1 : -1) * force * 4);
-          } else {
-            fx.x(0); fx.y(0); fx.r(0);
-          }
-        });
-      });
-      cloudStage.addEventListener('pointerleave', function () {
-        doodleFx.forEach(function (fx) { fx.x(0); fx.y(0); fx.r(0); });
-      });
-    }
-
     var cursorRing = $('[data-cursor-ring]');
     if (cursorRing) {
       var cx = gsap.quickTo(cursorRing, 'x', { duration: .35, ease: 'power3.out' });
