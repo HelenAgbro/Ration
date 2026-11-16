@@ -425,18 +425,64 @@
     gsap.to(marquee, { xPercent: -50, duration: 36, ease: 'none', repeat: -1 });
   }
 
-  /* Eight apps follow the normal document flow on every screen size. */
-  if (hasMotion && !prefersReduced) {
-    $$('[data-app-panel]').forEach(function (panel) {
-      gsap.from(panel.querySelectorAll('.anim-item'), {
-        y: 22,
-        autoAlpha: 0,
-        duration: .65,
-        stagger: .045,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: panel, start: 'top 80%', once: true }
+  /* Eight apps: horizontal panels controlled by tabs, keyboard or swipe. */
+  var appsSection = $('.apps-stage');
+  if (appsSection) {
+    var appsViewport = $('.apps-viewport', appsSection);
+    var moduleTabs = $$('[data-module-tab]', appsSection);
+    var modulePanels = $$('[data-app-panel]', appsSection);
+    var moduleIndex = 0;
+    function activateModule(index) {
+      moduleIndex = index;
+      moduleTabs.forEach(function (tab, i) {
+        var active = i === index;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        modulePanels[i].inert = !active;
+        modulePanels[i].setAttribute('aria-hidden', String(!active));
+      });
+      var tab = moduleTabs[index];
+      var bar = tab.parentElement;
+      bar.scrollLeft = Math.max(0, tab.offsetLeft - bar.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2);
+    }
+    function selectModule(index, focus) {
+      activateModule(index);
+      var left = index * appsViewport.clientWidth;
+      if (typeof appsViewport.scrollTo === 'function') appsViewport.scrollTo({ left: left, behavior: reduceQuery.matches ? 'instant' : 'smooth' });
+      else appsViewport.scrollLeft = left;
+      if (focus) moduleTabs[index].focus({ preventScroll: true });
+    }
+    modulePanels.forEach(function (panel, i) {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', moduleTabs[i].id);
+      panel.tabIndex = 0;
+    });
+    moduleTabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectModule(i, false); });
+      tab.addEventListener('keydown', function (event) {
+        var next = i;
+        if (event.key === 'ArrowRight') next = (i + 1) % moduleTabs.length;
+        else if (event.key === 'ArrowLeft') next = (i + moduleTabs.length - 1) % moduleTabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = moduleTabs.length - 1;
+        else return;
+        event.preventDefault();
+        selectModule(next, true);
       });
     });
+    var moduleFrame = 0;
+    appsViewport.addEventListener('scroll', function () {
+      if (moduleFrame) return;
+      moduleFrame = requestAnimationFrame(function () {
+        moduleFrame = 0;
+        var index = Math.round(appsViewport.scrollLeft / appsViewport.clientWidth);
+        if (index >= 0 && index < modulePanels.length && index !== moduleIndex) activateModule(index);
+      });
+    }, { passive: true });
+    window.addEventListener('resize', function () { appsViewport.scrollLeft = moduleIndex * appsViewport.clientWidth; });
+    $('.apps-navigation', appsSection).hidden = false;
+    appsSection.classList.add('is-tabbed');
+    activateModule(0);
   }
 
   /* -----------------------------------------------------------------------

@@ -2737,3 +2737,29 @@ html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
   .cta-title { font-size: clamp(2.4rem, 10vw, 3rem); }
   .cta-meta { max-width: 280px; margin-inline: auto; line-height: 1.7; }
 }
+
+/* Module tabs keep all eight app cards in one horizontal row. */
+.apps-navigation { background: #fff; border-block: 1px solid var(--line); padding-block: 18px; }
+.apps-navigation[hidden] { display: none; }
+.apps-tabs { position: relative; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; padding: 4px; }
+.apps-tabs button { flex: 1 0 auto; display: flex; justify-content: center; align-items: center; gap: 9px; padding: 13px 18px; border: 1px solid transparent; border-radius: 10px; color: var(--body); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.apps-tabs button .icon { width: 17px; height: 17px; }
+.apps-tabs button:hover { background: var(--bg-soft); color: var(--navy); }
+.apps-tabs button[aria-selected="true"] { background: var(--navy); color: #fff; }
+.apps-tabs button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.apps-stage.is-tabbed { padding: 0; background: #fff; }
+.apps-stage.is-tabbed .apps-viewport { overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.apps-stage.is-tabbed .apps-viewport::-webkit-scrollbar { display: none; }
+.apps-stage.is-tabbed .apps-track { display: flex; width: 100%; height: auto; transform: none; }
+.apps-stage.is-tabbed .app-panel { flex: 0 0 100%; width: 100%; min-width: 0; height: auto; margin: 0; scroll-snap-align: start; }
+.apps-stage.is-tabbed .app-panel:focus-visible { outline: 2px solid var(--blue); outline-offset: -4px; }
+@media (max-width: 1024px) {
+  .apps-navigation { padding-block: 12px; }
+  .apps-stage.is-tabbed .app-panel { padding-block: 18px; }
+}
+.apps-stage.is-tabbed .app-panel { padding-block: 32px; background: #fff; }
+.apps-stage.is-tabbed .app-panel-inner { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); width: min(var(--container), 100% - 48px); padding: clamp(28px, 4vw, 52px); border: 1px solid rgba(0, 43, 64, .06); border-radius: 22px; background: linear-gradient(150deg, var(--tint-soft), var(--tint)); overflow: hidden; }
+@media (max-width: 1024px) {
+  .apps-stage.is-tabbed .app-panel { padding-block: 18px; }
+  .apps-stage.is-tabbed .app-panel-inner { display: flex; flex-direction: column; width: min(var(--container), 100% - 32px); padding: clamp(24px, 4vw, 40px); }
+}

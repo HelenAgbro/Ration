@@ -350,10 +350,24 @@
     </section>
 
     <section class="apps-stage" id="apps-stage" aria-label="The eight Ration apps">
+      <div class="apps-navigation" hidden>
+        <div class="container">
+          <div class="apps-tabs" role="tablist" aria-label="Choose a Ration module">
+            <button type="button" id="module-tab-mail" role="tab" aria-controls="module-mail" aria-selected="true" tabindex="0" data-module-tab="mail"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>Mail</button>
+            <button type="button" id="module-tab-chat" role="tab" aria-controls="module-chat" aria-selected="false" tabindex="-1" data-module-tab="chat"><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg>Chat</button>
+            <button type="button" id="module-tab-meet" role="tab" aria-controls="module-meet" aria-selected="false" tabindex="-1" data-module-tab="meet"><svg class="icon" aria-hidden="true"><use href="#i-meet"></use></svg>Meet</button>
+            <button type="button" id="module-tab-calendar" role="tab" aria-controls="module-calendar" aria-selected="false" tabindex="-1" data-module-tab="calendar"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Calendar</button>
+            <button type="button" id="module-tab-contacts" role="tab" aria-controls="module-contacts" aria-selected="false" tabindex="-1" data-module-tab="contacts"><svg class="icon" aria-hidden="true"><use href="#i-contacts"></use></svg>Contacts</button>
+            <button type="button" id="module-tab-tasks" role="tab" aria-controls="module-tasks" aria-selected="false" tabindex="-1" data-module-tab="tasks"><svg class="icon" aria-hidden="true"><use href="#i-tasks"></use></svg>Tasks</button>
+            <button type="button" id="module-tab-notes" role="tab" aria-controls="module-notes" aria-selected="false" tabindex="-1" data-module-tab="notes"><svg class="icon" aria-hidden="true"><use href="#i-notes"></use></svg>Notes</button>
+            <button type="button" id="module-tab-forms" role="tab" aria-controls="module-forms" aria-selected="false" tabindex="-1" data-module-tab="forms"><svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg>Forms</button>
+          </div>
+        </div>
+      </div>
       <div class="apps-viewport">
         <div class="apps-track" data-apps-track>
 
-          <article class="app-panel" data-app-panel data-app="mail" style="--tint:#DDEBF4;--tint-soft:#F3F9FC;--accent:#006699">
+          <article class="app-panel" id="module-mail" data-app-panel data-app="mail" style="--tint:#DDEBF4;--tint-soft:#F3F9FC;--accent:#006699">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -403,7 +417,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="chat" style="--tint:#DCEDE7;--tint-soft:#F2F9F6;--accent:#0F766E">
+          <article class="app-panel" id="module-chat" data-app-panel data-app="chat" style="--tint:#DCEDE7;--tint-soft:#F2F9F6;--accent:#0F766E">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -444,7 +458,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="meet" style="--tint:#E6E1F4;--tint-soft:#F7F5FC;--accent:#5B4B9E">
+          <article class="app-panel" id="module-meet" data-app-panel data-app="meet" style="--tint:#E6E1F4;--tint-soft:#F7F5FC;--accent:#5B4B9E">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -487,7 +501,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="calendar" style="--tint:#F7E9D5;--tint-soft:#FCF7EF;--accent:#8A560E">
+          <article class="app-panel" id="module-calendar" data-app-panel data-app="calendar" style="--tint:#F7E9D5;--tint-soft:#FCF7EF;--accent:#8A560E">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -540,7 +554,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="contacts" style="--tint:#DDEDEE;--tint-soft:#F3F9F9;--accent:#0B5E66">
+          <article class="app-panel" id="module-contacts" data-app-panel data-app="contacts" style="--tint:#DDEDEE;--tint-soft:#F3F9F9;--accent:#0B5E66">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -584,7 +598,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="tasks" style="--tint:#F5E2E0;--tint-soft:#FBF5F4;--accent:#8C332B">
+          <article class="app-panel" id="module-tasks" data-app-panel data-app="tasks" style="--tint:#F5E2E0;--tint-soft:#FBF5F4;--accent:#8C332B">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -632,7 +646,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="notes" style="--tint:#E8E3F3;--tint-soft:#F7F5FB;--accent:#6A4C93">
+          <article class="app-panel" id="module-notes" data-app-panel data-app="notes" style="--tint:#E8E3F3;--tint-soft:#F7F5FB;--accent:#6A4C93">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
@@ -677,7 +691,7 @@
             </div>
           </article>
 
-          <article class="app-panel" data-app-panel data-app="forms" style="--tint:#DEE8F4;--tint-soft:#F3F8FC;--accent:#1D4E89">
+          <article class="app-panel" id="module-forms" data-app-panel data-app="forms" style="--tint:#DEE8F4;--tint-soft:#F3F8FC;--accent:#1D4E89">
             <div class="app-panel-inner">
               <div class="app-panel-copy">
                 <div class="app-panel-meta">
