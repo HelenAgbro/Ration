@@ -425,110 +425,16 @@
     gsap.to(marquee, { xPercent: -50, duration: 36, ease: 'none', repeat: -1 });
   }
 
-  /* -----------------------------------------------------------------------
-     Eight apps — horizontal scroll on desktop, stacked reveals on mobile
-     -------------------------------------------------------------------- */
-  var stage = $('.apps-stage');
-  var track = $('[data-apps-track]');
-  var panels = $$('[data-app-panel]');
-  var hudName = $('[data-hud-name]');
-  var hudIndex = $('[data-hud-index]');
-  var hudBar = $('[data-hud-bar]');
-  var activePanel = -1;
-
-  function panelItems(panel) {
-    return panel ? panel.querySelectorAll('.anim-item') : [];
-  }
-
-  function animatePanel(panel) {
-    var items = panelItems(panel);
-    if (!items.length) return;
-    gsap.killTweensOf(items);
-    gsap.fromTo(items,
-      { y: 16, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, duration: .65, stagger: .045, ease: 'power2.out', overwrite: true }
-    );
-  }
-
-  function setActivePanel(index, animate) {
-    if (!panels.length) return;
-    index = clamp(index, 0, panels.length - 1);
-    if (index === activePanel) return;
-
-    if (activePanel > -1 && animate) {
-      gsap.set(panelItems(panels[activePanel]), { autoAlpha: 0, y: 14 });
-    }
-    activePanel = index;
-
-    panels.forEach(function (item, i) {
-      if (i === index) {
-        item.removeAttribute('inert');
-        item.removeAttribute('aria-hidden');
-      } else {
-        item.setAttribute('inert', '');
-        item.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    var panel = panels[index];
-    var label = panel.querySelector('.app-label');
-    var accent = window.getComputedStyle(panel).getPropertyValue('--accent').trim();
-    if (hudName && label) hudName.textContent = label.textContent;
-    if (hudIndex) hudIndex.textContent = pad(index + 1);
-    if (hudBar && accent) hudBar.style.background = accent;
-    if (animate) animatePanel(panel);
-  }
-
-  if (stage && track && panels.length && hasMotion && !prefersReduced) {
-    var desktop = gsap.matchMedia();
-
-    desktop.add('(min-width: 1025px)', function () {
-      setActivePanel(0, false);
-      gsap.set(panelItems(panels[0]), { autoAlpha: 1, y: 0 });
-
-      var getAmount = function () { return (panels.length - 1) * window.innerWidth; };
-      var slideTween = gsap.to(track, {
-        x: function () { return -getAmount(); },
-        ease: 'none'
-      });
-
-      var trigger = ScrollTrigger.create({
-        trigger: stage,
-        start: 'top top',
-        end: function () { return '+=' + getAmount(); },
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        animation: slideTween,
-        onUpdate: function (self) {
-          var index = Math.round(self.progress * (panels.length - 1));
-          setActivePanel(index, true);
-          if (hudBar) gsap.set(hudBar, { width: (self.progress * 100) + '%' });
-        }
-      });
-
-      return function () {
-        trigger.kill();
-        slideTween.kill();
-        gsap.set(track, { clearProps: 'transform' });
-        panels.forEach(function (panel) { panel.removeAttribute('inert'); panel.removeAttribute('aria-hidden'); gsap.set(panelItems(panel), { clearProps: 'opacity,visibility,transform' }); });
-      };
-    });
-
-    desktop.add('(max-width: 1024px)', function () {
-      panels.forEach(function (panel) {
-        panel.removeAttribute('inert');
-        panel.removeAttribute('aria-hidden');
-        gsap.set(panelItems(panel), { clearProps: 'opacity,visibility,transform' });
-        gsap.from(panelItems(panel), {
-          y: 22,
-          autoAlpha: 0,
-          duration: .65,
-          stagger: .045,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: panel, start: 'top 80%' }
-        });
+  /* Eight apps follow the normal document flow on every screen size. */
+  if (hasMotion && !prefersReduced) {
+    $$('[data-app-panel]').forEach(function (panel) {
+      gsap.from(panel.querySelectorAll('.anim-item'), {
+        y: 22,
+        autoAlpha: 0,
+        duration: .65,
+        stagger: .045,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: panel, start: 'top 80%', once: true }
       });
     });
   }

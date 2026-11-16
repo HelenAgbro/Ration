@@ -755,27 +755,26 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 }
 
 /* ==========================================================================
-   Apps stage — pinned horizontal panels
+   Apps stage — normal vertical document flow
    ========================================================================== */
 .apps-stage {
   position: relative;
-  height: 100vh;
-  min-height: 660px;
+  height: auto;
+  min-height: 0;
   overflow: hidden;
   background: var(--navy);
   isolation: isolate;
 }
-.apps-viewport { position: absolute; inset: 0; overflow: hidden; }
-.apps-track { display: flex; height: 100%; width: max-content; will-change: transform; }
+.apps-viewport { position: static; }
+.apps-track { display: block; height: auto; width: 100%; }
 
 .app-panel {
   position: relative;
-  flex: 0 0 100vw;
-  width: 100vw;
-  height: 100%;
+  width: 100%;
+  height: auto;
   display: flex;
   align-items: center;
-  padding: calc(var(--nav-h) + 24px) 0 82px;
+  padding: clamp(56px, 6vw, 88px) 0;
   background:
     radial-gradient(60vw 60vw at 86% 24%, var(--tint) 0%, transparent 68%),
     linear-gradient(145deg, var(--tint-soft) 0%, var(--tint) 100%);
@@ -859,30 +858,6 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .95), rgba(255, 255, 255, .35) 55%, transparent 72%);
   opacity: .75;
 }
-
-/* HUD --------------------------------------------------------------------- */
-.apps-hud {
-  position: absolute;
-  inset: auto 0 0 0;
-  z-index: 6;
-  padding: 0 0 22px;
-  pointer-events: none;
-}
-.apps-hud-inner {
-  width: min(var(--container), 100% - 48px);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 11px;
-  color: rgba(0, 43, 64, .6);
-}
-.hud-current { min-width: 158px; font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
-.hud-track { flex: 1; height: 2px; border-radius: 2px; background: rgba(0, 43, 64, .15); overflow: hidden; }
-.hud-bar { display: block; width: 0; height: 100%; border-radius: 2px; background: var(--navy); }
-.hud-count { font-variant-numeric: tabular-nums; letter-spacing: .08em; }
-.hud-count b { color: var(--navy); }
-.hud-count span { opacity: .65; }
 
 /* ==========================================================================
    In-panel app mockups
@@ -1566,7 +1541,6 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   .app-panel-visual { min-height: 0; width: 100%; padding: 10px 0 18px; }
   .visual-disc { width: min(520px, 90%); }
   .ui-card { width: min(560px, 100%); margin-inline: auto; }
-  .apps-hud { display: none; }
 
   .section-head, .audience .section-head, .deploy .section-head, .cloud-head { grid-template-columns: 1fr; gap: 20px; }
   .section-lede, .cloud-lede { justify-self: start; max-width: 560px; }
@@ -1769,7 +1743,6 @@ html.reduce-motion .app-panel-inner { display: flex; flex-direction: column; gap
 html.reduce-motion .app-panel-copy { max-width: 620px; }
 html.reduce-motion .app-panel-visual { min-height: 0; width: 100%; padding: 10px 0 18px; }
 html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
-html.reduce-motion .apps-hud { display: none; }
 
 /* Small fixes ------------------------------------------------------------- */
 .word-mask { display: inline-block; overflow: hidden; padding-bottom: .08em; vertical-align: bottom; }
