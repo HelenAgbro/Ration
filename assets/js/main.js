@@ -1153,42 +1153,56 @@
     schedule();
   }
 
-  /* Workspace perspectives: manual tabs with keyboard navigation. */
+  /* Workspace perspectives: native swipe carousel with manual controls. */
   var roleSection = $('.workspace-roles');
   if (roleSection) {
-    var roleTabs = $$('.workspace-role-tabs [role="tab"]', roleSection);
-    var rolePanels = $$('.workspace-role-panel', roleSection);
-    function selectRole(index, focus) {
-      roleTabs.forEach(function (tab, i) {
-        var active = i === index;
-        tab.setAttribute('aria-selected', String(active));
-        tab.tabIndex = active ? 0 : -1;
-        rolePanels[i].hidden = !active;
-      });
-      if (focus) roleTabs[index].focus();
-      if (hasMotion) ScrollTrigger.refresh();
+    var roleTrack = $('.workspace-role-track', roleSection);
+    var roleSlides = $$('.workspace-role-slide', roleSection);
+    var roleDots = $$('[data-role-go]', roleSection);
+    var roleStatus = $('[data-role-status]', roleSection);
+    var roleIndex = 0;
+    function updateRole(index) {
+      roleIndex = index;
+      roleSlides.forEach(function (slide, i) { slide.classList.toggle('is-active', i === index); });
+      roleDots.forEach(function (dot, i) { dot.setAttribute('aria-pressed', String(i === index)); });
+      roleStatus.textContent = roleSlides[index].getAttribute('aria-label');
     }
-    rolePanels.forEach(function (panel, i) {
-      panel.setAttribute('role', 'tabpanel');
-      panel.setAttribute('aria-labelledby', roleTabs[i].id);
-      panel.tabIndex = 0;
-    });
-    roleTabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { selectRole(i, false); });
-      tab.addEventListener('keydown', function (event) {
-        var next = i;
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (i + 1) % roleTabs.length;
-        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (i + roleTabs.length - 1) % roleTabs.length;
-        else if (event.key === 'Home') next = 0;
-        else if (event.key === 'End') next = roleTabs.length - 1;
-        else return;
-        event.preventDefault();
-        selectRole(next, true);
+    function goToRole(index) {
+      index = (index + roleSlides.length) % roleSlides.length;
+      var slide = roleSlides[index];
+      roleTrack.scrollTo({ left: slide.offsetLeft - roleTrack.offsetLeft - (roleTrack.clientWidth - slide.offsetWidth) / 2, behavior: reduceQuery.matches ? 'instant' : 'smooth' });
+    }
+    var roleFrame = 0;
+    roleTrack.addEventListener('scroll', function () {
+      if (roleFrame) return;
+      roleFrame = requestAnimationFrame(function () {
+        roleFrame = 0;
+        var center = roleTrack.getBoundingClientRect().left + roleTrack.clientWidth / 2;
+        var nearest = 0, distance = Infinity;
+        roleSlides.forEach(function (slide, i) {
+          var r = slide.getBoundingClientRect();
+          var d = Math.abs(r.left + r.width / 2 - center);
+          if (d < distance) { distance = d; nearest = i; }
+        });
+        if (nearest !== roleIndex) updateRole(nearest);
       });
+    }, { passive: true });
+    $('[data-role-prev]', roleSection).addEventListener('click', function () { goToRole(roleIndex - 1); });
+    $('[data-role-next]', roleSection).addEventListener('click', function () { goToRole(roleIndex + 1); });
+    roleDots.forEach(function (dot, i) { dot.addEventListener('click', function () { goToRole(i); }); });
+    roleTrack.addEventListener('keydown', function (event) {
+      if (event.target !== roleTrack) return;
+      var next = roleIndex;
+      if (event.key === 'ArrowRight') next++;
+      else if (event.key === 'ArrowLeft') next--;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = roleSlides.length - 1;
+      else return;
+      event.preventDefault();
+      goToRole(next);
     });
-    roleSection.classList.add('is-enhanced');
-    $('.workspace-role-tabs', roleSection).hidden = false;
-    selectRole(1, false);
+    $('.workspace-role-controls', roleSection).hidden = false;
+    updateRole(0);
   }
 
   initWhimsy();
