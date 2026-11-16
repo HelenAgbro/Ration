@@ -1177,8 +1177,8 @@
       tab.addEventListener('click', function () { selectRole(i, false); });
       tab.addEventListener('keydown', function (event) {
         var next = i;
-        if (event.key === 'ArrowRight') next = (i + 1) % roleTabs.length;
-        else if (event.key === 'ArrowLeft') next = (i + roleTabs.length - 1) % roleTabs.length;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (i + 1) % roleTabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (i + roleTabs.length - 1) % roleTabs.length;
         else if (event.key === 'Home') next = 0;
         else if (event.key === 'End') next = roleTabs.length - 1;
         else return;
@@ -1188,7 +1188,7 @@
     });
     roleSection.classList.add('is-enhanced');
     $('.workspace-role-tabs', roleSection).hidden = false;
-    selectRole(0, false);
+    selectRole(1, false);
   }
 
   initWhimsy();
