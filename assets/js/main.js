@@ -1160,17 +1160,34 @@
     var roleSlides = $$('.workspace-role-slide', roleSection);
     var roleDots = $$('[data-role-go]', roleSection);
     var roleStatus = $('[data-role-status]', roleSection);
-    var roleIndex = 0;
+    var roleIndex = 1;
+    var roleTimer = 0;
+    var roleAutoplay = !reduceQuery.matches;
+    var roleVisible = false;
+    var roleHovered = false;
+    var roleRotation = $('[data-role-rotation]', roleSection);
+    function scheduleRole() {
+      clearTimeout(roleTimer);
+      var focused = roleSection.contains(document.activeElement) && document.activeElement !== roleRotation;
+      var playing = roleAutoplay && roleVisible && !roleHovered && !focused && !document.hidden;
+      roleStatus.setAttribute('aria-live', playing ? 'off' : 'polite');
+      roleRotation.setAttribute('aria-label', roleAutoplay ? 'Pause automatic slides' : 'Start automatic slides');
+      roleRotation.textContent = roleAutoplay ? 'Pause' : 'Play';
+      if (playing) roleTimer = setTimeout(function () { goToRole(roleIndex + 1); }, 6000);
+    }
     function updateRole(index) {
       roleIndex = index;
       roleSlides.forEach(function (slide, i) { slide.classList.toggle('is-active', i === index); });
       roleDots.forEach(function (dot, i) { dot.setAttribute('aria-pressed', String(i === index)); });
       roleStatus.textContent = roleSlides[index].getAttribute('aria-label');
     }
-    function goToRole(index) {
+    function goToRole(index, instant) {
       index = (index + roleSlides.length) % roleSlides.length;
       var slide = roleSlides[index];
-      roleTrack.scrollTo({ left: slide.offsetLeft - roleTrack.offsetLeft - (roleTrack.clientWidth - slide.offsetWidth) / 2, behavior: reduceQuery.matches ? 'instant' : 'smooth' });
+      var left = slide.offsetLeft - roleTrack.offsetLeft - (roleTrack.clientWidth - slide.offsetWidth) / 2;
+      if (typeof roleTrack.scrollTo === 'function') roleTrack.scrollTo({ left: left, behavior: instant || reduceQuery.matches ? 'instant' : 'smooth' });
+      else roleTrack.scrollLeft = left;
+      scheduleRole();
     }
     var roleFrame = 0;
     roleTrack.addEventListener('scroll', function () {
@@ -1202,7 +1219,20 @@
       goToRole(next);
     });
     $('.workspace-role-controls', roleSection).hidden = false;
-    updateRole(0);
+    updateRole(1);
+    goToRole(1, true);
+    roleRotation.addEventListener('click', function () { roleAutoplay = !roleAutoplay; scheduleRole(); });
+    roleSection.addEventListener('pointerenter', function (event) { if (event.pointerType === 'mouse') { roleHovered = true; scheduleRole(); } });
+    roleSection.addEventListener('pointerleave', function () { roleHovered = false; scheduleRole(); });
+    roleSection.addEventListener('focusin', scheduleRole);
+    roleSection.addEventListener('focusout', function () { setTimeout(scheduleRole, 0); });
+    roleTrack.addEventListener('scrollend', scheduleRole);
+    document.addEventListener('visibilitychange', scheduleRole);
+    reduceQuery.addEventListener('change', function () { roleAutoplay = !reduceQuery.matches; scheduleRole(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { roleVisible = entries[0].isIntersecting; scheduleRole(); }, { threshold: .25 }).observe(roleSection);
+    } else { roleVisible = true; }
+    scheduleRole();
   }
 
   initWhimsy();

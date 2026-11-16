@@ -862,7 +862,7 @@
         <p>From the people doing the work to the people keeping it running.<br> Ration brings everyone together, with control built in.</p>
       </div>
       <div class="workspace-role-track" tabindex="0" aria-label="Workspace roles. Use left and right arrow keys to browse.">
-        <article class="workspace-role-slide is-active" aria-roledescription="slide" aria-label="1 of 4: For teams">
+        <article class="workspace-role-slide" aria-roledescription="slide" aria-label="1 of 4: For teams">
           <p class="workspace-role-label"><span aria-hidden="true"></span>For teams</p>
           <div class="workspace-role-image workspace-role-image-teams">
             <img src="assets/img/role-teams.webp" alt="Colleagues in a meeting room collaborating with remote participants on screen" width="1400" height="1400" loading="lazy">
@@ -872,7 +872,7 @@
             <a href="#features" class="link-arrow">Explore the workspace <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
           </div>
         </article>
-        <article class="workspace-role-slide" aria-roledescription="slide" aria-label="2 of 4: For IT administrators">
+        <article class="workspace-role-slide is-active" aria-roledescription="slide" aria-label="2 of 4: For IT administrators">
           <p class="workspace-role-label"><span aria-hidden="true"></span>For IT administrators</p>
           <div class="workspace-role-image workspace-role-image-it">
             <img src="assets/img/role-it.webp" alt="Four colleagues working together around a laptop" width="1400" height="1045" loading="lazy">
@@ -895,7 +895,7 @@
         <article class="workspace-role-slide" aria-roledescription="slide" aria-label="4 of 4: For growing organisations">
           <p class="workspace-role-label"><span aria-hidden="true"></span>For growing organisations</p>
           <div class="workspace-role-image workspace-role-image-growth">
-            <img src="assets/img/role-growth.webp" alt="A modern high-rise building against a turquoise sky" width="788" height="1400" loading="lazy">
+            <img src="assets/img/role-growth-sky.webp" alt="A modern high-rise building under a pale blue sky with soft white clouds" width="1536" height="1024" loading="lazy">
           </div>
           <div class="workspace-role-copy">
             <p>Start with the essentials and add modules as your needs change. Give every new colleague a connected workspace, with fewer separate tools and subscriptions to manage.</p>
@@ -906,13 +906,14 @@
       <div class="container workspace-role-controls" hidden>
         <button type="button" class="workspace-role-arrow" data-role-prev aria-label="Previous role"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg></button>
         <div class="workspace-role-dots" role="group" aria-label="Choose a role">
-          <button type="button" data-role-go="0" aria-label="Show for teams" aria-pressed="true"><span></span></button>
-          <button type="button" data-role-go="1" aria-label="Show for it administrators" aria-pressed="false"><span></span></button>
+          <button type="button" data-role-go="0" aria-label="Show for teams" aria-pressed="false"><span></span></button>
+          <button type="button" data-role-go="1" aria-label="Show for it administrators" aria-pressed="true"><span></span></button>
           <button type="button" data-role-go="2" aria-label="Show for leaders" aria-pressed="false"><span></span></button>
           <button type="button" data-role-go="3" aria-label="Show for growing organisations" aria-pressed="false"><span></span></button>
         </div>
         <button type="button" class="workspace-role-arrow" data-role-next aria-label="Next role"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
-        <p class="sr-only" data-role-status aria-live="polite" aria-atomic="true">1 of 4: For teams</p>
+        <button type="button" class="workspace-role-rotation" data-role-rotation aria-label="Pause automatic slides">Pause</button>
+        <p class="sr-only" data-role-status aria-live="polite" aria-atomic="true">2 of 4: For IT administrators</p>
       </div>
     </section>
 
