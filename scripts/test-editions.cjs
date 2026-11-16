@@ -114,9 +114,11 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
   const dom = new JSDOM(html);
   const d = dom.window.document;
   try {
-    assert.equal(d.querySelectorAll('#stories .assurance-panel').length, 2);
+    assert.equal(d.querySelectorAll('#stories .assurance-card').length, 3);
     assert.equal(d.querySelectorAll('#stories .story').length, 0);
-    assert.equal(d.querySelector('.assurance-globe-hint'), null);
+    assert.equal(d.querySelector('.assurance-globe'), null);
+    assert.ok(!d.querySelector('#stories').textContent.includes('[CERTIFICATION'));
+    assert.deepEqual([...d.querySelectorAll('.assurance-card .link-arrow')].map(a => a.getAttribute('href')), ['#cloud', '#apps-stage', '#deploy']);
     assert.equal(d.querySelector('#stories').previousElementSibling.id, 'pricing');
     assert.equal(d.querySelector('#stories').nextElementSibling.id, 'faq');
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
@@ -128,95 +130,4 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
       assert.ok(existsSync(path.resolve(root,'assets/css',match[1])), match[1]);
     }
   } finally { dom.window.close(); }
-});
-
-
-test('globe has no icons, rotates on hover and drag, and supports keyboard reset', () => {
-  const p = page({observer: true});
-  try {
-    const section = p.d.querySelector('.assurance');
-    const globe = p.d.querySelector('.assurance-globe');
-    assert.equal(p.d.querySelector('.assurance-vault'), null);
-    assert.equal(globe.querySelectorAll('use, text, .assurance-app').length, 0);
-    const nodes = [...globe.querySelectorAll('.assurance-mote')];
-    assert.equal(nodes.length, 18);
-    const before = nodes.map(n => n.getAttribute('transform'));
-    p.intersect(true);
-    assert.equal(section.classList.contains('has-entered'), true);
-    function pointer(type, x, y) {
-      globe.dispatchEvent(new p.w.MouseEvent(type, {clientX:x,clientY:y,button:0}));
-      p.flush();
-    }
-    pointer('pointermove', 100, 100);
-    pointer('pointermove', 180, 120);
-    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
-    pointer('pointerdown', 180, 120);
-    pointer('pointermove', 280, 150);
-    pointer('pointermove', 380, 150);
-    pointer('pointerup', 380, 150);
-    assert.equal(globe.classList.contains('is-dragging'), false);
-    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
-    const turned = nodes.map(n => n.getAttribute('transform'));
-    pointer('pointerleave', 380, 150);
-    assert.deepEqual(nodes.map(n => n.getAttribute('transform')), turned, 'Rotation persists on leave');
-    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'Home'})); p.flush();
-    assert.deepEqual(nodes.map(n => n.getAttribute('transform')), before);
-    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
-    assert.notDeepEqual(nodes.map(n => n.getAttribute('transform')), before);
-    p.intersect(false);
-    assert.equal(section.classList.contains('has-entered'), true);
-    assert.equal(section.classList.contains('is-art-active'), false);
-  } finally { p.close(); }
-});
-
-test('three distinct glowing trails travel and pause offscreen', () => {
-  const p = page({observer: true});
-  try {
-    const trail = p.d.querySelector('.assurance-trail');
-    const halo = p.d.querySelector('.assurance-trail-halo');
-    const trails = [...p.d.querySelectorAll('.assurance-trail')];
-    assert.equal(trails.length, 3);
-    p.intersect(true); p.advance(1000);
-    const first = trail.getAttribute('d');
-    assert.equal(new Set(trails.map(t => t.getAttribute('d'))).size, 3);
-    assert.ok(first.length > 20);
-    assert.equal(first, halo.getAttribute('d'));
-    p.advance(30000);
-    assert.notEqual(trail.getAttribute('d'), first);
-    const running = trails.map(t => t.getAttribute('d'));
-    p.intersect(false); p.advance(34000);
-    assert.deepEqual(trails.map(t => t.getAttribute('d')), running);
-  } finally { p.close(); }
-});
-
-test('reduced motion stops automatic light and hover but permits intentional keyboard rotation', () => {
-  const p = page({reduced: true});
-  try {
-    const globe = p.d.querySelector('.assurance-globe');
-    const node = p.d.querySelector('.assurance-mote');
-    const before = node.getAttribute('transform');
-    globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:100,clientY:100}));
-    globe.dispatchEvent(new p.w.MouseEvent('pointermove', {clientX:200,clientY:200})); p.flush();
-    assert.equal(node.getAttribute('transform'), before);
-    p.advance(1000);
-    assert.ok([...p.d.querySelectorAll('.assurance-trail')].every(t => t.getAttribute('d') === ''));
-    globe.dispatchEvent(new p.w.KeyboardEvent('keydown', {key:'ArrowRight'})); p.flush();
-    assert.notEqual(node.getAttribute('transform'), before);
-  } finally { p.close(); }
-});
-
-
-test('subtle motes shimmer in view and remain quiet offscreen', () => {
-  const p = page({observer: true});
-  try {
-    const nodes = [...p.d.querySelectorAll('.assurance-mote')];
-    p.intersect(true); p.advance(1000);
-    const before = nodes.map(n => n.style.opacity);
-    p.advance(9000);
-    assert.notDeepEqual(nodes.map(n => n.style.opacity), before);
-    assert.ok(nodes.every(n => Number(n.style.opacity) < .6));
-    const after = nodes.map(n => n.style.opacity);
-    p.intersect(false); p.advance(15000);
-    assert.deepEqual(nodes.map(n => n.style.opacity), after);
-  } finally { p.close(); }
 });

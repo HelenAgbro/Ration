@@ -116,8 +116,6 @@ Copy is based on the live ration.works site and the supplied design direction. P
 screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms captures. The
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
 
-The security and collaboration spread after Pricing pairs a rotatable glowing globe with
-the supplied conference meeting photo, served as an optimised WebP. It uses product statements rather than customer testimonials.
-
-The globe responds to mouse movement, dragging and arrow keys. Three faint gold lights travel slowly
-along separate wires, with faint motes and a soft ambient glow; automatic motion pauses offscreen and respects reduced motion.
+The security section after Pricing presents three cards covering residency, access and operation,
+followed by a dark strip with regional hosting details and a contact link. It uses the site's shared
+fonts and colours and stacks vertically on smaller screens.
