@@ -1278,6 +1278,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .workspace-roles-heading h2 { margin-top: 18px; font-size: clamp(36px, 4vw, 58px); font-weight: 550; line-height: 1.04; letter-spacing: -.045em; }
 .workspace-roles-heading > p:last-child { margin-top: 20px; color: #60737c; font-size: 14px; line-height: 1.7; }
 .workspace-role-track { position: relative; display: flex; gap: clamp(20px, 3vw, 48px); align-items: flex-start; padding: 8px calc((100% - var(--role-width)) / 2) 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.workspace-role-track.is-recentering { scroll-snap-type: none; }
 .workspace-role-track::-webkit-scrollbar { display: none; }
 .workspace-role-track:focus-visible { outline: 2px solid #006699; outline-offset: -3px; }
 .workspace-role-slide { flex: 0 0 var(--role-width); min-width: 0; scroll-snap-align: center; transform: scale(.92); opacity: .6; transition: transform .45s ease, opacity .45s ease; transform-origin: center 45%; }
@@ -1303,7 +1304,6 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .workspace-role-dots button { display: grid; place-items: center; width: 28px; height: 36px; }
 .workspace-role-dots button span { width: 6px; height: 6px; border-radius: 50%; background: #a9b5b9; transition: width .2s, background .2s; }
 .workspace-role-dots button[aria-pressed="true"] span { width: 22px; border-radius: 8px; background: #102d3b; }
-.workspace-role-rotation { min-height: 44px; min-width: 48px; color: #425b68; font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
 .workspace-role-controls button:focus-visible { outline: 2px solid #006699; outline-offset: 3px; }
 @media (max-width: 720px) {
   .workspace-roles { --role-width: 84vw; }
