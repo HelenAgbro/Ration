@@ -116,6 +116,6 @@ Copy is based on the live ration.works site and the supplied design direction. P
 screenshots in the hero are the existing Ration Mail, Chat, Calendar and Forms captures. The
 in-panel mockups use representative product content (Ogun State rollout) for continuity.
 
-The security section after Pricing presents three cards covering residency, access and operation,
-followed by a dark strip with regional hosting details and a contact link. It uses the site's shared
-fonts and colours and stacks vertically on smaller screens.
+The security section after Pricing pairs a native accordion covering residency, access and operation
+with matching high-resolution editorial imagery. It retains the light background and the site's
+shared fonts and colours, and stacks vertically on smaller screens.

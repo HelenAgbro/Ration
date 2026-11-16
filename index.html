@@ -350,6 +350,7 @@
     </section>
 
     <section class="apps-stage" id="apps-stage" aria-label="The eight Ration apps">
+      <div class="apps-module-frame">
       <div class="apps-navigation" hidden>
         <div class="container">
           <div class="apps-tabs" role="tablist" aria-label="Choose a Ration module">
@@ -733,6 +734,7 @@
         </div>
       </div>
 
+      </div>
     </section>
 
     <section class="cloud" id="cloud">
@@ -1131,31 +1133,36 @@
           <p class="assurance-intro">The three questions a security team asks first: where does the data live, who can see it, and who runs it.</p>
         </div>
 
-        <div class="assurance-cards">
-          <article class="assurance-card" aria-labelledby="security-residency">
-            <div class="assurance-card-top"><p class="assurance-category"><span>01</span> Residency</p><span class="assurance-card-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span></div>
-            <h3 id="security-residency">Your data,<br>your jurisdiction.</h3>
-            <p>Run in Lagos today, or on your own infrastructure.</p>
-            <a class="link-arrow" href="#cloud">Explore our regions <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          </article>
-          <article class="assurance-card" aria-labelledby="security-access">
-            <div class="assurance-card-top"><p class="assurance-category"><span>02</span> Access</p><span class="assurance-card-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span></div>
-            <h3 id="security-access">One set<br>of permissions.</h3>
-            <p>Shared identity, multi-factor sign-in and audit logs across every app.</p>
-            <a class="link-arrow" href="#apps-stage">Explore the eight apps <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          </article>
-          <article class="assurance-card" aria-labelledby="security-operation">
-            <div class="assurance-card-top"><p class="assurance-category"><span>03</span> Operation</p><span class="assurance-card-icon"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg></span></div>
-            <h3 id="security-operation">Identical<br>in every region.</h3>
-            <p>Hardware owned and operated by Ration, or kept in your hands.</p>
-            <a class="link-arrow" href="#deploy">Compare deployment options <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          </article>
-        </div>
-
-        <div class="assurance-details" aria-label="Your workspace, your rules">
-          <div class="assurance-detail"><span class="assurance-detail-label"><i aria-hidden="true"></i> Live today</span><h3>Lagos, Nigeria.</h3><p>Your regional home for Ration Cloud.</p></div>
-          <div class="assurance-detail"><span class="assurance-detail-label">Your choice</span><h3>Cloud or your infrastructure.</h3><p>Choose how your workspace is operated.</p></div>
-          <div class="assurance-detail"><span class="assurance-detail-label">Let’s talk</span><h3>Start with your requirements.</h3><a class="link-arrow link-arrow-light" href="#contact">Talk to our team <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
+        <div class="assurance-explorer">
+          <div class="assurance-topics">
+            <details class="assurance-topic" data-security-topic="residency" open>
+              <summary id="security-residency"><span class="assurance-topic-label">01 / Residency</span><span class="assurance-question">Your data, your jurisdiction.</span><svg class="icon assurance-chevron" aria-hidden="true"><use href="#i-arrow-right"></use></svg></summary>
+              <div class="assurance-answer"><p>Run in Lagos today, or on your own infrastructure. Choose a home for your workspace that fits your data residency and jurisdiction requirements.</p><a class="link-arrow" href="#cloud">Explore our regions <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
+            </details>
+            <details class="assurance-topic" data-security-topic="access">
+              <summary id="security-access"><span class="assurance-topic-label">02 / Access</span><span class="assurance-question">One set of permissions.</span><svg class="icon assurance-chevron" aria-hidden="true"><use href="#i-arrow-right"></use></svg></summary>
+              <div class="assurance-answer"><p>Shared identity, multi-factor sign-in and audit logs across every app. Keep control of who can access your workspace, with the same policies wherever your team works.</p><a class="link-arrow" href="#apps-stage">Explore the eight apps <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
+            </details>
+            <details class="assurance-topic" data-security-topic="operation">
+              <summary id="security-operation"><span class="assurance-topic-label">03 / Operation</span><span class="assurance-question">Identical in every region.</span><svg class="icon assurance-chevron" aria-hidden="true"><use href="#i-arrow-right"></use></svg></summary>
+              <div class="assurance-answer"><p>Hardware owned and operated by Ration, or kept in your hands. Choose Ration Cloud, a managed provider or your own infrastructure, with the same platform and modules.</p><a class="link-arrow" href="#deploy">Compare deployment options <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></div>
+            </details>
+            <a class="btn btn-primary assurance-contact" href="#contact">Talk to our team <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+          <div class="assurance-visuals">
+            <figure class="assurance-visual" data-security-image="residency">
+              <img src="assets/img/security-residency.webp" alt="Rows of server racks in a modern data centre" width="1536" height="1024" loading="lazy">
+              <figcaption><span>Residency</span>Lagos today. Your infrastructure when you need it.</figcaption>
+            </figure>
+            <figure class="assurance-visual" data-security-image="access" hidden>
+              <img src="assets/img/security-access.webp" alt="A smart-card access reader at the glass entrance to an empty technology office" width="1536" height="1024" loading="lazy">
+              <figcaption><span>Access</span>One identity. Control across every app.</figcaption>
+            </figure>
+            <figure class="assurance-visual" data-security-image="operation" hidden>
+              <img src="assets/img/security-operation.webp" alt="Precisely organized blue network cabling and enterprise server hardware" width="1536" height="1024" loading="lazy">
+              <figcaption><span>Operation</span>Your choice of how your workspace is operated.</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>

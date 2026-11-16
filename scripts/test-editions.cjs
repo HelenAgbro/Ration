@@ -114,11 +114,11 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
   const dom = new JSDOM(html);
   const d = dom.window.document;
   try {
-    assert.equal(d.querySelectorAll('#stories .assurance-card').length, 3);
+    assert.equal(d.querySelectorAll('#stories .assurance-topic').length, 3);
     assert.equal(d.querySelectorAll('#stories .story').length, 0);
     assert.equal(d.querySelector('.assurance-globe'), null);
     assert.ok(!d.querySelector('#stories').textContent.includes('[CERTIFICATION'));
-    assert.deepEqual([...d.querySelectorAll('.assurance-card .link-arrow')].map(a => a.getAttribute('href')), ['#cloud', '#apps-stage', '#deploy']);
+    assert.deepEqual([...d.querySelectorAll('.assurance-answer .link-arrow')].map(a => a.getAttribute('href')), ['#cloud', '#apps-stage', '#deploy']);
     assert.equal(d.querySelector('#stories').previousElementSibling.id, 'pricing');
     assert.equal(d.querySelector('#stories').nextElementSibling.id, 'faq');
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);

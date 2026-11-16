@@ -926,6 +926,18 @@
     configure();
   }
 
+  /* Security topics pair a native accordion with matching photography. */
+  var securityTopics = $$('[data-security-topic]');
+  var securityImages = $$('[data-security-image]');
+  securityTopics.forEach(function (topic) {
+    topic.addEventListener('toggle', function () {
+      if (!topic.open) return;
+      securityTopics.forEach(function (other) { if (other !== topic) other.open = false; });
+      securityImages.forEach(function (figure) { figure.hidden = figure.dataset.securityImage !== topic.dataset.securityTopic; });
+      if (hasMotion) ScrollTrigger.refresh();
+    });
+  });
+
   /* Workspace perspectives: native swipe carousel with manual controls. */
   var roleSection = $('.workspace-roles');
   if (roleSection) {
