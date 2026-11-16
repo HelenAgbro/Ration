@@ -1291,8 +1291,6 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .workspace-role-image > img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
 .workspace-role-image-leaders > img { object-position: center 52%; }
 .workspace-role-image-growth > img { object-position: center 65%; }
-.workspace-role-image h3 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 28px; text-align: center; font-size: clamp(23px, 2.5vw, 36px); font-weight: 550; line-height: 1.35; letter-spacing: -.04em; color: #102d3b; }
-.workspace-role-image h3 span { max-width: 580px; padding: 3px 10px; background: #fff; box-shadow: 0 3px 18px rgba(0,30,45,.06); box-decoration-break: clone; }
 .workspace-role-copy { padding: 20px 12px 0; }
 .workspace-role-copy p { max-width: 620px; color: #56676f; font-size: 14px; line-height: 1.7; }
 .workspace-role-copy .link-arrow { margin-top: 14px; font-size: 12px; }
@@ -1310,7 +1308,6 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   .workspace-roles { --role-width: 84vw; }
   .workspace-role-track { gap: 12px; }
   .workspace-role-image { height: 340px; }
-  .workspace-role-image h3 { padding: 18px; font-size: 26px; }
   .workspace-roles-heading > p:last-child br { display: none; }
   .workspace-role-copy { padding-inline: 2px; }
   .workspace-role-copy p { font-size: 13px; }
