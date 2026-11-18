@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-label="Repeating African-inspired geometric line pattern">
+  <rect width="640" height="640" fill="#FAFAFA"/>
+
+  <g fill="none" stroke="#E2E2E2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top-left: nested square labyrinth with comb -->
+    <path d="M24 24h250v250H78V78h142v142H126V126h46"/>
+    <path d="M190 148v46M208 148v46M226 148v46M244 148v30"/>
+
+    <!-- Top-centre: upright comb -->
+    <path d="M296 34v74a10 10 0 0 0 10 10h54a10 10 0 0 0 10-10V34"/>
+    <path d="M314 34v84M332 34v84M350 34v84"/>
+
+    <!-- Top-right: nested rounded U -->
+    <path d="M360 24h230a26 26 0 0 1 26 26v220a26 26 0 0 1-26 26H440a26 26 0 0 1-26-26V96a26 26 0 0 1 26-26h118a26 26 0 0 1 26 26v112"/>
+    <path d="M500 110v70M518 110v70M536 110v70M554 110v70"/>
+
+    <!-- Left middle: parallel bands -->
+    <path d="M24 288h92M24 308h92M24 328h64"/>
+    <path d="M300 288h88v58h-46v-30"/>
+
+    <!-- Right middle: concentric arcs -->
+    <path d="M612 288a72 72 0 1 0 0 144M612 310a50 50 0 1 0 0 100M612 332a28 28 0 1 0 0 56"/>
+
+    <!-- Bottom-left: rainbow arcs -->
+    <path d="M24 616V468a132 132 0 0 1 132-132h102"/>
+    <path d="M54 616V482a104 104 0 0 1 104-104h100"/>
+    <path d="M84 616V496a76 76 0 0 1 76-76h98"/>
+    <path d="M114 616V510a48 48 0 0 1 48-48h96"/>
+
+    <!-- Bottom-centre: comb and short bars -->
+    <path d="M296 616v-76a10 10 0 0 1 10-10h54a10 10 0 0 1 10 10v76"/>
+    <path d="M314 616v-70M332 616v-70M350 616v-70"/>
+    <path d="M300 416h84M300 436h84M300 456h58"/>
+
+    <!-- Bottom-right: meander -->
+    <path d="M370 616v-84h236v-72H414v-64h180"/>
+    <path d="M400 616v-58h236v-96H444v-30h140"/>
+    <path d="M472 432v40M490 432v40M508 432v40M526 432v18"/>
+
+    <!-- Small connector meanders -->
+    <path d="M276 120h34v42h30"/>
+    <path d="M610 420h-34v36h-42"/>
+    <path d="M128 296v34h32v26"/>
+
+    <!-- Central L-shaped meanders -->
+    <path d="M180 320h80v60h-40v50h100"/>
+    <path d="M204 340h40v40h-40v30h90"/>
+    <path d="M180 524h72v46h-38v30"/>
+    <path d="M202 544h34v32h-38"/>
+
+    <!-- Right-hand fillers -->
+    <path d="M480 360h80M480 380h80M480 400h52"/>
+    <path d="M470 520h96v40h-58"/>
+    <path d="M470 544h62"/>
+  </g>
+
+  <g fill="#E2E2E2">
+    <!-- Dot clusters -->
+    <circle cx="294" cy="152" r="4"/><circle cx="310" cy="152" r="4"/><circle cx="326" cy="152" r="4"/>
+    <circle cx="294" cy="170" r="4"/><circle cx="310" cy="170" r="4"/><circle cx="326" cy="170" r="4"/>
+    <circle cx="42" cy="368" r="4"/><circle cx="58" cy="368" r="4"/><circle cx="74" cy="368" r="4"/><circle cx="90" cy="368" r="4"/>
+    <circle cx="42" cy="386" r="4"/><circle cx="58" cy="386" r="4"/><circle cx="74" cy="386" r="4"/>
+    <circle cx="390" cy="330" r="4"/><circle cx="406" cy="330" r="4"/><circle cx="422" cy="330" r="4"/>
+    <circle cx="390" cy="348" r="4"/><circle cx="406" cy="348" r="4"/>
+    <circle cx="292" cy="510" r="4"/><circle cx="308" cy="510" r="4"/><circle cx="324" cy="510" r="4"/>
+    <circle cx="292" cy="528" r="4"/><circle cx="308" cy="528" r="4"/>
+    <circle cx="188" cy="596" r="4"/><circle cx="204" cy="596" r="4"/><circle cx="220" cy="596" r="4"/><circle cx="236" cy="596" r="4"/>
+    <circle cx="188" cy="614" r="4"/><circle cx="204" cy="614" r="4"/><circle cx="220" cy="614" r="4"/>
+    <circle cx="574" cy="596" r="4"/><circle cx="590" cy="596" r="4"/><circle cx="606" cy="596" r="4"/>
+    <circle cx="574" cy="614" r="4"/><circle cx="590" cy="614" r="4"/>
+    <circle cx="610" cy="70" r="4"/><circle cx="610" cy="86" r="4"/><circle cx="610" cy="102" r="4"/>
+    <circle cx="300" cy="214" r="4"/><circle cx="316" cy="214" r="4"/><circle cx="332" cy="214" r="4"/>
+    <circle cx="300" cy="232" r="4"/><circle cx="316" cy="232" r="4"/>
+    <circle cx="270" cy="500" r="4"/><circle cx="286" cy="500" r="4"/><circle cx="302" cy="500" r="4"/>
+    <circle cx="464" cy="450" r="4"/><circle cx="480" cy="450" r="4"/><circle cx="496" cy="450" r="4"/>
+    <circle cx="464" cy="468" r="4"/><circle cx="480" cy="468" r="4"/>
+  </g>
+</svg>
