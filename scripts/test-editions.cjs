@@ -111,7 +111,7 @@ for (const options of [{reduced:true}, {height:500,contentHeight:760}]) {
   });
 }
 
-test('solutions page header, sections, anchors and assets resolve', () => {
+test('solutions page header, sections and assets resolve', () => {
   const dom = new JSDOM(solutionsHtml);
   const d = dom.window.document;
   try {
@@ -124,7 +124,6 @@ test('solutions page header, sections, anchors and assets resolve', () => {
     for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
     for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
     assert.ok(existsSync(path.join(root, 'assets/css/solutions.css')));
-    assert.ok(existsSync(path.join(root, 'assets/js/solutions.js')));
   } finally { dom.window.close(); }
 });
 

@@ -640,7 +640,7 @@
         if (!target) return;
         event.preventDefault();
         setMenu(false);
-        var offset = hash === '#apps-stage' ? 0 : (doc.body.classList.contains('sol-page') ? 148 : 84);
+        var offset = hash === '#apps-stage' ? 0 : (doc.body.classList.contains('sol-page') ? 96 : 84);
         var targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
         window.scrollTo({ top: targetY, behavior: 'smooth' });
         if (history.pushState) history.pushState(null, '', hash);
