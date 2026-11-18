@@ -5,6 +5,7 @@ const path = require('node:path');
 const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
 const html = readFileSync(path.join(root, 'index.html'), 'utf8');
+const solutionsHtml = readFileSync(path.join(root, 'solutions.html'), 'utf8');
 const source = readFileSync(path.join(root, 'assets/js/main.js'), 'utf8');
 
 // Run the complete interaction layer without GSAP. Layout measurements are
@@ -109,6 +110,23 @@ for (const options of [{reduced:true}, {height:500,contentHeight:760}]) {
     } finally { p.close(); }
   });
 }
+
+test('solutions page header, sections, anchors and assets resolve', () => {
+  const dom = new JSDOM(solutionsHtml);
+  const d = dom.window.document;
+  try {
+    assert.equal(d.querySelector('.sol-hero h1').textContent.trim().replace(/\s+/g, ' '), 'Start from what your organisation needs to do.');
+    assert.deepEqual([...d.querySelectorAll('.nav-links .nav-link')].map(a => a.textContent.trim()), ['Product', 'Solutions', 'Pricing', 'Resources', 'Support', 'Contact']);
+    assert.deepEqual([...d.querySelectorAll('.nav-actions .btn')].map(a => a.textContent.trim()), ['Log in', 'Get started']);
+    for (const id of ['overview', 'capabilities', 'situations', 'organisations', 'editions', 'pricing', 'resources', 'sol-contact']) assert.ok(d.getElementById(id), id);
+    const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
+    assert.equal(ids.length, new Set(ids).size);
+    for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
+    for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
+    assert.ok(existsSync(path.join(root, 'assets/css/solutions.css')));
+    assert.ok(existsSync(path.join(root, 'assets/js/solutions.js')));
+  } finally { dom.window.close(); }
+});
 
 test('editorial backgrounds, assets and fragment targets resolve', () => {
   const dom = new JSDOM(html);

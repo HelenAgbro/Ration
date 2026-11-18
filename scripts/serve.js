@@ -43,6 +43,17 @@ const server = http.createServer((req, res) => {
   fs.stat(filePath, (err, stat) => {
     if (!err && stat.isDirectory()) filePath = path.join(filePath, 'index.html');
     fs.readFile(filePath, (readErr, data) => {
+      if (readErr && !path.extname(filePath)) {
+        // Match Vercel cleanUrls: /solutions -> /solutions.html
+        const cleanPath = filePath + '.html';
+        return fs.readFile(cleanPath, (cleanErr, cleanData) => {
+          if (cleanErr) {
+            send(res, 404, 'Not found', { 'Content-Type': 'text/plain; charset=utf-8' });
+            return;
+          }
+          send(res, 200, cleanData, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
+        });
+      }
       if (readErr) {
         send(res, 404, 'Not found', { 'Content-Type': 'text/plain; charset=utf-8' });
         return;

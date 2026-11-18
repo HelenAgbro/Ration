@@ -63,6 +63,7 @@
       if (y + window.innerHeight * 0.34 >= top) active = id;
     });
     navLinks.forEach(function (link) {
+      if (link.dataset.staticActive === 'true') return;
       var href = link.getAttribute('href') || '';
       link.classList.toggle('is-active', href === '#' + active);
     });
@@ -630,7 +631,7 @@
   /* -----------------------------------------------------------------------
      Smooth anchor navigation
      -------------------------------------------------------------------- */
-  if (hasMotion && window.ScrollToPlugin && !prefersReduced) {
+  if (!prefersReduced) {
     $$('a[href^="#"]').forEach(function (link) {
       link.addEventListener('click', function (event) {
         var hash = link.getAttribute('href');
@@ -639,15 +640,10 @@
         if (!target) return;
         event.preventDefault();
         setMenu(false);
-        var offset = hash === '#apps-stage' ? 0 : 84;
-        gsap.to(window, {
-          duration: .9,
-          ease: 'power2.inOut',
-          scrollTo: { y: target, offsetY: offset },
-          onComplete: function () {
-            if (history.pushState) history.pushState(null, '', hash);
-          }
-        });
+        var offset = hash === '#apps-stage' ? 0 : (doc.body.classList.contains('sol-page') ? 148 : 84);
+        var targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+        if (history.pushState) history.pushState(null, '', hash);
       });
     });
   }

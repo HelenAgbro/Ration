@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ration Solutions | Communicate, organise, create and automate in one workspace</title>
+  <meta name="description" content="Four ways Ration MCS helps people work, three situations it is built for, and the kinds of organisation that use it. Ten apps on one login, sovereign by design.">
+  <link rel="canonical" href="https://www.ration.works/solutions">
+  <meta name="theme-color" content="#002B40">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ration">
+  <meta property="og:title" content="Ration Solutions | One workspace for how your organisation works">
+  <meta property="og:description" content="Communicate, organise, create and automate in one workspace. Built for organisations that need control over where their work lives.">
+  <meta property="og:url" content="https://www.ration.works/solutions">
+  <meta property="og:image" content="https://www.ration.works/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ration Solutions | One workspace for how your organisation works">
+  <meta name="twitter:description" content="Ten apps on one login, with deployment options for every organisation.">
+  <meta name="twitter:image" content="https://www.ration.works/assets/img/og-image.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/app-mail.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/solutions.css">
+  <script>if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("reduce-motion"); }</script>
+</head>
+<body class="sol-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+  <div class="cursor-ring" data-cursor-ring aria-hidden="true"></div>
+
+  <!-- Icon sprite -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.2 12.4 2.6 2.6 5-5.4"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="m13 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4"/><path d="m11 19-7-7 7-7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 20V4"/><path d="m5 11 7-7 7 7"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.6 8.4 6 8.4-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.8-.8L3 20.5l1.5-5a8.1 8.1 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.1 3 8.4 8.4 0 0 1 21 11.5Z"/></symbol>
+    <symbol id="i-meet" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="m15 10.5 5.2-3v9l-5.2-3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M8 14h3v3H8z"/></symbol>
+    <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3.2 3.2 0 0 1 0 7M18 14.5a6 6 0 0 1 3 5.5"/></symbol>
+    <symbol id="i-tasks" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M8 3v3M16 3v3"/><path d="m7.5 12 2 2 4-4.2"/><path d="M14 16h3.5"/></symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 21V4.5A1.5 1.5 0 0 1 6.5 3Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h4.5"/></symbol>
+    <symbol id="i-forms" viewBox="0 0 24 24"><path d="M8 3h8a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M9 3v3h6V3M9.5 11h5M9.5 15h5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 21V4.5A1.5 1.5 0 0 1 6.5 3Z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14.5h18M9 4v16M15 4v16"/></symbol>
+    <symbol id="i-slides" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 13l3.5-3 3 2.2L18 8"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 21V4.5A1.5 1.5 0 0 1 6.5 3Z"/><path d="M14 3v5h5"/><text x="7.1" y="18" font-family="Arial, sans-serif" font-size="4.7" font-weight="700" fill="currentColor" stroke="none">PDF</text></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.5 18.5a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18.4 10a4.25 4.25 0 0 1-.9 8.5H7.5Z"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8.5 10.5V7a3.5 3.5 0 0 1 7 0v3.5"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h9A1.5 1.5 0 0 1 16 5.5V21"/><path d="M16 9h2.5A1.5 1.5 0 0 1 20 10.5V21M3 21h18M8 8h4M8 12h4M8 16h4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 16.5 20 19l2.5 1-2.5 1-1 2.5-1-2.5L15.5 20l2.5-1 1-2.5Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  </svg>
+
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html" aria-label="Ration home">
+        <img src="assets/img/ration-logo.svg" alt="Ration" width="120" height="34">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="index.html#features">Product</a>
+        <a class="nav-link is-active" data-static-active="true" href="solutions.html" aria-current="page">Solutions</a>
+        <a class="nav-link" href="index.html#pricing">Pricing</a>
+        <a class="nav-link" href="https://support.ration.works/guides/" target="_blank" rel="noopener">Resources</a>
+        <a class="nav-link" href="https://support.ration.works/" target="_blank" rel="noopener">Support</a>
+        <a class="nav-link" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-quiet nav-open" href="https://app.ration.works/" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary nav-cta" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+        <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-inner" aria-label="Mobile">
+      <a href="index.html#features">Product</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="https://support.ration.works/guides/" target="_blank" rel="noopener">Resources</a>
+      <a href="https://support.ration.works/" target="_blank" rel="noopener">Support</a>
+      <a href="index.html#contact">Contact</a>
+      <div class="mobile-menu-actions">
+        <a class="btn btn-quiet" href="https://app.ration.works/" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="sol-hero" id="overview">
+      <div class="sol-hero-bg" aria-hidden="true"></div>
+      <div class="container sol-hero-inner">
+        <div class="sol-hero-copy">
+          <p class="eyebrow" data-reveal>Solutions</p>
+          <h1 data-reveal>Start from what your organisation <span>needs to do.</span></h1>
+          <p class="sol-hero-lede" data-reveal>
+            Four ways Ration MCS helps people work, three situations it is built for,
+            and the kinds of organisation that use it.
+          </p>
+          <div class="sol-hero-actions" data-reveal>
+            <a class="btn btn-primary btn-lg" href="https://app.ration.works/register" target="_blank" rel="noopener">
+              Get started
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn-outline btn-lg" href="https://explore.ration.works/mail" target="_blank" rel="noopener">
+              Take a 5-minute tour
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+            <a class="btn btn-link btn-lg" href="#sol-contact">Talk to sales</a>
+          </div>
+          <p class="sol-hero-meta" data-reveal>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>One login, ten apps</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Sovereign by design</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Five regions</span>
+          </p>
+        </div>
+
+        <div class="sol-hero-visual" data-reveal>
+          <span class="sol-hero-rings" aria-hidden="true">
+            <svg viewBox="0 0 720 720" fill="none">
+              <circle cx="360" cy="360" r="90"/>
+              <circle cx="360" cy="360" r="150"/>
+              <circle cx="360" cy="360" r="215"/>
+              <circle cx="360" cy="360" r="280"/>
+              <circle cx="360" cy="360" r="345"/>
+            </svg>
+          </span>
+          <div class="browser sol-hero-browser">
+            <div class="browser-chrome">
+              <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="browser-url">
+                <svg class="browser-lock" aria-hidden="true"><use href="#i-lock"></use></svg>
+                <span>app.ration.works/mail</span>
+              </span>
+              <span class="browser-window" aria-hidden="true">
+                <svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg>
+                <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
+                <svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3 3 9"/></svg>
+              </span>
+            </div>
+            <div class="browser-viewport">
+              <img src="assets/img/app-mail.webp" alt="Ration Mail inbox showing the Ogun State rollout" width="1600" height="1000" fetchpriority="high">
+            </div>
+          </div>
+          <span class="sol-chip sol-chip-top"><svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>10 apps · one workspace</span>
+          <span class="sol-chip sol-chip-bottom"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Sovereign cloud · Lagos</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="sol-anchors" aria-label="Solutions sections">
+      <div class="container sol-anchors-inner">
+        <a class="sol-anchor-link is-active" href="#overview">Overview</a>
+        <a class="sol-anchor-link" href="#capabilities">Capabilities</a>
+        <a class="sol-anchor-link" href="#situations">Situations</a>
+        <a class="sol-anchor-link" href="#organisations">Organisations</a>
+        <a class="sol-anchor-link" href="#editions">Editions</a>
+        <a class="sol-anchor-link" href="#pricing">Pricing</a>
+      </div>
+    </nav>
+
+    <section class="sol-proof" aria-label="Ration at a glance">
+      <div class="container sol-proof-grid">
+        <div class="sol-proof-item"><strong>10</strong><span>Apps on one login</span></div>
+        <div class="sol-proof-item"><strong>5</strong><span>Data-centre regions</span></div>
+        <div class="sol-proof-item"><strong>25<small>GB</small></strong><span>Mailbox per user</span></div>
+        <div class="sol-proof-item"><strong>24/7</strong><span>Email support</span></div>
+      </div>
+    </section>
+
+    <section class="sol-section" id="capabilities">
+      <div class="container">
+        <div class="sol-section-head">
+          <div>
+            <p class="eyebrow" data-reveal>What it helps you do</p>
+            <h2 class="section-title" data-split>Ration MCS, in four capabilities.</h2>
+          </div>
+          <p class="sol-section-lede" data-reveal>
+            The Messaging and Collaboration Suite is ten apps on one login.
+            They fall into four groups.
+          </p>
+        </div>
+
+        <div class="sol-cap-grid" data-reveal-group>
+          <article class="sol-cap-card">
+            <div class="sol-cap-top">
+              <span class="sol-cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg></span>
+              <span class="sol-cap-num">01 / 04</span>
+            </div>
+            <h3>Communicate</h3>
+            <p>Reach the right people, in the right way, from one directory.</p>
+            <div class="sol-apps">
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>Mail</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-chat"></use></svg>Chat</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-meet"></use></svg>Meet</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Calendar</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-contacts"></use></svg>Contacts</span>
+            </div>
+          </article>
+
+          <article class="sol-cap-card">
+            <div class="sol-cap-top">
+              <span class="sol-cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-tasks"></use></svg></span>
+              <span class="sol-cap-num">02 / 04</span>
+            </div>
+            <h3>Organise</h3>
+            <p>Turn decisions into work, and keep the work where everyone can see it.</p>
+            <div class="sol-apps">
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-tasks"></use></svg>Tasks</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-notes"></use></svg>Notes</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-forms"></use></svg>Forms</span>
+            </div>
+          </article>
+
+          <article class="sol-cap-card">
+            <div class="sol-cap-top">
+              <span class="sol-cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></span>
+              <span class="sol-cap-num">03 / 04</span>
+            </div>
+            <h3>Create</h3>
+            <p>Store, write and share the documents your organisation works from.</p>
+            <div class="sol-apps">
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg>Drive</span>
+              <span class="sol-app"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg>Docs</span>
+            </div>
+          </article>
+
+          <article class="sol-cap-card is-coming">
+            <div class="sol-cap-top">
+              <span class="sol-cap-icon"><svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg></span>
+              <span class="sol-coming">Coming soon</span>
+            </div>
+            <h3>Automate</h3>
+            <p>Route approvals and recurring work from request to decision.</p>
+            <p class="sol-cap-note"><b>How it will work:</b> a request comes in, goes to the right people in order, and reaches a decision, with every handover recorded.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-section sol-section--soft" id="situations">
+      <div class="container">
+        <div class="sol-section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Your situation</p>
+            <h2 class="section-title" data-split>Three situations Ration is built for.</h2>
+          </div>
+          <p class="sol-section-lede" data-reveal>
+            Start where your organisation is today. The platform meets you there,
+            then grows with the way you work.
+          </p>
+        </div>
+
+        <div class="sol-situation-grid" data-reveal-group>
+          <article class="sol-situation-card">
+            <span class="sol-situation-num">01</span>
+            <p class="sol-situation-kicker">You want a Plan B</p>
+            <h3>Ration Continuity</h3>
+            <p>Keep Microsoft 365 or Google Workspace, and keep working when it goes down.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Protects mail, calendar, contacts, tasks, files and notes</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your people carry on working in Ration during an outage</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Their changes go back when service returns</li>
+            </ul>
+            <a class="link-arrow" href="https://www.ration.works/continuity">Explore Ration Continuity <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+
+          <article class="sol-situation-card">
+            <span class="sol-situation-num">02</span>
+            <p class="sol-situation-kicker">You must hold the hardware</p>
+            <h3>On-Premise</h3>
+            <p>Run Ration MCS on your own servers, inside your own network.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Deployed to your data centre or infrastructure</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your existing security controls apply</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>The same apps as Ration Cloud</li>
+            </ul>
+            <a class="link-arrow" href="#sol-contact">Talk to us about on-premise <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+
+          <article class="sol-situation-card">
+            <span class="sol-situation-num">03</span>
+            <p class="sol-situation-kicker">You are moving platform</p>
+            <h3>Migration</h3>
+            <p>Move from your current system at your own pace, one team at a time.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>One team starts on Ration, alongside your current system</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Other teams follow on your timetable</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Email moves over last, and everyone keeps their address</li>
+            </ul>
+            <a class="link-arrow" href="#sol-contact">Plan a move with us <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-section" id="organisations">
+      <div class="container">
+        <div class="sol-section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Your organisation</p>
+            <h2 class="section-title" data-split>Built for organisations of every shape.</h2>
+          </div>
+          <p class="sol-section-lede" data-reveal>
+            Whatever the size, the product is the same. What changes is how it is
+            deployed and governed.
+          </p>
+        </div>
+
+        <div class="sol-org-grid" data-reveal-group>
+          <article class="sol-org-card">
+            <span class="sol-org-icon"><svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg></span>
+            <h3>Growing businesses</h3>
+            <p>One login and one bill in place of scattered tools.</p>
+          </article>
+          <article class="sol-org-card">
+            <span class="sol-org-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+            <h3>Distributed organisations</h3>
+            <p>Branches, chapters and field teams in one workspace.</p>
+          </article>
+          <article class="sol-org-card">
+            <span class="sol-org-icon"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+            <h3>Enterprise</h3>
+            <p>One directory and one set of access rules at scale.</p>
+          </article>
+          <article class="sol-org-card">
+            <span class="sol-org-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span>
+            <h3>Regulated industries</h3>
+            <p>Control over where data lives and who can reach it.</p>
+          </article>
+          <article class="sol-org-card">
+            <span class="sol-org-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+            <h3>Government and public sector</h3>
+            <p>Sovereign hosting, in the region or on your own servers.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-section sol-section--soft" id="editions">
+      <div class="container">
+        <div class="sol-section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Where Ration runs</p>
+            <h2 class="section-title" data-split>Three editions. One platform.</h2>
+          </div>
+          <p class="sol-section-lede" data-reveal>
+            Same platform, same apps, wherever your organisation needs it.
+            Move between editions without changing how your teams work.
+          </p>
+        </div>
+
+        <div class="sol-edition-grid" data-reveal-group>
+          <article class="sol-edition is-featured">
+            <span class="sol-edition-kicker">01 · SaaS Edition · Ration Cloud</span>
+            <h3>We host it and run it for you</h3>
+            <p>Software-as-a-Service on Ration Cloud, in the region your policy requires.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Hosted and maintained by Ration</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Updates and patches applied for you</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Seats scale up or down</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Subscription billing</li>
+            </ul>
+            <a class="btn btn-light sol-edition-btn" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+
+          <article class="sol-edition">
+            <span class="sol-edition-kicker">02 · MSP Edition · Managed service</span>
+            <h3>You host it, for your own customers</h3>
+            <p>Managed Service Provider edition for operators running Ration for multiple organisations.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Runs in your environment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Many customer organisations, one deployment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Add capacity as tenants grow</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Priority engineering support</li>
+            </ul>
+            <a class="btn btn-outline sol-edition-btn" href="#sol-contact">Talk to sales</a>
+          </article>
+
+          <article class="sol-edition">
+            <span class="sol-edition-kicker">03 · On-Premise · Your data centre</span>
+            <h3>Your hardware, your control</h3>
+            <p>Deploy to your own data centre or infrastructure-as-a-service environment.</p>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Deployed to your hardware or IaaS</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Full ownership of the environment</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Your existing security controls apply</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Tailored to your requirements</li>
+            </ul>
+            <a class="btn btn-outline sol-edition-btn" href="#sol-contact">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-section" id="pricing">
+      <div class="container">
+        <div class="sol-pricing-panel" data-reveal>
+          <span class="sol-pricing-rings" aria-hidden="true">
+            <svg viewBox="0 0 720 720" fill="none">
+              <circle cx="360" cy="360" r="90"/><circle cx="360" cy="360" r="150"/><circle cx="360" cy="360" r="215"/><circle cx="360" cy="360" r="280"/><circle cx="360" cy="360" r="345"/>
+            </svg>
+          </span>
+          <div class="sol-pricing-copy">
+            <p class="eyebrow" data-reveal>Pricing</p>
+            <h2 data-reveal>Start with the essentials. Add control as you grow.</h2>
+            <p data-reveal>
+              Simple per-user pricing in Naira, with USD, GBP and EUR available.
+              Every plan includes one directory, one login and every app you have licensed.
+            </p>
+            <div class="sol-pricing-actions" data-reveal>
+              <a class="btn btn-primary" href="index.html#pricing">See all plans <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              <a class="btn btn-outline" href="#sol-contact">Talk to sales</a>
+            </div>
+          </div>
+          <div class="sol-price-card">
+            <span class="plan-tier">Entry</span>
+            <h3>Start</h3>
+            <p>Secure communication foundation</p>
+            <div class="sol-price-line"><span class="sol-price-currency">₦</span><b>2,000</b><span class="sol-price-period">/ user / month</span></div>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Mail with 25 GB per user</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Calendar and basic chat</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Mobile and desktop apps</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>MFA and identity</li>
+            </ul>
+            <a class="btn btn-primary" href="https://app.ration.works/register" target="_blank" rel="noopener">Get started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-section" id="resources">
+      <div class="container">
+        <div class="sol-section-head">
+          <div>
+            <p class="eyebrow" data-reveal>Resources</p>
+            <h2 class="section-title" data-split>Set your team up with confidence.</h2>
+          </div>
+          <p class="sol-section-lede" data-reveal>
+            Practical help for the people rolling Ration out, and a way for everyone
+            else to see the product before you commit.
+          </p>
+        </div>
+
+        <div class="sol-resource-grid" data-reveal-group>
+          <article class="sol-resource-card">
+            <span class="sol-resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-notes"></use></svg></span>
+            <h3>Set-up guides</h3>
+            <p>Step-by-step help for admins and staff, from first sign-in to a full rollout.</p>
+            <a class="link-arrow" href="https://support.ration.works/guides/" target="_blank" rel="noopener">Open the guides <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+          <article class="sol-resource-card">
+            <span class="sol-resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-screen"></use></svg></span>
+            <h3>Take a 5-minute tour</h3>
+            <p>The real Ration, with no sign-up. See Mail, Chat, Meet and the rest in one workspace.</p>
+            <a class="link-arrow" href="https://explore.ration.works/mail" target="_blank" rel="noopener">Start the tour <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+          <article class="sol-resource-card">
+            <span class="sol-resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-doc"></use></svg></span>
+            <h3>Ration Docs for desktop</h3>
+            <p>A desktop editor for documents, spreadsheets, presentations and PDFs. Free for Mac and Linux.</p>
+            <a class="link-arrow" href="https://www.ration.works/docs" target="_blank" rel="noopener">Explore Ration Docs <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sol-cta" id="sol-contact">
+      <div class="container">
+        <div class="sol-cta-panel" data-reveal>
+          <span class="sol-cta-rings" aria-hidden="true">
+            <svg viewBox="0 0 720 720" fill="none">
+              <circle cx="360" cy="360" r="90"/><circle cx="360" cy="360" r="150"/><circle cx="360" cy="360" r="215"/><circle cx="360" cy="360" r="280"/><circle cx="360" cy="360" r="345"/>
+            </svg>
+          </span>
+          <p class="eyebrow eyebrow-light">Talk to us</p>
+          <h2>See what Ration looks like inside your organisation.</h2>
+          <p>We’ll scope it with you before you commit to anything.</p>
+          <div class="sol-cta-actions">
+            <a class="btn btn-light btn-lg" href="https://www.ration.works/contact" target="_blank" rel="noopener">Talk to us <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            <a class="btn btn-outline-light btn-lg" href="https://explore.ration.works/mail" target="_blank" rel="noopener">Take a 5-minute tour</a>
+          </div>
+          <p class="sol-cta-meta">Built in Africa · Sovereign by design · Deployed wherever you need it</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="Ration home"><img src="assets/img/ration-logo-light.svg" alt="Ration" width="120" height="34" loading="lazy"></a>
+          <p>Secure collaboration for organisations that need control over how they work. Built in Africa, ready for wherever work goes next.</p>
+          <div class="footer-meta">
+            <span><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Sovereign by design</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Regional hosting</span>
+          </div>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="index.html#features">Product</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="index.html#pricing">Pricing</a>
+          </div>
+          <div class="footer-col">
+            <h4>Modules</h4>
+            <a href="https://explore.ration.works/mail">Business email</a>
+            <a href="https://explore.ration.works/chat">Chat</a>
+            <a href="https://explore.ration.works/calendar">Calendar</a>
+            <a href="https://explore.ration.works/forms">Forms</a>
+            <a href="https://www.ration.works/docs">Ration Docs</a>
+          </div>
+          <div class="footer-col">
+            <h4>Assurance</h4>
+            <a href="https://www.ration.works/secure-messaging">Secure messaging</a>
+            <a href="https://www.ration.works/sovereign-collaboration">Sovereign collaboration</a>
+            <a href="https://www.ration.works/government-collaboration">Government collaboration</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="https://support.ration.works/guides/" target="_blank" rel="noopener">Resources</a>
+            <a href="https://support.ration.works/">Support</a>
+            <a href="https://www.ration.works/contact">Contact</a>
+            <a href="https://www.ration.works/contact">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Ration — a Stackchase Limited product.</p>
+        <div class="footer-legal">
+          <a href="https://www.ration.works/privacy">Privacy</a>
+          <a href="https://www.ration.works/legal">Legal notice</a>
+          <span>English (NG)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/ScrollToPlugin.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/solutions.js" defer></script>
+</body>
+</html>
+
