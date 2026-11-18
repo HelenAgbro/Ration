@@ -6,6 +6,7 @@ const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
 const html = readFileSync(path.join(root, 'index.html'), 'utf8');
 const solutionsHtml = readFileSync(path.join(root, 'solutions.html'), 'utf8');
+const contactHtml = readFileSync(path.join(root, 'contact.html'), 'utf8');
 const source = readFileSync(path.join(root, 'assets/js/main.js'), 'utf8');
 
 // Run the complete interaction layer without GSAP. Layout measurements are
@@ -124,6 +125,26 @@ test('solutions page header, sections and assets resolve', () => {
     for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
     for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
     assert.ok(existsSync(path.join(root, 'assets/css/solutions.css')));
+  } finally { dom.window.close(); }
+});
+
+test('contact page header, details, map and assets resolve', () => {
+  const dom = new JSDOM(contactHtml);
+  const d = dom.window.document;
+  try {
+    assert.equal(d.querySelector('title').textContent, 'Contact Ration | Talk to Sales');
+    assert.deepEqual([...d.querySelectorAll('.nav-links .nav-link')].map(a => a.textContent.trim()), ['Product', 'Solutions', 'Pricing', 'Resources', 'Support', 'Contact']);
+    assert.equal(d.querySelector('.nav-link.is-active').textContent.trim(), 'Contact');
+    assert.deepEqual([...d.querySelectorAll('.nav-actions .btn')].map(a => a.textContent.trim()), ['Log in', 'Get started']);
+    for (const id of ['contact-hero', 'channels', 'location', 'try-ration']) assert.ok(d.getElementById(id), id);
+    assert.ok(d.querySelector('.contact-card').textContent.includes('support@ration.works'));
+    assert.ok(d.querySelector('.contact-card').textContent.includes('+234 201 889 1810'));
+    assert.ok(d.querySelector('.contact-map img').getAttribute('src').endsWith('africa-outline-dark.svg'));
+    const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
+    assert.equal(ids.length, new Set(ids).size);
+    for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
+    for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
+    assert.ok(existsSync(path.join(root, 'assets/css/contact.css')));
   } finally { dom.window.close(); }
 });
 

@@ -18,8 +18,10 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   consistent design system. The Organisations section uses the supplied Figma background artwork with a
   deep navy veil and white section text so the image is clearly visible while the cards remain legible.
   The Pricing section uses the supplied white pricing background texture at 5% visibility behind the panel,
-  preserving a subtle surface pattern without competing with the pricing card. The header was updated
-  across the homepage and Solutions page, and clean URLs are enabled locally and on Vercel.
+  preserving a subtle surface pattern without competing with the pricing card. A dedicated Contact page
+  extends the same design system with contact details, support routes, a Lagos location map and the shared
+  CTA/footer. The header was updated across the homepage and Solutions page, and clean URLs are enabled
+  locally and on Vercel.
 - **Hero** aligned with the live site’s copy and motion: the “Work. Communicate. Collaborate.”
   headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
   straight, flat GSAP slider of browser-framed app captures — one square-on card at a time, no
@@ -68,9 +70,11 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 .
 ├── index.html                  # the homepage
 ├── solutions.html              # Solutions page (/solutions)
+├── contact.html                # Contact page (/contact)
 ├── assets
 │   ├── css/styles.css          # design system + all section styles
 │   ├── css/solutions.css       # Solutions page components
+│   ├── css/contact.css         # Contact page components
 │   ├── js/main.js              # GSAP motion, slider, accordions, interactions
 │   ├── fonts/                  # self-hosted Inter (latin + latin-ext)
 │   ├── img/                    # logos, app screenshots, map, OG image, icons
@@ -87,7 +91,7 @@ Requires Node 18+.
 
 ```bash
 npm install        # optional: only GSAP/Playwright dev tooling
-npm run dev        # http://localhost:5173 (and http://localhost:5173/solutions)
+npm run dev        # http://localhost:5173 (plus /solutions and /contact)
 ```
 
 The site is static, so `python3 -m http.server 5173` works just as well.
