@@ -12,8 +12,8 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
   straight, flat GSAP slider of browser-framed app captures — one square-on card at a time, no
   perspective or angled neighbours — with a 5-second auto-advance, swipe, keyboard support and
-  simple dot navigation. It sits directly on the new light-blue swirl artwork
-  (`assets/img/hero-swirl.svg`) that fills the hero. Five captures are
+  simple dot navigation. It sits on a soft light-blue gradient with the restored
+  faint grid overlay. Five captures are
   included — Mail, Chat, Meet, Calendar and Forms — with the latest Chat/Forms/Meet screenshots
   cropped into the browser cards.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
