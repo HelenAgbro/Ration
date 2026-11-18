@@ -174,15 +174,17 @@
 .sol-pricing-rings { position: absolute; z-index: 0; top: -220px; right: -240px; width: 620px; color: var(--blue); opacity: .08; pointer-events: none; }
 .sol-pricing-rings svg { width: 100%; height: auto; }
 .sol-pricing-rings circle { fill: none; stroke: currentColor; stroke-width: 1.1; }
-.sol-price-card { position: relative; z-index: 1; display: flex; flex-direction: column; padding: 26px; border: 1px solid #E1EAEF; border-radius: 18px; background: #fff; box-shadow: 0 30px 60px -46px rgba(0, 43, 64, .45); }
-.sol-price-card h3 { margin-top: 4px; font-size: 27px; font-weight: 650; letter-spacing: -.035em; color: var(--navy); }
-.sol-price-card > p { margin-top: 1px; font-size: 12px; color: #526875; }
+.sol-price-card { position: relative; z-index: 1; display: flex; flex-direction: column; padding: 26px; border: 1px solid rgba(255, 255, 255, .13); border-radius: 18px; background: #001E2D; color: #fff; box-shadow: 0 34px 66px -40px rgba(0, 25, 40, .7); }
+.sol-price-card .plan-tier { color: #7FB8D0; }
+.sol-price-card h3 { margin-top: 4px; font-size: 27px; font-weight: 650; letter-spacing: -.035em; color: #fff; }
+.sol-price-card > p { margin-top: 1px; font-size: 12px; color: #A6C0CD; }
 .sol-price-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px; margin: 18px 0 16px; }
-.sol-price-currency { align-self: flex-start; margin-top: 6px; font-size: 18px; font-weight: 600; color: var(--navy); }
-.sol-price-line b { font-size: clamp(2.1rem, 3.4vw, 2.7rem); font-weight: 650; line-height: 1; letter-spacing: -.05em; color: var(--navy); font-variant-numeric: tabular-nums; }
-.sol-price-period { margin-left: 4px; font-size: 10.5px; color: #5B7280; }
+.sol-price-currency { align-self: flex-start; margin-top: 6px; font-size: 18px; font-weight: 600; color: #fff; }
+.sol-price-line b { font-size: clamp(2.1rem, 3.4vw, 2.7rem); font-weight: 650; line-height: 1; letter-spacing: -.05em; color: #fff; font-variant-numeric: tabular-nums; }
+.sol-price-period { margin-left: 4px; font-size: 10.5px; color: #9FBAC7; }
 .sol-price-card .ticks { display: grid; gap: 8px; }
-.sol-price-card .ticks li { font-size: 12px; line-height: 1.45; }
+.sol-price-card .ticks li { font-size: 12px; line-height: 1.45; color: #D5E6EE; }
+.sol-price-card .ticks .icon { color: #6FD3A8; }
 .sol-price-card .btn { margin-top: 20px; }
 
 /* Resources ------------------------------------------------------------- */
