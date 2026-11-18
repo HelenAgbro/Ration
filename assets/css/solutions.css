@@ -67,7 +67,17 @@
 /* Section scaffolding ----------------------------------------------------- */
 .sol-section { padding: clamp(88px, 10vw, 128px) 0; }
 .sol-section--soft { border-block: 1px solid #EAF1F4; background: var(--bg-soft); }
-.sol-section--image { background: linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .9)), url("../img/image-3.png") center / cover no-repeat, #F7FBFD; }
+.sol-section--image {
+  position: relative;
+  background:
+    linear-gradient(108deg, rgba(0, 27, 40, .76) 0%, rgba(0, 43, 64, .55) 46%, rgba(0, 30, 45, .3) 100%),
+    url("../img/image-3.png") center / cover no-repeat,
+    #002B40;
+  color: #fff;
+}
+.sol-section--image .section-title { color: #fff; }
+.sol-section--image .eyebrow { color: #8FC2D8; }
+.sol-section--image .section-lede { color: #C3D7E1; }
 /* Capabilities ----------------------------------------------------------- */
 .sol-cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .sol-cap-card {
