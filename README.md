@@ -18,7 +18,7 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   cropped into the browser cards.
 - **Ration Docs** introduced as two new sections sourced from [ration.works/docs](https://www.ration.works/docs):
   “One editor. The files you already work with.” presents DOCX, XLSX, PPTX and PDF editing in a
-  single desktop application with the supplied Ration Docs desktop image, and a dark “Your documents.
+  single desktop application with the custom editor mockup, and a dark “Your documents.
   Your computer. Your language.” section covers Yoruba/Igbo/Hausa support, local-first files, and
   the free macOS Apple Silicon / Linux ARM64 downloads for v2026.1.0.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
