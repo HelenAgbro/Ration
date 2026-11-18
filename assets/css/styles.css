@@ -2404,7 +2404,10 @@ html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
 .docs-formats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
 .docs-format { display: grid; grid-template-columns: 38px 1fr auto; grid-template-areas: "icon title ext" "desc desc desc"; gap: 6px 11px; align-items: center; padding: 15px 16px 14px; border: 1px solid #E1EAEF; border-radius: 14px; background: #FBFDFE; transition: border-color .25s ease, background-color .25s ease; }
 .docs-format:hover { border-color: #C9DDE8; background: #fff; }
-.docs-format-icon { grid-area: icon; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #E0EBF1; border-radius: 10px; background: #F1F7FA; color: var(--blue); }
+.docs-format-doc { --format-color: #006699; --format-bg: #E7F2F9; --format-border: #CEE4F0; }
+.docs-format-sheet { --format-color: #227347; --format-bg: #E9F4EE; --format-border: #CFE7D9; }
+.docs-format-slides, .docs-format-pdf { --format-color: #B7472A; --format-bg: #FBECE7; --format-border: #F0D6CD; }
+.docs-format-icon { grid-area: icon; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--format-border, #E0EBF1); border-radius: 10px; background: var(--format-bg, #F1F7FA); color: var(--format-color, var(--blue)); }
 .docs-format-icon .icon { width: 18px; height: 18px; }
 .docs-format h3 { grid-area: title; font-size: 13.5px; font-weight: 640; letter-spacing: -.015em; color: var(--navy); }
 .docs-format-ext { grid-area: ext; padding: 2px 6px; border-radius: 4px; background: #EAF4F9; font-size: 8px; font-weight: 700; letter-spacing: .08em; color: var(--blue); }
