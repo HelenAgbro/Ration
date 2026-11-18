@@ -24,6 +24,7 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/solutions.css">
+  <link rel="stylesheet" href="assets/vendor/leaflet.css">
   <link rel="stylesheet" href="assets/css/contact.css">
   <script>if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("reduce-motion"); }</script>
 </head>
@@ -217,10 +218,9 @@
 
         <figure class="contact-map" data-reveal>
           <div class="contact-map-frame">
-            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=3.4525%2C6.4263%2C3.4596%2C6.4303&amp;layer=mapnik" title="Map showing the Stackchase office at 3a Olaletan Street, Oniru, Lagos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <span class="contact-map-pin" aria-hidden="true"><i></i></span>
+            <div id="office-map" class="office-map" data-lat="6.428286" data-lng="3.456032" data-zoom="18" role="region" aria-label="Interactive map showing Stackchase Limited at 3a Olaletan Street, Oniru, Lagos"></div>
           </div>
-          <figcaption><span>Lagos, Nigeria</span>Stackchase Limited · Oniru, Victoria Island</figcaption>
+          <figcaption><span>Lagos, Nigeria</span>Stackchase Limited · Oniru, Victoria Island · © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors, © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></figcaption>
         </figure>
 
         <div class="contact-location-details" data-reveal>
@@ -310,7 +310,9 @@
   <script src="assets/vendor/gsap.min.js" defer></script>
   <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
   <script src="assets/vendor/ScrollToPlugin.min.js" defer></script>
+  <script src="assets/vendor/leaflet.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/contact.js" defer></script>
 </body>
 </html>
 
