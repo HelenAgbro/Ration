@@ -2704,7 +2704,7 @@ html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
 .deploy.is-scroll-driven > .container { height: 320svh; }
 .deploy.is-scroll-driven .deploy-shell { position: sticky; top: 0; height: 100svh; padding-block: calc(var(--nav-h) + 16px) 24px; grid-template-columns: .8fr 1.2fr; gap: clamp(24px, 4vw, 56px); align-content: center; }
 .deploy.is-scroll-driven .deploy-slide { opacity: 1; visibility: visible; }
-.deploy.is-scroll-driven .deploy-visual { min-height: clamp(360px, 52vh, 520px); }
+.deploy.is-scroll-driven .deploy-visual { min-height: clamp(380px, 62vh, 640px); }
 .deploy.is-scroll-driven .deploy-slider { min-width: 0; }
 @media (max-width: 1100px) {
   .deploy.is-scroll-driven .deploy-slide { padding: 22px; gap: 18px; }
