@@ -146,6 +146,8 @@ test('contact page header, details, map and assets resolve', () => {
     const mapFrame = d.querySelector('.contact-map iframe');
     assert.ok(mapFrame);
     assert.ok(mapFrame.getAttribute('src').includes('openstreetmap.org/export/embed.html'));
+    assert.ok(!mapFrame.getAttribute('src').includes('marker='));
+    assert.ok(d.querySelector('.contact-map-pin'));
     assert.equal(d.querySelector('.contact-card .link-arrow').getAttribute('href'), '#location');
     assert.equal(d.querySelectorAll('a[href*="google.com/maps"]').length, 0);
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
