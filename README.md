@@ -12,9 +12,9 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   Product, Solutions, Pricing, Resources, Support, Contact, Log in and Get started. The page follows a
   Microsoft 365-style structure: product hero, capability cards, the three deployment situations,
   organisation types, editions, pricing, resources and a closing CTA. The hero uses an Ease-inspired
-  split with overlapping Mail and Chat captures, and the closing CTA flows directly into the footer.
-  The header was updated across the homepage and Solutions page, and clean URLs are enabled locally
-  and on Vercel.
+  split with a single product card and no decorative ring, and the closing CTA flows directly into the
+  footer. The header was updated across the homepage and Solutions page, and clean URLs are enabled
+  locally and on Vercel.
 - **Hero** aligned with the live site’s copy and motion: the “Work. Communicate. Collaborate.”
   headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
   straight, flat GSAP slider of browser-framed app captures — one square-on card at a time, no
