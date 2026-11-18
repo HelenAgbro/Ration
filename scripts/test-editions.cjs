@@ -123,7 +123,11 @@ test('solutions page header, sections and assets resolve', () => {
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
     assert.equal(ids.length, new Set(ids).size);
     for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
-    for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
+    for (const el of d.querySelectorAll('[src]')) {
+      const src = el.getAttribute('src');
+      if (/^https?:/.test(src)) continue;
+      assert.ok(existsSync(path.join(root, src)), src);
+    }
     assert.ok(existsSync(path.join(root, 'assets/css/solutions.css')));
   } finally { dom.window.close(); }
 });
@@ -139,11 +143,19 @@ test('contact page header, details, map and assets resolve', () => {
     for (const id of ['contact-hero', 'channels', 'location', 'try-ration']) assert.ok(d.getElementById(id), id);
     assert.ok(d.querySelector('.contact-card').textContent.includes('support@ration.works'));
     assert.ok(d.querySelector('.contact-card').textContent.includes('+234 201 889 1810'));
-    assert.ok(d.querySelector('.contact-map img').getAttribute('src').endsWith('africa-outline-dark.svg'));
+    const mapFrame = d.querySelector('.contact-map iframe');
+    assert.ok(mapFrame);
+    assert.ok(mapFrame.getAttribute('src').includes('openstreetmap.org/export/embed.html'));
+    assert.equal(d.querySelector('.contact-card .link-arrow').getAttribute('href'), '#location');
+    assert.equal(d.querySelectorAll('a[href*="google.com/maps"]').length, 0);
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
     assert.equal(ids.length, new Set(ids).size);
     for (const el of d.querySelectorAll('[href^="#"]')) assert.ok(d.getElementById(el.getAttribute('href').slice(1)), el.getAttribute('href'));
-    for (const el of d.querySelectorAll('[src]')) assert.ok(existsSync(path.join(root, el.getAttribute('src'))), el.getAttribute('src'));
+    for (const el of d.querySelectorAll('[src]')) {
+      const src = el.getAttribute('src');
+      if (/^https?:/.test(src)) continue;
+      assert.ok(existsSync(path.join(root, src)), src);
+    }
     assert.ok(existsSync(path.join(root, 'assets/css/contact.css')));
   } finally { dom.window.close(); }
 });
