@@ -207,7 +207,7 @@
   }
 
   /* -----------------------------------------------------------------------
-     Hero coverflow
+     Hero slider
      -------------------------------------------------------------------- */
   var slides = $$('.hero-slide');
   var dots = $$('.hero-dot');
@@ -252,10 +252,10 @@
         props = { xPercent: 0, z: 0, rotateY: 0, autoAlpha: abs === 0 ? 1 : 0 };
       } else {
         props = {
-          xPercent: diff * (abs > 1 ? 92 : 46),
-          z: abs === 0 ? 0 : (abs === 1 ? -320 : -640),
-          rotateY: abs === 0 ? 0 : (diff > 0 ? -34 : 34) * abs,
-          autoAlpha: abs === 0 ? 1 : (abs === 1 ? .9 : 0)
+          xPercent: diff * 110,
+          z: 0,
+          rotateY: 0,
+          autoAlpha: abs <= 1 ? 1 : 0
         };
       }
 
@@ -724,7 +724,7 @@
 
 
   /* -----------------------------------------------------------------------
-     Whimsy — magnetic buttons, card tilt, hero tilt, cursors
+     Whimsy — magnetic buttons, card tilt, cursors
      -------------------------------------------------------------------- */
   function initWhimsy() {
     if (!hasMotion || prefersReduced) return;
@@ -754,21 +754,6 @@
         gsap.to(card, { rotationX: 0, rotationY: 0, duration: .65, ease: 'power2.out' });
       });
     });
-
-    var heroStage = $('.hero-stage');
-    var heroShowcase = $('.hero-showcase');
-    if (heroStage && heroShowcase) {
-      var hx = gsap.quickTo(heroStage, 'rotationX', { duration: .7, ease: 'power3.out' });
-      var hy = gsap.quickTo(heroStage, 'rotationY', { duration: .7, ease: 'power3.out' });
-      heroShowcase.addEventListener('pointermove', function (event) {
-        var r = heroShowcase.getBoundingClientRect();
-        hy(((event.clientX - r.left) / r.width - .5) * 2);
-        hx(-((event.clientY - r.top) / r.height - .5) * 1.5);
-      });
-      heroShowcase.addEventListener('pointerleave', function () {
-        gsap.to(heroStage, { rotationX: 0, rotationY: 0, duration: .9, ease: 'power3.out' });
-      });
-    }
 
     var cursorRing = $('[data-cursor-ring]');
     if (cursorRing) {

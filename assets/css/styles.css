@@ -343,42 +343,14 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .hero {
   position: relative;
   padding: calc(var(--nav-h) + 62px) 0 0;
-  background: #fff;
-  overflow: hidden;
-}
-
-.hero-bg { position: absolute; inset: 0; pointer-events: none; }
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: .6;
-}
-.hero-glow-a {
-  width: 720px;
-  height: 720px;
-  top: -340px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(0, 102, 153, .2), transparent 64%);
-}
-.hero-glow-b {
-  width: 520px;
-  height: 520px;
-  right: -160px;
-  top: 340px;
-  background: radial-gradient(circle, rgba(255, 179, 67, .18), transparent 66%);
-}
-.hero-grid {
-  position: absolute;
-  inset: 0;
+  background-color: #E7F2FA;
   background-image:
-    linear-gradient(rgba(0, 43, 64, .075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 43, 64, .075) 1px, transparent 1px);
-  background-size: 58px 58px;
-  -webkit-mask-image: radial-gradient(ellipse 76% 52% at 50% 0%, #000 32%, transparent 84%);
-  mask-image: radial-gradient(ellipse 76% 52% at 50% 0%, #000 32%, transparent 84%);
-  opacity: .9;
+    linear-gradient(180deg, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 76%, #fff 100%),
+    url("../img/hero-swirl.svg");
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-position: center top, center top;
+  overflow: hidden;
 }
 
 .hero-copy { position: relative; z-index: 2; text-align: center; }
@@ -589,24 +561,19 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
 .browser-chrome .browser-url { height: 27px; font-size: 10.5px; }
 .browser-chrome .browser-window { margin-left: 0; padding-bottom: 0; gap: 11px; }
 
-/* 3D coverflow stage ------------------------------------------------------ */
+/* Flat slide stage -------------------------------------------------------- */
 .hero-stage {
   position: relative;
   margin-inline: 0;
-  padding-top: calc(43.75% + 47px);
-  perspective: 1700px;
-  perspective-origin: 50% 40%;
-  transform-style: preserve-3d;
+  padding-top: calc(53.75% + 47px);
 }
 .hero-slide {
   position: absolute;
   top: 0;
-  left: 15%;
-  width: 70%;
+  left: 7%;
+  width: 86%;
   height: 100%;
   margin: 0;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
   will-change: transform, opacity;
 }
 .hero-slide:not(.is-active) { opacity: 0; visibility: hidden; }
@@ -1576,7 +1543,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
   .browser-navbtns svg { width: 13px; height: 13px; }
   .browser-url { height: 25px; font-size: 10px; padding: 0 9px; }
   .browser-extra { display: none; }
-  .hero-stage { margin-inline: 0; padding-top: calc(75% + 44px); perspective: none; }
+  .hero-stage { margin-inline: 0; padding-top: calc(75% + 44px); }
   .hero-slide { left: 0; width: 100%; }
   .browser-chrome { padding: 8px 10px; gap: 9px; }
   .hero-slide img { object-position: top left; }
@@ -1918,7 +1885,6 @@ html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
 .cta-panel::after { z-index: 1; }
 .cta-panel > * { position: relative; z-index: 2; }
 .cta-panel > .spotlight { z-index: 1; }
-.hero-showcase { perspective: 1800px; }
 .audience-card, .deploy-card, .price-card, .ui-card { will-change: transform; }
 
 /* ==========================================================================

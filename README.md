@@ -10,9 +10,10 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 
 - **Hero** aligned with the live site’s copy and motion: the “Work. Communicate. Collaborate.”
   headline with a gold rotating final word (Seamlessly / All-in-one place / Securely), the live subtext and all three CTAs. The preview is a
-  GSAP 3D coverflow of browser-framed app captures — active card in front, angled neighbours
-  behind — with a 5-second auto-advance, swipe, keyboard support and simple dot navigation. The grey
-  preview panel is gone, so the coverflow sits directly on the grid background. Five captures are
+  straight, flat GSAP slider of browser-framed app captures — one square-on card at a time, no
+  perspective or angled neighbours — with a 5-second auto-advance, swipe, keyboard support and
+  simple dot navigation. It sits directly on the new light-blue swirl artwork
+  (`assets/img/hero-swirl.svg`) that fills the hero. Five captures are
   included — Mail, Chat, Meet, Calendar and Forms — with the latest Chat/Forms/Meet screenshots
   cropped into the browser cards.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
@@ -39,7 +40,7 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 - Supporting sections refreshed: proof strip, audience cards, pricing with monthly/annual
   toggle, FAQ accordion and footer.
 - **Whimsy layer**: scroll progress bar, a faint light-blue trailing cursor ring, subtle magnetic
-  buttons, gentle 3D tilt on cards, a restrained hero tilt, soft blue cursor spotlights, and
+  buttons, gentle 3D tilt on cards, soft blue cursor spotlights, and
   doodles that drift away from the pointer around the cloud map.
 - Motion throughout via GSAP + ScrollTrigger, with `prefers-reduced-motion` support and a
   no-JavaScript fallback for the pinned section.
