@@ -18,11 +18,9 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   cropped into the browser cards.
 - **Ration Docs** introduced as two new sections sourced from [ration.works/docs](https://www.ration.works/docs):
   “One editor. The files you already work with.” presents DOCX, XLSX, PPTX and PDF editing in a
-  single desktop application with the Ration Docs product screenshot, and a dark “Your documents.
+  single desktop application with the supplied Ration Docs desktop image, and a dark “Your documents.
   Your computer. Your language.” section covers Yoruba/Igbo/Hausa support, local-first files, and
   the free macOS Apple Silicon / Linux ARM64 downloads for v2026.1.0.
-- **“One workspace. Every perspective.”** now sits on a repeating African-inspired geometric
-  pattern (`assets/img/african-pattern.svg`); the role carousel and controls are unchanged.
 - **“Eight apps, one workspace”** reworked in the spirit of Ease Health’s
   “An EHR designed for how clinicians actually work” section: a large editorial callout with
   concentric rings, followed by a pinned horizontal track of eight app panels.
@@ -61,7 +59,7 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
 │   ├── css/styles.css          # design system + all section styles
 │   ├── js/main.js              # GSAP motion, slider, accordions, interactions
 │   ├── fonts/                  # self-hosted Inter (latin + latin-ext)
-│   ├── img/                    # logos, app screenshots, map, pattern, OG image, icons
+│   ├── img/                    # logos, app screenshots, map, OG image, icons
 │   └── vendor/                 # GSAP, ScrollTrigger, ScrollToPlugin (vendored)
 ├── scripts/serve.js            # zero-dependency local static server
 ├── robots.txt

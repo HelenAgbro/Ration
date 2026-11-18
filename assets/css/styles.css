@@ -1227,9 +1227,7 @@ h1, h2, h3, h4, p, dl, dd { margin: 0; }
    Deployment
    ========================================================================== */
 /* Tabbed workspace perspectives ------------------------------------------ */
-.workspace-roles { position: relative; --role-width: min(720px, 64vw); padding: clamp(64px, 7vw, 100px) 0; background: #FCFCFC; color: #102d3b; overflow: hidden; }
-.workspace-roles::before { content: ''; position: absolute; inset: 0; background-image: url("../img/african-pattern.svg"); background-repeat: repeat; background-position: center top; background-size: 620px 620px; opacity: .4; pointer-events: none; }
-.workspace-roles > .container, .workspace-roles > .workspace-role-track { position: relative; z-index: 1; }
+.workspace-roles { --role-width: min(720px, 64vw); padding: clamp(64px, 7vw, 100px) 0; background: #f0efeb; color: #102d3b; overflow: hidden; }
 .workspace-roles-heading { margin-bottom: clamp(38px, 5vw, 64px); text-align: center; }
 .workspace-roles-eyebrow { color: #60737c; font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .workspace-roles-heading h2 { margin-top: 18px; font-size: clamp(36px, 4vw, 58px); font-weight: 550; line-height: 1.04; letter-spacing: -.045em; }
@@ -2701,10 +2699,10 @@ html.reduce-motion .ui-card { width: min(560px, 100%); margin-inline: auto; }
 .deploy:not(.is-scroll-driven) .deploy-hint { display: none; }
 /* Native sticky frame: the track provides scroll distance without pin spacers. */
 .deploy.is-scroll-driven { padding-block: 0; min-height: 0; }
-.deploy.is-scroll-driven > .container { height: 320svh; }
+.deploy.is-scroll-driven > .container { height: 240svh; }
 .deploy.is-scroll-driven .deploy-shell { position: sticky; top: 0; height: 100svh; padding-block: calc(var(--nav-h) + 16px) 24px; grid-template-columns: .8fr 1.2fr; gap: clamp(24px, 4vw, 56px); align-content: center; }
 .deploy.is-scroll-driven .deploy-slide { opacity: 1; visibility: visible; }
-.deploy.is-scroll-driven .deploy-visual { min-height: clamp(380px, 62vh, 640px); }
+.deploy.is-scroll-driven .deploy-visual { min-height: 280px; }
 .deploy.is-scroll-driven .deploy-slider { min-width: 0; }
 @media (max-width: 1100px) {
   .deploy.is-scroll-driven .deploy-slide { padding: 22px; gap: 18px; }
