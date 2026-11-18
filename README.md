@@ -15,7 +15,7 @@ The build is intentionally dependency-free at runtime — plain HTML, CSS and Ja
   split with a single product card and no decorative ring. The page uses the homepage-style closing CTA
   design with its own Solutions copy, followed by the same footer as one continuous dark section. All
   content sections now use the landing page’s shared section-head/lede components and card tokens for a
-  consistent design system. The Capabilities section uses the supplied Figma background artwork with a
+  consistent design system. The Organisations section uses the supplied Figma background artwork with a
   deep navy veil and white section text so the image is clearly visible while the cards remain legible.
   The header was updated across the homepage and Solutions page, and clean URLs are enabled locally and
   on Vercel.
