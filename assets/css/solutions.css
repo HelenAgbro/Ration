@@ -67,6 +67,7 @@
 /* Section scaffolding ----------------------------------------------------- */
 .sol-section { padding: clamp(88px, 10vw, 128px) 0; }
 .sol-section--soft { border-block: 1px solid #EAF1F4; background: var(--bg-soft); }
+.sol-section--image { background: linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .9)), url("../img/image-3.png") center / cover no-repeat, #F7FBFD; }
 /* Capabilities ----------------------------------------------------------- */
 .sol-cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .sol-cap-card {

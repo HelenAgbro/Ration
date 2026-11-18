@@ -147,5 +147,9 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
     for (const match of css.matchAll(/url\(['"]?(\.\.?\/[^'"\)]+)['"]?\)/g)) {
       assert.ok(existsSync(path.resolve(root,'assets/css',match[1])), match[1]);
     }
+    const solCss = readFileSync(path.join(root,'assets/css/solutions.css'),'utf8');
+    for (const match of solCss.matchAll(/url\(['"]?(\.\.?\/[^'"\)]+)['"]?\)/g)) {
+      assert.ok(existsSync(path.resolve(root,'assets/css',match[1])), match[1]);
+    }
   } finally { dom.window.close(); }
 });
