@@ -119,7 +119,8 @@ test('editorial backgrounds, assets and fragment targets resolve', () => {
     assert.equal(d.querySelector('.assurance-globe'), null);
     assert.ok(!d.querySelector('#stories').textContent.includes('[CERTIFICATION'));
     assert.deepEqual([...d.querySelectorAll('.assurance-answer .link-arrow')].map(a => a.getAttribute('href')), ['#cloud', '#apps-stage', '#deploy']);
-    assert.equal(d.querySelector('#stories').previousElementSibling.id, 'pricing');
+    assert.equal(d.querySelector('#pricing').previousElementSibling.classList.contains('workspace-roles'), true);
+    assert.equal(d.querySelector('#stories').previousElementSibling.id, 'ration-docs-desktop');
     assert.equal(d.querySelector('#stories').nextElementSibling.id, 'faq');
     const ids = [...d.querySelectorAll('[id]')].map(e => e.id);
     assert.equal(ids.length, new Set(ids).size);
