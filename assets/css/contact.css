@@ -40,9 +40,10 @@
 .contact-location-head .section-title { max-width: 640px; }
 .contact-location-lede { margin-top: 18px; max-width: 540px; justify-self: start; }
 .contact-map { margin: 0; }
-.contact-map-frame { position: relative; aspect-ratio: 16 / 9; border: 1px solid #DCE8EE; border-radius: 20px; background: #E8EFEF; overflow: hidden; box-shadow: 0 30px 60px -50px rgba(0, 43, 64, .4); }
-.office-map { position: absolute; inset: 0; z-index: 1; background: #E8EFEF; }
-.office-map .leaflet-tile-pane { filter: grayscale(1) brightness(1.05) contrast(.9); }
+.contact-map-frame { position: relative; aspect-ratio: 16 / 9; border: 1px solid #DCE8EE; border-radius: 20px; background: #EAF3F3; overflow: hidden; box-shadow: 0 30px 60px -50px rgba(0, 43, 64, .4); }
+.office-map { position: absolute; inset: 0; z-index: 1; background: #EAF3F3; }
+.office-map .leaflet-tile-pane { filter: saturate(.92) brightness(1.04) contrast(.94); }
+.office-map::after { content: ''; position: absolute; inset: 0; z-index: 450; background: linear-gradient(135deg, rgba(0, 102, 153, .14), rgba(85, 153, 187, .07) 55%, rgba(255, 179, 67, .05)); mix-blend-mode: multiply; pointer-events: none; }
 .office-map .leaflet-control-zoom { margin: 14px; border: 1px solid #CFDDE4; border-radius: 10px; overflow: hidden; box-shadow: 0 14px 28px -22px rgba(0, 43, 64, .55); }
 .office-map .leaflet-control-zoom a { width: 32px; height: 32px; line-height: 30px; background: #fff; color: var(--navy); border-bottom: 1px solid #E7EDF1; font-size: 18px; font-weight: 500; }
 .office-map .leaflet-control-zoom a:last-child { border-bottom: 0; }

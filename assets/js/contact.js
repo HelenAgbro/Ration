@@ -16,7 +16,7 @@
     maxZoom: 19
   }).setView([lat, lng], zoom);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     maxZoom: 20,
     subdomains: 'abcd'
   }).addTo(map);

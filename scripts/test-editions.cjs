@@ -147,7 +147,7 @@ test('contact page header, details, map and assets resolve', () => {
     assert.ok(officeMap);
     assert.equal(officeMap.dataset.lat, '6.428286');
     assert.equal(officeMap.dataset.lng, '3.456032');
-    assert.equal(officeMap.dataset.zoom, '18');
+    assert.equal(officeMap.dataset.zoom, '17');
     assert.ok(d.querySelector('script[src="assets/js/contact.js"]'));
     assert.ok(existsSync(path.join(root, 'assets/vendor/leaflet.js')));
     assert.ok(existsSync(path.join(root, 'assets/vendor/leaflet.css')));
