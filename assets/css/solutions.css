@@ -78,6 +78,7 @@
 .sol-section--image .section-title { color: #fff; }
 .sol-section--image .eyebrow { color: #8FC2D8; }
 .sol-section--image .section-lede { color: #C3D7E1; }
+.sol-section--pricing-bg { background-color: #fff; background-image: url("../img/pricing-background-texture.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat; }
 /* Capabilities ----------------------------------------------------------- */
 .sol-cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .sol-cap-card {
